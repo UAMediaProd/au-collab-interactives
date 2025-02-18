@@ -20,7 +20,7 @@ const toggleVisibility = (elementId) => {
     <!-- max-w-[900px] mx-auto flex h-screen items-center justify-center -->
     <div id="graph" class="max-w-[900px] mx-auto flex flex-col border">
         <div class="flex justify-between items-center">
-            <span class="rotated-text p-5 sm:text-xl text-primary">
+            <span class="rotated-text px-3 sm:p-5 sm:text-xl text-primary">
                 Frictional shear velocity (cm/s)
             </span>
             <div class="flex-auto">
@@ -174,11 +174,11 @@ const toggleVisibility = (elementId) => {
                     </g>
                 </svg>
             </div>
-            <span class="rotated-text p-5 sm:text-xl text-primary">
+            <span class="rotated-text px-3 sm:p-5 sm:text-xl text-primary">
                 Mean flow velocity (cm/s)</span>
         </div>
         <div class="flex justify-center">
-            <span class="p-5 sm:text-xl text-primary">Grain diameter (mm)</span>
+            <span class="py-3 sm:p-5 sm:text-xl text-primary">Grain diameter (mm)</span>
         </div>
         <div class="flex justify-center">
             <div class="bg-primary-lighter p-5 pb-2 mb-5 rounded max-w-xl">
@@ -211,7 +211,7 @@ const toggleVisibility = (elementId) => {
                     <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10" @click="toggleVisibility('labels')">
                         <span class="w-5 inline-block text-center"><i class="fal"
                                 :class="visibility.labels ? 'fa-eye' : 'fa-eye-slash'"></i></span>
-                        <span class="ml-2">Labels</span>
+                        <span class="ml-2">Labels (Coming soon)</span>
                     </button>
                 </div>
             </div>
