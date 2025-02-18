@@ -20,7 +20,7 @@ const toggleVisibility = (elementId) => {
     <!-- max-w-[900px] mx-auto flex h-screen items-center justify-center -->
     <div id="graph" class="max-w-[900px] mx-auto flex flex-col border">
         <div class="flex justify-between items-center">
-            <span class="rotated-text p-5 text-xl text-primary">
+            <span class="rotated-text p-5 sm:text-xl text-primary">
                 Frictional shear velocity (cm/s)
             </span>
             <div class="flex-auto">
@@ -174,21 +174,46 @@ const toggleVisibility = (elementId) => {
                     </g>
                 </svg>
             </div>
-            <span class="rotated-text p-5 text-xl text-primary">
+            <span class="rotated-text p-5 sm:text-xl text-primary">
                 Mean flow velocity (cm/s)</span>
         </div>
         <div class="flex justify-center">
-            <span class="p-5 text-xl text-primary">Grain diameter (mm)</span>
+            <span class="p-5 sm:text-xl text-primary">Grain diameter (mm)</span>
         </div>
         <div class="flex justify-center">
-            <div class="bg-primary-lighter p-5 mb-5 rounded">
-                <p>Visibility toggles</p>
-                <button class="p-3 rounded bg-primary m-1 text-white" @click="toggleVisibility('quartz')">Toggle quartz</button>
-                <button class="p-3 rounded bg-primary m-1 text-white" @click="toggleVisibility('basalt')">Toggle basalt</button>
-                <button class="p-3 rounded bg-primary m-1 text-white" @click="toggleVisibility('organics')">Toggle organics</button>
-                <button class="p-3 rounded bg-primary m-1 text-white" @click="toggleVisibility('water')">Toggle water</button>
-
-                <!-- <div @click="toggleVisibility('labels')">Toggle labels</div> -->
+            <div class="bg-primary-lighter p-5 pb-2 mb-5 rounded max-w-xl">
+                <p class="text-center text-lg pb-2"><strong>Visibility toggles</strong></p>
+                <div class="flex flex-col sm:flex-row sm:flex-wrap justify-center">
+                    <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10" @click="toggleVisibility('quartz')">
+                        <span class="w-5 inline-block text-center"><i class="fal"
+                                :class="visibility.quartz ? 'fa-eye' : 'fa-eye-slash'"></i></span>
+                        <span class="w-4 h-4 ml-2 bg-[#93278f] rounded-full"></span>
+                        <span class="ml-2">Quartz in H<sub>2</sub>O on Earth</span>
+                    </button>
+                    <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10" @click="toggleVisibility('basalt')">
+                        <span class="w-5 inline-block text-center"><i class="fal"
+                                :class="visibility.basalt ? 'fa-eye' : 'fa-eye-slash'"></i></span>
+                        <span class="w-4 h-4 ml-2 bg-[#ed1c24] rounded-full"></span>
+                        <span class="ml-2">Basalt in H<sub>2</sub>O on Mars</span>
+                    </button>
+                    <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10" @click="toggleVisibility('organics')">
+                        <span class="w-5 inline-block text-center"><i class="fal"
+                                :class="visibility.organics ? 'fa-eye' : 'fa-eye-slash'"></i></span>
+                        <span class="w-4 h-4 ml-2 bg-[#09892a] rounded-full"></span>
+                        <span class="ml-2">Organics in CH<sub>4</sub>N<sub>2</sub> on Titan</span>
+                    </button>
+                    <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10" @click="toggleVisibility('water')">
+                        <span class="w-5 inline-block text-center"><i class="fal"
+                                :class="visibility.water ? 'fa-eye' : 'fa-eye-slash'"></i></span>
+                        <span class="w-4 h-4 ml-2 bg-[#1448ff] rounded-full"></span>
+                        <span class="ml-2">H<sub>2</sub>O in CH<sub>4</sub>N<sub>2</sub> on Titan</span>
+                    </button>
+                    <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10" @click="toggleVisibility('labels')">
+                        <span class="w-5 inline-block text-center"><i class="fal"
+                                :class="visibility.labels ? 'fa-eye' : 'fa-eye-slash'"></i></span>
+                        <span class="ml-2">Labels</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -217,7 +242,7 @@ const toggleVisibility = (elementId) => {
 /* SVG CSS */
 .cls-1 {
     fill: #140f50;
-    font-family: Lato-Regular, Lato;
+    font-family: Lato-Regular, Lato, sans-serif;
     font-size: 10px;
 }
 
