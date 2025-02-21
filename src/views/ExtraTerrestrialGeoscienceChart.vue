@@ -24,11 +24,13 @@ const toggleVisibility = (elementId) => {
 const toggleGlow = (elementId) => {
     glow.value[elementId] = !glow.value[elementId];
 }
+
+const alert = (message) => {
+    window.alert(message);
+}
 </script>
 
 <template>
-    <!-- <button id="button" class="border" @click="toggleVisibility($event)">Toggle visibility</button> -->
-    <!-- max-w-[900px] mx-auto flex h-screen items-center justify-center -->
     <h2 class="text-4xl sm:text-5xl text-center text-primary p-3 sm:p-5">Particle movement in fluids</h2>
     <div id="graph" class="max-w-[900px] mx-auto flex flex-col select-none">
         <div class="flex justify-between items-center">
@@ -36,18 +38,21 @@ const toggleGlow = (elementId) => {
                 Frictional shear velocity (cm/s)
             </span>
             <div class="flex-auto relative">
-                <div class="absolute inset-0 h-full w-full z-10 flex" v-show="visibility.labels">
-                    <p class="text-sm sm:text-lg text-primary absolute top-[27%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
+                <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.hotspots">
+                    <div class="absolute w-5 h-5 bg-primary-light ring-[12px] hover:ring-[16px] ring-primary-light ring-opacity-20 hover:ring-opacity-30 rounded-full top-[87%] left-[26%] cursor-pointer transition-all duration-200 pointer-events-auto" @click="alert('clicked!')"></div>
+                </div>
+                <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.labels">
+                    <p class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[27%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
                         @mouseover="glow.washload = true" @mouseleave="glow.washload = false"
                         @click="toggleGlow('washload')">Washload</p>
-                    <p class="text-sm sm:text-lg text-primary absolute top-[48%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
+                    <p class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[48%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
                     @mouseover="glow.suspended = true" @mouseleave="glow.suspended = false"    
                     @click="toggleGlow('suspended')">Suspended load</p>
-                    <p class="text-sm sm:text-lg text-primary absolute top-[64%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
+                    <p class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[64%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
                     @mouseover="glow.bedload = true" @mouseleave="glow.bedload = false"    
                     @click="toggleGlow('bedload')">Bedload</p>
                     <p
-                        class="text-sm sm:text-lg text-primary absolute top-[82%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap">
+                        class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[82%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap">
                         No motion</p>
                 </div>
                 <!-- <img src="@/assets/chart.svg" alt="Extra Terrestrial Geoscience Chart" /> -->
