@@ -6,6 +6,10 @@ export default {
   ],
   theme: {
     extend: {
+      backdropBlur: {
+        'xs': '3px',
+        '2xs': '2px'
+      },
       colors: {
         'primary-darker': '#080620',
         'primary-dark': '#0C0930',

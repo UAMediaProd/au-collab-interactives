@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue';
+import Hotspot from '@/components/Hotspot.vue';
+import GraphLabel from '@/components/GraphLabel.vue';
+
 
 // Create reactive state for visibility of each element
 const visibility = ref({
@@ -39,21 +42,22 @@ const alert = (message) => {
             </span>
             <div class="flex-auto relative">
                 <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.hotspots">
-                    <div class="absolute w-5 h-5 bg-primary-light ring-[12px] hover:ring-[16px] ring-primary-light ring-opacity-20 hover:ring-opacity-30 rounded-full top-[87%] left-[26%] cursor-pointer transition-all duration-200 pointer-events-auto" @click="alert('clicked!')"></div>
+                    <!-- <div class="absolute w-5 h-5 bg-primary-light ring-[12px] hover:ring-[16px] ring-primary-light ring-opacity-20 hover:ring-opacity-30 rounded-full top-[87%] left-[26%] cursor-pointer transition-all duration-200 pointer-events-auto" @click="alert('clicked!')"></div> -->
+                    <Hotspot class="top-[88%] left-[29%]" @click="alert('Clicked!')" />
                 </div>
                 <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.labels">
-                    <p class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[27%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
-                        @mouseover="glow.washload = true" @mouseleave="glow.washload = false"
-                        @click="toggleGlow('washload')">Washload</p>
-                    <p class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[48%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
-                    @mouseover="glow.suspended = true" @mouseleave="glow.suspended = false"    
-                    @click="toggleGlow('suspended')">Suspended load</p>
-                    <p class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[64%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap"
-                    @mouseover="glow.bedload = true" @mouseleave="glow.bedload = false"    
-                    @click="toggleGlow('bedload')">Bedload</p>
-                    <p
-                        class="text-sm sm:text-lg text-primary absolute pointer-events-auto top-[82%] left-[76%] -translate-x-1/2 -translate-y-1/2 bg-primary-lighter hover:bg-[#D0CFDCB3] px-2 py-1 sm:px-3 sm:py-1 rounded backdrop-blur-sm bg-opacity-70 text-nowrap">
-                        No motion</p>
+                    <GraphLabel class="top-[27%] left-[76%]" @mouseover="glow.washload = true"
+                        @mouseleave="glow.washload = false" @click="toggleGlow('washload')">
+                        Washload
+                    </GraphLabel>
+                    <GraphLabel class="top-[48%] left-[76%]" @mouseover="glow.suspended = true"
+                        @mouseleave="glow.suspended = false" @click="toggleGlow('suspended')">Suspended load
+                    </GraphLabel>
+                    <GraphLabel class="top-[64%] left-[76%]" @mouseover="glow.bedload = true"
+                        @mouseleave="glow.bedload = false" @click="toggleGlow('bedload')">Bedload</GraphLabel>
+                    <GraphLabel class="top-[82%] left-[76%]">
+                        No motion
+                    </GraphLabel>
                 </div>
                 <!-- <img src="@/assets/chart.svg" alt="Extra Terrestrial Geoscience Chart" /> -->
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 405 343.7">
@@ -248,13 +252,13 @@ const alert = (message) => {
                         @click="toggleVisibility('labels')">
                         <span class="w-5 inline-block text-center"><i class="fal"
                                 :class="visibility.labels ? 'fa-eye' : 'fa-eye-slash'"></i></span>
-                        <span class="ml-2">Labels</span>
+                        <span class="ml-2">Load labels</span>
                     </button>
                     <button class="p-3 rounded inline-flex items-center hover:bg-primary-light/10"
                         @click="toggleVisibility('hotspots')">
                         <span class="w-5 inline-block text-center"><i class="fal"
                                 :class="visibility.hotspots ? 'fa-eye' : 'fa-eye-slash'"></i></span>
-                        <span class="ml-2">Hotspots (Coming soon)</span>
+                        <span class="ml-2">Hotspots</span>
                     </button>
                 </div>
             </div>
@@ -263,7 +267,7 @@ const alert = (message) => {
 </template>
 
 
-<style>
+<style scoped>
 .quartz .glow {
     filter: drop-shadow(0px 0px 3px #93278fcc)
 }
