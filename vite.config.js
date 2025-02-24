@@ -13,5 +13,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  server: {
+    // Tim's MacBook Pro
+    allowedHosts: ['ba89-103-232-162-56.ngrok-free.app']
   }
 })

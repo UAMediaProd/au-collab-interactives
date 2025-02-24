@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import Hotspot from '@/components/Hotspot.vue';
 import GraphLabel from '@/components/GraphLabel.vue';
-import { Dropdown, Tooltip, Menu, vTooltip } from 'floating-vue'
 
 
 // Create reactive state for visibility of each element
@@ -28,10 +27,6 @@ const toggleVisibility = (elementId) => {
 const toggleGlow = (elementId) => {
     glow.value[elementId] = !glow.value[elementId];
 }
-
-const alert = (message) => {
-    window.alert(message);
-}
 </script>
 
 <template>
@@ -44,7 +39,8 @@ const alert = (message) => {
                 </span>
             </div>
             <div class="flex-auto relative">
-                <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.hotspots">
+                <div class="absolute inset-0 h-full w-full flex" v-show="visibility.hotspots"
+                    @click="glow.washload = glow.bedload = glow.suspended = false">
                     <!-- <div class="absolute w-5 h-5 bg-primary-light ring-[12px] hover:ring-[16px] ring-primary-light ring-opacity-20 hover:ring-opacity-30 rounded-full top-[87%] left-[26%] cursor-pointer transition-all duration-200 pointer-events-auto" @click="alert('clicked!')"></div> -->
                     <VDropdown :placement="'top'" distance="32" class="absolute top-[88%] left-[29%]">
                         <Hotspot />
@@ -57,14 +53,14 @@ const alert = (message) => {
                 </div>
                 <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.labels">
                     <GraphLabel class="top-[27%] left-[76%]" @mouseover="glow.washload = true"
-                        @mouseleave="glow.washload = false" @click="toggleGlow('washload')">
+                        @mouseleave="glow.washload = false" @touchstart="toggleGlow('washload')">
                         Washload
                     </GraphLabel>
                     <GraphLabel class="top-[48%] left-[76%]" @mouseover="glow.suspended = true"
-                        @mouseleave="glow.suspended = false" @click="toggleGlow('suspended')">Suspended load
+                        @mouseleave="glow.suspended = false" @touchstart="toggleGlow('suspended')">Suspended load
                     </GraphLabel>
                     <GraphLabel class="top-[64%] left-[76%]" @mouseover="glow.bedload = true"
-                        @mouseleave="glow.bedload = false" @click="toggleGlow('bedload')">Bedload</GraphLabel>
+                        @mouseleave="glow.bedload = false" @touchstart="toggleGlow('bedload')">Bedload</GraphLabel>
                     <GraphLabel class="top-[82%] left-[76%]" :interactive="false">
                         No motion
                     </GraphLabel>
@@ -74,23 +70,19 @@ const alert = (message) => {
                     <defs>
                         <filter id="glow-quartz" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-                            <feColorMatrix type="matrix"
-                                values="0 0 0 0 0.8   0 0 0 0 0.2   0 0 0 0 0.8  0 0 0 1 0" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0.8   0 0 0 0 0.2   0 0 0 0 0.8  0 0 0 1 0" />
                         </filter>
                         <filter id="glow-basalt" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-                            <feColorMatrix type="matrix"
-                                values="1 0 0 0 0.2   0 0 0 0 0   0 0 0 0 0  0 0 0 1 0" />
+                            <feColorMatrix type="matrix" values="1 0 0 0 0.2   0 0 0 0 0   0 0 0 0 0  0 0 0 1 0" />
                         </filter>
                         <filter id="glow-organics" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-                            <feColorMatrix type="matrix"
-                                values="0 0 0 0 0   0.8 0 0 0 0.2   0 0 0 0 0  0 0 0 1 0" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0   0.8 0 0 0 0.2   0 0 0 0 0  0 0 0 1 0" />
                         </filter>
                         <filter id="glow-water" x="-50%" y="-50%" width="200%" height="200%">
                             <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-                            <feColorMatrix type="matrix"
-                                values="0 0 0 0 0   0.2 0 0 0 0.2   1 0 0 0 0.2  0 0 0 1 0" />
+                            <feColorMatrix type="matrix" values="0 0 0 0 0   0.2 0 0 0 0.2   1 0 0 0 0.2  0 0 0 1 0" />
                         </filter>
                     </defs>
                     <g>
@@ -452,5 +444,13 @@ path {
 .v-popper__arrow-inner {
     border-width: 11px;
     left: -6px !important;
+}
+
+.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-outer {
+    top: -10px;
+}
+
+.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-inner {
+    top: -9px;
 }
 </style>
