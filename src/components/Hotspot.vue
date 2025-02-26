@@ -4,8 +4,8 @@
 
 <template>
     <div class="group absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-        <div class="size-12 hover:size-16 bg-primary-light rounded-full bg-opacity-15 hover:bg-opacity-30 cursor-pointer transition-all duration-200 animate-pulse-subtle">
-            <div class="size-6 group-hover:size-7 bg-primary-light rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-200"></div>
+        <div class="size-8 sm:size-12 hover:size-12 sm:hover:size-16 bg-primary-light rounded-full bg-opacity-15 hover:bg-opacity-30 cursor-pointer transition-all duration-200 animate-pulse-subtle">
+            <div class="size-4 sm:size-6 group-hover:size-5 sm:group-hover:size-7 bg-primary-light rounded-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-200"></div>
         </div>
     </div>
 </template>

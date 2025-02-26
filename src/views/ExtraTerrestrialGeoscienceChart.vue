@@ -41,29 +41,76 @@ const toggleGlow = (elementId) => {
             <div class="flex-auto relative">
                 <div class="absolute inset-0 h-full w-full flex" v-show="visibility.hotspots"
                     @click="glow.washload = glow.bedload = glow.suspended = false">
-                    <!-- <div class="absolute w-5 h-5 bg-primary-light ring-[12px] hover:ring-[16px] ring-primary-light ring-opacity-20 hover:ring-opacity-30 rounded-full top-[87%] left-[26%] cursor-pointer transition-all duration-200 pointer-events-auto" @click="alert('clicked!')"></div> -->
+                    <!-- Bedload hotspot -->
                     <VDropdown :placement="'top'" distance="32" class="absolute top-[88%] left-[29%]">
                         <Hotspot />
-                        <template #popper>
-                            <p class="p-5">
-                                Some information about this hotspot.
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Why is this part of the graph only showing bedload?
+                            </p>
+                        </template>
+                    </VDropdown>
+                    <!-- Large organic particles hotspot -->
+                    <VDropdown :placement="'top'" distance="32" class="absolute top-[59%] left-[89%]">
+                        <Hotspot />
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Why do you think you need less energy/lower flow to move large organic particles as bedload on Titan compared to on Mars?
+                            </p>
+                        </template>
+                    </VDropdown>
+                    <!-- Washload hotspot -->
+                    <VDropdown :placement="'top'" distance="32" class="absolute top-[38%] left-[55%]">
+                        <Hotspot />
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Why do you think you need you need more energy/higher flow to move a 1mm particle in a washload on Earth compared to on Mars?
                             </p>
                         </template>
                     </VDropdown>
                 </div>
                 <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.labels">
-                    <GraphLabel class="top-[27%] left-[76%]" @mouseover="glow.washload = true"
-                        @mouseleave="glow.washload = false" @touchstart="toggleGlow('washload')">
-                        Washload
-                    </GraphLabel>
-                    <GraphLabel class="top-[48%] left-[76%]" @mouseover="glow.suspended = true"
+                    <VDropdown :placement="'top'" distance="32" class="absolute top-[27%] left-[76%]">
+                        <GraphLabel @mouseover="glow.washload = true"
+                            @mouseleave="glow.washload = false" @touchstart="toggleGlow('washload')">
+                            Washload
+                        </GraphLabel>
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Particles remain suspended throughout the water column, even in slow flows.
+                            </p>
+                        </template>
+                    </VDropdown>
+                    <VDropdown :placement="'top'" distance="32" class="absolute top-[48%] left-[76%]">
+                        <GraphLabel @mouseover="glow.suspended = true"
                         @mouseleave="glow.suspended = false" @touchstart="toggleGlow('suspended')">Suspended load
                     </GraphLabel>
-                    <GraphLabel class="top-[64%] left-[76%]" @mouseover="glow.bedload = true"
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Particles are suspended in the water column close to the bed surface.
+                            </p>
+                        </template>
+                    </VDropdown>
+                    <VDropdown :placement="'top'" distance="32" class="absolute top-[64%] left-[76%]">
+                        <GraphLabel @mouseover="glow.bedload = true"
                         @mouseleave="glow.bedload = false" @touchstart="toggleGlow('bedload')">Bedload</GraphLabel>
-                    <GraphLabel class="top-[82%] left-[76%]" :interactive="false">
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Particles roll or slide along in contact with the bed surface.
+                            </p>
+                        </template>
+                    </VDropdown>
+                    <VDropdown :placement="'top'" distance="32" class="absolute top-[82%] left-[76%]">
+                        <GraphLabel>
                         No motion
                     </GraphLabel>
+                        <template #popper class="m-2">
+                            <p class="p-4 max-w-md">
+                                Particles do not move.
+                            </p>
+                        </template>
+                    </VDropdown>                    
+                    
                 </div>
                 <!-- <img src="@/assets/chart.svg" alt="Extra Terrestrial Geoscience Chart" /> -->
                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 405 343.7">
