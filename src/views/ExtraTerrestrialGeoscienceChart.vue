@@ -73,7 +73,7 @@ const toggleGlow = (elementId) => {
                 <div class="absolute inset-0 h-full w-full flex pointer-events-none" v-show="visibility.labels">
                     <VDropdown :placement="'top'" distance="32" class="absolute top-[27%] left-[76%]">
                         <GraphLabel @mouseover="glow.washload = true"
-                            @mouseleave="glow.washload = false" @touchstart="toggleGlow('washload')">
+                            @mouseleave="glow.washload = false" @touchend="toggleGlow('washload')">
                             Washload
                         </GraphLabel>
                         <template #popper class="m-2">
@@ -84,7 +84,7 @@ const toggleGlow = (elementId) => {
                     </VDropdown>
                     <VDropdown :placement="'top'" distance="32" class="absolute top-[48%] left-[76%]">
                         <GraphLabel @mouseover="glow.suspended = true"
-                        @mouseleave="glow.suspended = false" @touchstart="toggleGlow('suspended')">Suspended load
+                        @mouseleave="glow.suspended = false" @touchend="toggleGlow('suspended')">Suspended load
                     </GraphLabel>
                         <template #popper class="m-2">
                             <p class="p-4 max-w-md">
@@ -94,7 +94,7 @@ const toggleGlow = (elementId) => {
                     </VDropdown>
                     <VDropdown :placement="'top'" distance="32" class="absolute top-[64%] left-[76%]">
                         <GraphLabel @mouseover="glow.bedload = true"
-                        @mouseleave="glow.bedload = false" @touchstart="toggleGlow('bedload')">Bedload</GraphLabel>
+                        @mouseleave="glow.bedload = false" @touchend="toggleGlow('bedload')">Bedload</GraphLabel>
                         <template #popper class="m-2">
                             <p class="p-4 max-w-md">
                                 Particles roll or slide along in contact with the bed surface.
