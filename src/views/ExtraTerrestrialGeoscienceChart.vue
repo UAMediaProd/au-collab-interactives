@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import Hotspot from '@/components/Hotspot.vue';
 import GraphLabel from '@/components/GraphLabel.vue';
-
+import RotateDeviceBanner from '@/components/RotateDeviceBanner.vue'
 
 // Create reactive state for visibility of each element
 const visibility = ref({
@@ -30,6 +30,7 @@ const toggleGlow = (elementId) => {
 </script>
 
 <template>
+    <RotateDeviceBanner class="sm:hidden"/>
     <h2 class="text-4xl sm:text-5xl text-center text-primary p-3 sm:p-5">Particle movement in fluids</h2>
     <div id="graph" class="max-w-[900px] mx-auto flex flex-col select-none">
         <div class="flex justify-between items-center">
