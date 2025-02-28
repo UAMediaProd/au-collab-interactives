@@ -16,6 +16,10 @@
             <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
             <RouterLink to="/etgeo-particle-movement-in-fluids" class="home-router-link">ETGeo: Particle movement in fluids</RouterLink>
           </li>
+          <li class="home-list-item">
+            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
+            <RouterLink to="/etgeo-particle-movement-in-air" class="home-router-link">ETGeo: Particle movement in air</RouterLink>
+          </li>
         </ul>
       </div>
     </div>

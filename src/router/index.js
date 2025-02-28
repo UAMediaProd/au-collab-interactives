@@ -10,6 +10,11 @@ const routes = [
     path: '/etgeo-particle-movement-in-fluids',
     name: 'ETGeo: Particle movement in fluids',
     component: () => import('../views/ETGeoParticleMovementInFluids.vue')
+  },
+  {
+    path: '/etgeo-particle-movement-in-air',
+    name: 'ETGeo: Particle movement in air',
+    component: () => import('../views/ETGeoParticleMovementInAir.vue')
   }
 ]
 
