@@ -7,9 +7,9 @@ const routes = [
     component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/extra-terrestrial-geoscience-chart',
-    name: 'Extra Terrestrial Geoscience Chart',
-    component: () => import('../views/ExtraTerrestrialGeoscienceChart.vue')
+    path: '/etgeo-particle-movement-in-fluids',
+    name: 'ETGeo: Particle movement in fluids',
+    component: () => import('../views/ETGeoParticleMovementInFluids.vue')
   }
 ]
 
