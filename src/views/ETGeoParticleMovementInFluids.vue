@@ -65,7 +65,7 @@ const toggleGlow = (elementId) => {
                         <Hotspot />
                         <template #popper class="m-2">
                             <p class="p-4 max-w-md">
-                                Why do you think you need you need more energy/higher flow to move a 1mm particle in a washload on Earth compared to on Mars?
+                                Why do you think you need more energy/higher flow to move a 1mm particle in a washload on Earth compared to on Mars?
                             </p>
                         </template>
                     </VDropdown>
