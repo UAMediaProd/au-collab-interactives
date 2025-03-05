@@ -15,6 +15,11 @@ const routes = [
     path: '/etgeo-particle-movement-in-air',
     name: 'ETGeo: Particle movement in air',
     component: () => import('../views/ETGeoParticleMovementInAir.vue')
+  },
+  {
+    path: '/etgeo-planets',
+    name: 'ETGeo: Planets',
+    component: () => import('../views/ETGeoPlanets.vue')
   }
 ]
 
