@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onBeforeUnmount, ref } from 'vue';
+import { onMounted, onBeforeUnmount, ref, computed } from 'vue';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -8,6 +8,8 @@ import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js'
 
 class SolarSystem {
     constructor() {
+        // Store the base URL for image paths
+        this.baseUrl = baseUrl.value;
         // Flag to track planet-to-planet navigation
         this.planetToPlaneNavigation = false;
 
@@ -422,7 +424,7 @@ class SolarSystem {
         // Create a brighter sun core
         const sunGeometry = new THREE.SphereGeometry(4.9, 32, 32);
         // Create texture loader with proper settings
-        const sunTexture = this.textureLoader.load('/planets/img/2k_sun.jpg');
+        const sunTexture = this.textureLoader.load(this.baseUrl + 'planets/img/2k_sun.jpg');
         const sunMaterial = new THREE.MeshBasicMaterial({
             map: sunTexture,
             transparent: true
@@ -510,7 +512,7 @@ class SolarSystem {
         planetData.forEach(data => {
             // Create planet
             const planetGeometry = new THREE.SphereGeometry(data.radius, 32, 32);
-            const texture = this.textureLoader.load(`/planets/img/${data.textureFile}`);
+            const texture = this.textureLoader.load(`${this.baseUrl}planets/img/${data.textureFile}`);
 
             // Use MeshStandardMaterial for better lighting
             const planetMaterial = new THREE.MeshStandardMaterial({
@@ -522,7 +524,7 @@ class SolarSystem {
             });
 
             // Store the texture URL in the planet's userData for retry matching
-            const textureUrl = `/planets/img/${data.textureFile}`;
+            const textureUrl = `${this.baseUrl}planets/img/${data.textureFile}`;
 
             // Update material when texture loads
             texture.addEventListener('load', () => {
@@ -539,7 +541,7 @@ class SolarSystem {
 
             // Special handling for Saturn's rings
             if (data.name === "Saturn") {
-                const ringTexture = this.textureLoader.load('/planets/img/2k_saturn_ring_alpha.png');
+                const ringTexture = this.textureLoader.load(this.baseUrl + 'planets/img/2k_saturn_ring_alpha.png');
 
                 // Create ring geometry with more segments for smoother texture
                 const ringGeometry = new THREE.RingGeometry(data.radius * 1.4, data.radius * 2.2, 180, 1);
@@ -1228,6 +1230,9 @@ class SolarSystem {
 // Create a reactive reference to store the solar system instance
 let solarSystemInstance = null;
 
+// Create a computed property for the base URL
+const baseUrl = computed(() => import.meta.env.BASE_URL);
+
 // Initialize the solar system when the component is mounted
 onMounted(() => {
   solarSystemInstance = new SolarSystem();
@@ -1280,7 +1285,7 @@ onMounted(() => {
             <div class="popover-header">Mercury</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/mercury.webp"
+                    <img :src="baseUrl + 'planets/img/mercury.webp'"
                         alt="Mercury is gray with bright white patches, and craters visible in this image from the MESSENGER spacecraft.">
                     <figcaption>Source: <a href="https://science.nasa.gov/solar-system/planets/">NASA</a></figcaption>
                 </figure>
@@ -1344,7 +1349,7 @@ onMounted(() => {
             <div class="popover-header">Venus</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/venus.webp" alt="A serene-looking Venus with creamy white, and tan clouds.">
+                    <img :src="baseUrl + 'planets/img/venus.webp'" alt="A serene-looking Venus with creamy white, and tan clouds.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
@@ -1404,7 +1409,7 @@ onMounted(() => {
             <div class="popover-header">Earth</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/earth.webp"
+                    <img :src="baseUrl + 'planets/img/earth.webp'"
                         alt="A view of Earth from Apollo 17 showing the blue ocean, reddish brown landmasses, and wispy, white clouds.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
@@ -1470,7 +1475,7 @@ onMounted(() => {
             <div class="popover-header">Mars</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/mars.webp"
+                    <img :src="baseUrl + 'planets/img/mars.webp'"
                         alt="Mars is a reddish brown in this image from a spacecraft. A deep gash is visible across the center of the planet.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
@@ -1535,7 +1540,7 @@ onMounted(() => {
             <div class="popover-header">Jupiter</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/jupiter.webp"
+                    <img :src="baseUrl + 'planets/img/jupiter.webp'"
                         alt="A view of Jupiter's Great Red Spot and colorful cloud bands of tan, brown, white, and orange as seen from the Juno spacecraft.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
@@ -1600,7 +1605,7 @@ onMounted(() => {
             <div class="popover-header">Saturn</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/saturn.webp"
+                    <img :src="baseUrl + 'planets/img/saturn.webp'"
                         alt="A view of Saturn from the Cassini spacecraft shows the golden planet with its rings.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
@@ -1665,7 +1670,7 @@ onMounted(() => {
             <div class="popover-header">Uranus</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/uranus.webp"
+                    <img :src="baseUrl + 'planets/img/uranus.webp'"
                         alt="Pale blue planet Uranus is seen against the darkness of space in an image from the Voyager 2 spacecraft.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
@@ -1730,7 +1735,7 @@ onMounted(() => {
             <div class="popover-header">Neptune</div>
             <div class="popover-body">
                 <figure>
-                    <img src="/planets/img/neptune.webp" alt="Neptune is blue and banded with clouds and storms.">
+                    <img :src="baseUrl + 'planets/img/neptune.webp'" alt="Neptune is blue and banded with clouds and storms.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
