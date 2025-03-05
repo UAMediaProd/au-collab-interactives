@@ -20,6 +20,11 @@ const routes = [
     path: '/etgeo-planets',
     name: 'ETGeo: Planets',
     component: () => import('../views/ETGeoPlanets.vue')
+  },
+  {
+    path: '/etgeo-volcanic-eruptions',
+    name: 'ETGeo: Volcanic Eruptions',
+    component: () => import('../views/ETGeoVolcanicEruptions.vue')
   }
 ]
 

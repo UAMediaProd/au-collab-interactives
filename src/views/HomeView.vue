@@ -24,6 +24,10 @@
             <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
             <RouterLink to="/etgeo-planets" class="home-router-link">ETGeo: Planets</RouterLink>
           </li>
+          <li class="home-list-item">
+            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
+            <RouterLink to="/etgeo-volcanic-eruptions" class="home-router-link">ETGeo: Volcanic Eruptions</RouterLink>
+          </li>
         </ul>
       </div>
     </div>
