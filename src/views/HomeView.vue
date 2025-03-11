@@ -28,6 +28,11 @@
             <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
             <RouterLink to="/etgeo-volcanic-eruptions" class="home-router-link">ETGeo: Volcanic Eruptions</RouterLink>
           </li>
+          <li class="home-list-item">
+            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
+            <RouterLink to="/eb2-intro-to-evolutionary-biology" class="home-router-link">EB2: Intro to Evolutionary Biology</RouterLink>
+          </li>
+
         </ul>
       </div>
     </div>

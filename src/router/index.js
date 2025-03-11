@@ -25,6 +25,11 @@ const routes = [
     path: '/etgeo-volcanic-eruptions',
     name: 'ETGeo: Volcanic Eruptions',
     component: () => import('../views/ETGeoVolcanicEruptions.vue')
+  },
+  {
+    path: '/eb2-intro-to-evolutionary-biology',
+    name: 'EB2: Intro to Evolutionary Biology',
+    component: () => import('../views/EB2IntroToEvolutionaryBiology.vue')
   }
 ]
 
