@@ -1235,31 +1235,31 @@ const baseUrl = computed(() => import.meta.env.BASE_URL);
 
 // Initialize the solar system when the component is mounted
 onMounted(() => {
-  solarSystemInstance = new SolarSystem();
-  console.log('Solar system initialized');
+    solarSystemInstance = new SolarSystem();
+    console.log('Solar system initialized');
 });
 
 // Clean up when the component is unmounted
 onBeforeUnmount(() => {
-  if (solarSystemInstance) {
-    // Remove event listeners
-    window.removeEventListener('resize', solarSystemInstance.onWindowResize);
-    
-    // Clean up Three.js resources
-    solarSystemInstance.clearCelestialObjects();
-    
-    // Dispose of renderer
-    if (solarSystemInstance.renderer) {
-      solarSystemInstance.renderer.dispose();
+    if (solarSystemInstance) {
+        // Remove event listeners
+        window.removeEventListener('resize', solarSystemInstance.onWindowResize);
+
+        // Clean up Three.js resources
+        solarSystemInstance.clearCelestialObjects();
+
+        // Dispose of renderer
+        if (solarSystemInstance.renderer) {
+            solarSystemInstance.renderer.dispose();
+        }
+
+        console.log('Solar system cleaned up');
     }
-    
-    console.log('Solar system cleaned up');
-  }
 });
 
 // Expose the instance for debugging
 onMounted(() => {
-  window.solarSystem = solarSystemInstance;
+    window.solarSystem = solarSystemInstance;
 });
 
 </script>
@@ -1291,50 +1291,63 @@ onMounted(() => {
                 </figure>
 
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Terrestrial</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            58 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            4879 km <br>
-                            Smallest planet in the solar system.
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>88 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. 430&deg;C <br>
-                            Min. &minus;180&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            38% of Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            Solid surface-rock with volcanic activity.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Terrestrial</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                58 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                4879 km <br>
+                                Smallest planet in the solar system.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>88 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. 430&deg;C <br>
+                                Min. &minus;180&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                38% of Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>
+                                Exosphere (very thin atmosphere) composed of material blown off the surface by solar
+                                winds.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                Solid surface-rock with volcanic activity.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1349,53 +1362,67 @@ onMounted(() => {
             <div class="popover-header">Venus</div>
             <div class="popover-body">
                 <figure>
-                    <img :src="baseUrl + 'planets/img/venus.webp'" alt="A serene-looking Venus with creamy white, and tan clouds.">
+                    <img :src="baseUrl + 'planets/img/venus.webp'"
+                        alt="A serene-looking Venus with creamy white, and tan clouds.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Terrestrial</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            107.82 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            12,104 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>24.7 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. 465&deg;C <br>
-                            Min. &minus;173&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            90% of Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            Solid surface-rock with volcanic activity.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Terrestrial</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                107.82 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                12,104 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>24.7 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. 465&deg;C <br>
+                                Min. &minus;173&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                90% of Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>
+                                Carbon Dioxide (96%), Nitrogen (3.5%), Carbon Monoxide (&lt;1%), small amounts of
+                                sulphur dioxide, water vapour and Argon.
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                Solid surface-rock with evidence of volcanic activity.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1414,54 +1441,60 @@ onMounted(() => {
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Terrestrial</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            149.6 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            12,742 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>365 days</td>
-                        <!-- Should we be more specific? -->
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. 56.7&deg;C <br>
-                            Min. &minus;89&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            9.8 m/s
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Atmosphere</th>
-                        <td>Nitrogen (78%), Oxygen (21%), Argon (0.93%), green house gases (0.04%) </td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>1 (Not shown)</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            Solid-rock surface with volcanic activity.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Terrestrial</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                149.6 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                12,742 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>365 days</td>
+                            <!-- Should we be more specific? -->
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. 56.7&deg;C <br>
+                                Min. &minus;89&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                9.8 m/s
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>Nitrogen (78%), Oxygen (21%), Argon (0.93%), green house gases (0.04%) </td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>1 (Not shown)</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                Solid surface-rock with evidence of volcanic activity.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1480,53 +1513,59 @@ onMounted(() => {
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Terrestrial</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            228 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            6779 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>687 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. 20&deg;C <br>
-                            Min. &minus;60&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            62% of Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Atmosphere</th>
-                        <td>Mostly CO2, nitrogen, Argon</td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>2 (Not shown)</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            Solid-rock surface that may have had volcanic activity.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Terrestrial</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                228 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                6779 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>687 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. 20&deg;C <br>
+                                Min. &minus;60&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                62% of Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>Mostly CO2, nitrogen, Argon</td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>2 (Not shown)</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                Solid surface-rock with evidence of volcanic activity.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1545,53 +1584,59 @@ onMounted(() => {
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Jovian</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            778 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            142,984 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>12 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. &minus;166&deg;C <br>
-                            Min. &minus;145&deg;C (Clouds)
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            2.4 &times; Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Atmosphere</th>
-                        <td>Hydrogen, helium, water, methane and ammonia</td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>95 (Not shown)</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            No solid-rock surface. It is composed by an ocean made primary of metallic hydrogen.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Jovian</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                778 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                142,984 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>12 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. &minus;166&deg;C <br>
+                                Min. &minus;145&deg;C (Clouds)
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                2.4 &times; Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>Hydrogen, helium, water, methane and ammonia</td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>95 (Not shown)</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                No solid-rock surface. It is composed of an ocean made primarily of metallic hydrogen.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1610,53 +1655,59 @@ onMounted(() => {
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Jovian</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            1439.2 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            12,0536 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>29.4 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. &minus;122&deg;C <br>
-                            Min. &minus;185&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            1.065&ndash;1.08 &times; Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Atmosphere</th>
-                        <td>Hydrogen (75%), helium (25%), water ice and methane</td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>146 (Not shown)</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            No solid-rock surface. It is composed by gas.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Jovian</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                1439.2 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                12,0536 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>29.4 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. &minus;122&deg;C <br>
+                                Min. &minus;185&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                1.065&ndash;1.08 &times; Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>Hydrogen (75%), helium (25%), water ice and methane</td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>146 (Not shown)</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                No solid-rock surface. It is composed of gas.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1675,53 +1726,59 @@ onMounted(() => {
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Jovian</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            2923.6 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            50,724 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>84 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. &minus;320&deg;C <br>
-                            Min. &minus;372&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            88.6% of Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Atmosphere</th>
-                        <td>Hydrogen (83%), helium (15%), and methane (2%)</td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>28 (Not shown)</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            No solid-rock surface. It is composed by gas.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Jovian</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                2923.6 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                50,724 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>84 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. &minus;320&deg;C <br>
+                                Min. &minus;372&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                88.6% of Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>Hydrogen (83%), helium (15%), and methane (2%)</td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>28 (Not shown)</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                No solid-rock surface. It is composed of gas and ice.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1735,57 +1792,64 @@ onMounted(() => {
             <div class="popover-header">Neptune</div>
             <div class="popover-body">
                 <figure>
-                    <img :src="baseUrl + 'planets/img/neptune.webp'" alt="Neptune is blue and banded with clouds and storms.">
+                    <img :src="baseUrl + 'planets/img/neptune.webp'"
+                        alt="Neptune is blue and banded with clouds and storms.">
                     <figcaption>Source: <a href="">NASA</a></figcaption>
                 </figure>
                 <table>
-                    <tr>
-                        <th>Type</th>
-                        <td>Jovian</td>
-                    </tr>
-                    <tr>
-                        <th>Distance from sun</th>
-                        <td>
-                            4471.4 million km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Diameter</th>
-                        <td>
-                            49,244 km
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Orbit</th>
-                        <td>165 Earth days</td>
-                    </tr>
-                    <tr>
-                        <th>Surface temperature</th>
-                        <td>
-                            Max. &minus;201&deg;C <br>
-                            Min. &minus;218&deg;C
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Gravity</th>
-                        <td>
-                            14% times Earth's
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Atmosphere</th>
-                        <td>Hydrogen (80%), helium (19%), and methane (1.5%)</td>
-                    </tr>
-                    <tr>
-                        <th>Moons</th>
-                        <td>16 (Not shown)</td>
-                    </tr>
-                    <tr>
-                        <th>Surface</th>
-                        <td>
-                            No solid-rock surface. It is composed by ice.
-                        </td>
-                    </tr>
+                    <colgroup>
+                        <col class="label">
+                        <col class="description">
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>Type</th>
+                            <td>Jovian</td>
+                        </tr>
+                        <tr>
+                            <th>Distance from sun</th>
+                            <td>
+                                4471.4 million km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Diameter</th>
+                            <td>
+                                49,244 km
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Orbit</th>
+                            <td>165 Earth days</td>
+                        </tr>
+                        <tr>
+                            <th>Surface temperature</th>
+                            <td>
+                                Max. &minus;201&deg;C <br>
+                                Min. &minus;218&deg;C
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Gravity</th>
+                            <td>
+                                14% times Earth's
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Atmosphere</th>
+                            <td>Hydrogen (80%), helium (19%), and methane (1.5%)</td>
+                        </tr>
+                        <tr>
+                            <th>Moons</th>
+                            <td>16 (Not shown)</td>
+                        </tr>
+                        <tr>
+                            <th>Surface</th>
+                            <td>
+                                No solid-rock surface. It is composed of gas and ice.
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div class="planet-nav-container">
@@ -1795,9 +1859,6 @@ onMounted(() => {
             </div>
         </div>
     </div>
-
-
-    <!-- Import map is not needed here as we're using npm modules -->
 </template>
 
 <style>
