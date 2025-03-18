@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col justify-between">
+  <div class="min-h-screen flex flex-col justify-between bg-white">
     <div class="flex flex-col justify-start">
       <div class="bg-primary m-0 min-h-[30px] py-4">
         <div class="home-wrapper"><img class="my-2" src="@/assets/au-logo.svg" width="160" alt="" /></div>

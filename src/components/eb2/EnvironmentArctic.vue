@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <g id="Layer_3" class="environment-arctic svg-hover-outline" data-name="Layer 3">
+    <g id="Layer_3" class="svg-hover-outline" data-name="Layer 3">
         <path class="cls-2"
             d="M1480.9,816.46c21.92,14.61,50.71,40.3,97.54,41.11,58.78,1.02,66.34-24.44,99.9-39.06,29.89-13.02,70.8-2.06,116.42-25.35,31.04-15.85,45.72-116.08,45.72-116.08h-522.14s30.06,102.11,63.44,118.82c18.28,9.15,78.2,14.45,99.12,20.56" />
         <path class="cls-17"
