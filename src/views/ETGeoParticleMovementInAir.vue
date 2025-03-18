@@ -22,7 +22,7 @@ const toggleVisibility = (elementId) => {
 <template>
     <RotateDeviceBanner class="sm:hidden" />
     <h2 class="text-4xl sm:text-5xl text-center text-primary p-3 sm:p-5">Particle movement in air</h2>
-    <div id="graph" class="max-w-[900px] mx-auto flex flex-col select-none">
+    <div id="graph" class="max-w-[900px] mx-auto flex flex-col select-none overflow-x-hidden">
         <div class="flex justify-between items-center">
             <div class="rotated-text-container">
                 <span class="rotated-text px-3 sm:p-5 sm:text-xl text-primary">

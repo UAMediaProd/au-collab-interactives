@@ -7,7 +7,7 @@ import RotateDeviceBanner from '@/components/RotateDeviceBanner.vue';
 <template>
     <RotateDeviceBanner class="sm:hidden" />
     <h2 class="text-4xl sm:text-5xl text-center text-primary p-3 sm:p-5">Volcanic Eruptions</h2>
-    <div id="graph" class="max-w-[900px] mx-auto flex flex-col select-none">
+    <div id="graph" class="max-w-[900px] mx-auto flex flex-col select-none overflow-x-hidden">
         <div class="relative">
             <img src="@/assets/map.jpg" alt="Map of the world" class="w-100">
             <div id="map-container" class="absolute inset-0 h-full w-full flex">
