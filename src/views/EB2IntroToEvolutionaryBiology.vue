@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, watch, computed } from 'vue';
 import { SVG } from '@svgdotjs/svg.js';
 
 // Stylesheet for EB2 SVG
@@ -56,9 +56,9 @@ const resetElements = (selector) => {
     regionActive.value.biogeography = regionActive.value.palaeontology = regionActive.value.microevolution = regionActive.value.macroevolution = false;
 }
 
-// Helper functions to determine state of all regions
-const allRegionsInactive = () => !regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? true : false;
-const anyRegionActive = () => regionActive.biogeography || regionActive.palaeontology || regionActive.microevolution || regionActive.macroevolution ? true : false;
+// Helper computed properties to determine state of all regions
+const allRegionsInactive = computed(() => !regionActive.value.biogeography && !regionActive.value.palaeontology && !regionActive.value.microevolution && !regionActive.value.macroevolution);
+const anyRegionActive = computed(() => regionActive.value.biogeography || regionActive.value.palaeontology || regionActive.value.microevolution || regionActive.value.macroevolution);
 
 const allElements = '.bones, .not-bones, .branches, .ground, .trunk, .environment, .not-environment';
 
@@ -119,6 +119,8 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
     <button class="p-1 bg-primary-lighter m-2 rounded"
         @click="regionActive.macroevolution = !regionActive.macroevolution">macroevolution:
         {{ regionActive.macroevolution }}</button>
+        <p>All regions inactive: {{ allRegionsInactive }}</p>
+        <p>Any regions active: {{ anyRegionActive }}</p>
     <div id="graphic" class="max-w-[900px] mx-auto flex flex-col select-none pt-4">
         <div class="flex justify-between items-center">
             <div class="flex-auto relative">
@@ -192,18 +194,18 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
                             :class="allRegionsInactive ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none'"
                             @click="(event) => handleClick('microevolution', event)" />
                             <Trunk class="trunk"
-                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
+                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
                             @click="(event) => handleClick('macroevolution', event)" />
                         </g>
                         <g class="environments">
                             <EnvironmentArctic class="environment environment-arctic"
-                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'" 
+                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'" 
                             @click="(event) => handleClick('biogeography', event)" />
                             <EnvironmentForest class="environment environment-forest" 
-                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
+                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
                             @click="(event) => handleClick('biogeography', event)" />
                             <EnvironmentDesert class="environment environment-desert" 
-                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
+                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
                             @click="(event) => handleClick('biogeography', event)" />
                         </g>
                     </g>
@@ -214,6 +216,7 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
             </div>
         </div>
     </div>
+
 </template>
 
 
