@@ -63,7 +63,7 @@ const resetElements = (selector) => {
 const allRegionsInactive = computed(() => !regionActive.value.biogeography && !regionActive.value.palaeontology && !regionActive.value.microevolution && !regionActive.value.macroevolution);
 const anyRegionActive = computed(() => regionActive.value.biogeography || regionActive.value.palaeontology || regionActive.value.microevolution || regionActive.value.macroevolution);
 
-const allElements = '.bones, .not-bones, .branches, .ground, .trunk, .environment, .not-environment, .not-trunk, .branches-top, .branches-middle, .branches-bottom';
+const allElements = '.bones, .not-bones, .bone-1, .bone-2, .bone-3, .bone-4, .bone-5, .bone-6, .branches, .ground, .trunk, .environment, .not-environment, .environment-desert, .environment-forest, .environment-arctic, .not-trunk, .branches-top, .branches-middle, .branches-bottom, .branches-small';
 
 let animationLoopRunning = false;
 
@@ -75,10 +75,17 @@ watch(() => regionActive.value.biogeography, (isActive) => {
 
         animationLoopRunning = true;
         // Scale up environments
-        svgCanvas.value.find('.environment').forEach(element => {
-            element.animate(500).scale(1.1);
-            element.animate(500).translate(50, 0);
-            element.animate(500).translate(-100, 0);
+        // svgCanvas.value.find('.environment').forEach(element => {
+        //     element.animate(500).scale(1.1);
+        // });
+        svgCanvas.value.find('.environment-desert').forEach(element => {
+            element.animate(1000).translate(30, 0).scale(1.05);
+        });
+        svgCanvas.value.find('.environment-forest').forEach(element => {
+            element.animate(1000).translate(-30, 0).scale(1.05);
+        });
+        svgCanvas.value.find('.environment-arctic').forEach(element => {
+            element.animate(1000).translate(20, -20).scale(1.05);
         });
 
         // Scale down other elements
@@ -96,8 +103,23 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
 
     if (isActive) {
         // Scale up bones
-        svgCanvas.value.find('.bones').forEach(element => {
-            element.animate(500).scale(1.1).translate(0, -50);
+        svgCanvas.value.find('.bone-1').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50).rotate(10);
+        });
+        svgCanvas.value.find('.bone-2').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50).rotate(-10);
+        });
+        svgCanvas.value.find('.bone-3').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50).rotate(10);
+        });
+        svgCanvas.value.find('.bone-4').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50).rotate(-10);
+        });
+        svgCanvas.value.find('.bone-5').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50).rotate(10);
+        });
+        svgCanvas.value.find('.bone-6').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50).rotate(-10);
         });
 
         // Scale down other elements
@@ -115,7 +137,8 @@ watch(() => regionActive.value.macroevolution, (isActive) => {
     if (isActive) {
         // Scale up trunk
         svgCanvas.value.find('.trunk').forEach(element => {
-            element.animate(500).scale(1.05);
+            element.animate(300).scale(1.02, 1.12).ease('<');
+            element.animate(600).transform({}).scale(1.05).ease('>');
         });
 
         // Fade out other elements
@@ -132,19 +155,41 @@ watch(() => regionActive.value.microevolution, (isActive) => {
 
     if (isActive) {
         // Animate branches
-        svgCanvas.value.find('.branches-top').forEach(element => {
-            element.animate(500).scale(1.1).opacity(1);
-
-
+        svgCanvas.value.find('.branches-top, .branches-bottom').forEach(element => {
+            element.animate(800).scale(1.1).opacity(1).transform({
+                rotate: 10,
+                origin: 'bottom left'
+            });
         });
         svgCanvas.value.find('.branches-middle').forEach(element => {
-            element.animate(500).scale(1.1).opacity(1).skew(0, 2);
-
+            element.animate(800).scale(1.1).opacity(1).transform({
+                rotate: -10,
+                origin: 'bottom right'
+            });
         });
-        svgCanvas.value.find('.branches-bottom').forEach(element => {
-            element.animate(500).scale(1.1).opacity(1).skew(0, 2);
-
+        svgCanvas.value.find('.branches-top .branches-small, .branches-bottom .branches-small').forEach(element => {
+            element.animate(300).transform({
+                rotate: -10,
+                origin: 'bottom',
+                translateY: 5
+            });
+            element.animate(400).transform({
+                rotate: 0,
+                origin: 'bottom'
+            });
         });
+        svgCanvas.value.find('.branches-middle .branches-small').forEach(element => {
+            element.animate(300).transform({
+                rotate: 10,
+                origin: 'bottom',
+                translateY: 5
+            });
+            element.animate(400).transform({
+                rotate: 0,
+                origin: 'bottom'
+            });
+        });
+
         // Fade out other elements
         svgCanvas.value.find('.not-branches').forEach(element => {
             element.animate(500).opacity(0.5);
