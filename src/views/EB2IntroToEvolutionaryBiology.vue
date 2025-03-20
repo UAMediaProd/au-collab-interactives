@@ -12,7 +12,7 @@ import Bones from '@/components/eb2/Bones.vue';
 import Ground from '@/components/eb2/Ground.vue';
 import Branches from '@/components/eb2/Branches.vue';
 import Trunk from '@/components/eb2/Trunk.vue';
-import PositionDebugger from '@/components/PositionDebugger.vue';
+import ModalDialog from '@/components/ModalDialog.vue';
 
 
 const regionActive = ref({
@@ -214,6 +214,8 @@ watch(() => regionActive.value.microevolution, (isActive) => {
     <button class="p-1 bg-primary-lighter m-2 rounded"
         @click="regionActive.macroevolution = !regionActive.macroevolution">macroevolution:
         {{ regionActive.macroevolution }}</button>
+    <button class="p-1 bg-primary-lighter m-2 rounded"
+        @click="resetElements(allElements)">reset animations</button>
     <p>All regions inactive: {{ allRegionsInactive }}</p>
     <p>Any regions active: {{ anyRegionActive }}</p>
     <div id="graphic" class="max-w-[900px] mx-auto flex flex-col select-none pt-4">
@@ -303,7 +305,6 @@ watch(() => regionActive.value.microevolution, (isActive) => {
             </div>
         </div>
     </div>
-    <PositionDebugger targetSelector="#svg" />
 
 </template>
 
