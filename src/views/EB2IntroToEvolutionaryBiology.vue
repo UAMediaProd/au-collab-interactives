@@ -12,6 +12,8 @@ import Bones from '@/components/eb2/Bones.vue';
 import Ground from '@/components/eb2/Ground.vue';
 import Branches from '@/components/eb2/Branches.vue';
 import Trunk from '@/components/eb2/Trunk.vue';
+import PositionDebugger from '@/components/PositionDebugger.vue';
+
 
 const regionActive = ref({
     biogeography: false,
@@ -30,7 +32,7 @@ const handleClick = (region, event) => {
     if (event) {
         event.stopPropagation();
     }
-    
+
     console.log(`${region} region clicked!`);
     Object.keys(regionActive.value).forEach(key => key !== region && (regionActive.value[key] = false));
     regionActive.value[region] = !regionActive.value[region];
@@ -44,6 +46,7 @@ onMounted(() => {
 
 // Helper function to reset graphic elements
 const resetElements = (selector) => {
+    animationLoopRunning = false;
     // If selector is a string, find elements using SVG.js
     if (typeof selector === 'string') {
         svgCanvas.value.find(selector).forEach(element => {
@@ -60,37 +63,38 @@ const resetElements = (selector) => {
 const allRegionsInactive = computed(() => !regionActive.value.biogeography && !regionActive.value.palaeontology && !regionActive.value.microevolution && !regionActive.value.macroevolution);
 const anyRegionActive = computed(() => regionActive.value.biogeography || regionActive.value.palaeontology || regionActive.value.microevolution || regionActive.value.macroevolution);
 
-const allElements = '.bones, .not-bones, .branches, .ground, .trunk, .environment, .not-environment';
+const allElements = '.bones, .not-bones, .branches, .ground, .trunk, .environment, .not-environment, .not-trunk, .branches-top, .branches-middle, .branches-bottom';
+
+let animationLoopRunning = false;
 
 // Biogeography animation
 watch(() => regionActive.value.biogeography, (isActive) => {
     if (!svgCanvas.value) return;
 
     if (isActive) {
-        // Start by resetting all elements
-        // resetElements(allElements);
-        
-        // Scale up environments and start wafting
+
+        animationLoopRunning = true;
+        // Scale up environments
         svgCanvas.value.find('.environment').forEach(element => {
-            element.animate(500).scale(1.05);
+            element.animate(500).scale(1.1);
+            element.animate(500).translate(50, 0);
+            element.animate(500).translate(-100, 0);
         });
 
         // Scale down other elements
         svgCanvas.value.find('.not-environment').forEach(element => {
-            element.animate(500).scale(0.95).opacity(0.5);
+            element.animate(500).opacity(0.5);
         });
 
     }
 });
+
 
 // Palaeontology animation
 watch(() => regionActive.value.palaeontology, (isActive) => {
     if (!svgCanvas.value) return;
 
     if (isActive) {
-        // Start by resetting all elements
-        // resetElements(allElements);
-        
         // Scale up bones
         svgCanvas.value.find('.bones').forEach(element => {
             element.animate(500).scale(1.1).translate(0, -50);
@@ -98,11 +102,57 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
 
         // Scale down other elements
         svgCanvas.value.find('.not-bones').forEach(element => {
-            element.animate(500).scale(0.95).opacity(0.5);
+            element.animate(500).opacity(0.5);
         });
 
     }
 });
+
+// Macroevolution animation
+watch(() => regionActive.value.macroevolution, (isActive) => {
+    if (!svgCanvas.value) return;
+
+    if (isActive) {
+        // Scale up trunk
+        svgCanvas.value.find('.trunk').forEach(element => {
+            element.animate(500).scale(1.05);
+        });
+
+        // Fade out other elements
+        svgCanvas.value.find('.not-trunk').forEach(element => {
+            element.animate(500).opacity(0.5);
+        });
+
+    }
+});
+
+// Microevolution animation
+watch(() => regionActive.value.microevolution, (isActive) => {
+    if (!svgCanvas.value) return;
+
+    if (isActive) {
+        // Animate branches
+        svgCanvas.value.find('.branches-top').forEach(element => {
+            element.animate(500).scale(1.1).opacity(1);
+
+
+        });
+        svgCanvas.value.find('.branches-middle').forEach(element => {
+            element.animate(500).scale(1.1).opacity(1).skew(0, 2);
+
+        });
+        svgCanvas.value.find('.branches-bottom').forEach(element => {
+            element.animate(500).scale(1.1).opacity(1).skew(0, 2);
+
+        });
+        // Fade out other elements
+        svgCanvas.value.find('.not-branches').forEach(element => {
+            element.animate(500).opacity(0.5);
+        });
+
+    }
+});
+
 </script>
 
 <template>
@@ -119,15 +169,15 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
     <button class="p-1 bg-primary-lighter m-2 rounded"
         @click="regionActive.macroevolution = !regionActive.macroevolution">macroevolution:
         {{ regionActive.macroevolution }}</button>
-        <p>All regions inactive: {{ allRegionsInactive }}</p>
-        <p>Any regions active: {{ anyRegionActive }}</p>
+    <p>All regions inactive: {{ allRegionsInactive }}</p>
+    <p>Any regions active: {{ anyRegionActive }}</p>
     <div id="graphic" class="max-w-[900px] mx-auto flex flex-col select-none pt-4">
         <div class="flex justify-between items-center">
             <div class="flex-auto relative">
-                <svg ref="svgContainer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1920 1920" class="overflow-visible" 
+                <svg id="svg" ref="svgContainer" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1920" class="overflow-visible"
                     :class="anyRegionActive ? 'cursor-pointer' : ''"
-                    @click="() => { anyRegionActive ? resetElements(allElements) : null }" >
+                    @click="() => { anyRegionActive ? resetElements(allElements) : null }">
                     <defs>
                         <linearGradient id="linear-gradient" x1="1637.12" y1="815.15" x2="1634.87" y2="649.69"
                             gradientUnits="userSpaceOnUse">
@@ -145,88 +195,82 @@ watch(() => regionActive.value.palaeontology, (isActive) => {
                             xlink:href="#linear-gradient" />
                         <linearGradient id="linear-gradient-4" x1="1303.71" y1="772.03" x2="1301.96" y2="643.3"
                             gradientTransform="translate(474.47)" xlink:href="#linear-gradient" />
-                        <filter id="hover-glow">
-                            <feGaussianBlur stdDeviation="20" result="blur" />
-                            <feFlood flood-color="#4299e1" flood-opacity="0.7" result="color" />
-                            <feComposite in="color" in2="blur" operator="in" result="glow" />
-                            <feMerge>
-                                <feMergeNode in="glow" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
-                        <filter id="drop-shadow">
-                            <feDropShadow dx="10" dy="10" stdDeviation="0" flood-color="#4299e1" flood-opacity="0.7" />
-                        </filter>
 
                         <filter id="hover-filter-lg" x="-10%" y="-10%" width="120%" height="120%">
                             <feMorphology in="SourceAlpha" result="expanded" operator="dilate" radius="12" />
-                            <feFlood flood-color="white" result="outlineColor" />
+                            <!-- <feFlood flood-color="white" result="outlineColor" /> -->
+                            <feFlood flood-color="yellow" result="outlineColor" />
                             <feComposite in="outlineColor" in2="expanded" operator="in" result="outline" />
                             <feMorphology in="SourceAlpha" result="glowExpanded" operator="dilate" radius="8" />
                             <feFlood flood-color="rgba(0, 0, 0, 0.5)" result="glowColor" />
                             <feComposite in="glowColor" in2="glowExpanded" operator="in" result="glowBase" />
-                            <feGaussianBlur in="glowBase" stdDeviation="12" result="glow" />
+                            <!-- <feGaussianBlur in="glowBase" stdDeviation="12" result="glow" /> -->
                             <feMerge>
-                                <feMergeNode in="glow" /> <!-- Blurry glow -->
-                                <feMergeNode in="outline" /> <!-- Solid outline -->
-                                <feMergeNode in="SourceGraphic" /> <!-- Original content -->
+                                <!-- <feMergeNode in="glow" /> -->
+                                <feMergeNode in="outline" />
+                                <feMergeNode in="SourceGraphic" />
                             </feMerge>
                         </filter>
                         <filter id="hover-filter-sm" x="-5%" y="-5%" width="110%" height="110%">
                             <feMorphology in="SourceAlpha" result="expanded" operator="dilate" radius="8" />
-                            <feFlood flood-color="white" result="outlineColor" />
+                            <!-- <feFlood flood-color="white" result="outlineColor" /> -->
+                            <feFlood flood-color="yellow" result="outlineColor" />
                             <feComposite in="outlineColor" in2="expanded" operator="in" result="outline" />
                             <feMorphology in="SourceAlpha" result="glowExpanded" operator="dilate" radius="9" />
                             <feFlood flood-color="rgba(0, 0, 0, 0.3)" result="glowColor" />
                             <feComposite in="glowColor" in2="glowExpanded" operator="in" result="glowBase" />
-                            <feGaussianBlur in="glowBase" stdDeviation="12" result="glow" />
+                            <!-- <feGaussianBlur in="glowBase" stdDeviation="12" result="glow" /> -->
                             <feMerge>
-                                <feMergeNode in="glow" /> <!-- Blurry glow -->
-                                <feMergeNode in="outline" /> <!-- Solid outline -->
-                                <feMergeNode in="SourceGraphic" /> <!-- Original content -->
+                                <!-- <feMergeNode in="glow" />  -->
+                                <feMergeNode in="outline" />
+                                <feMergeNode in="SourceGraphic" />
                             </feMerge>
                         </filter>
                     </defs>
                     <g class="not-bones">
                         <g class="not-environment">
-                            <Ground class="ground" />
-                            <Branches class="branches" 
-                            :class="allRegionsInactive ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none'"
-                            @click="(event) => handleClick('microevolution', event)" />
+                            <g class="not-trunk">
+                                <Ground class="ground not-branches" />
+                                <Branches class="branches"
+                                    :class="allRegionsInactive ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none', regionActive.microevolution ? 'region-active-sm' : ''"
+                                    @click="(event) => handleClick('microevolution', event)" />
+                            </g>
                             <Trunk class="trunk"
-                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
-                            @click="(event) => handleClick('macroevolution', event)" />
+                                :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none', regionActive.macroevolution ? 'region-active-lg' : ''"
+                                @click="(event) => handleClick('macroevolution', event)" />
                         </g>
-                        <g class="environments">
+                        <g class="environments not-trunk not-branches">
                             <EnvironmentArctic class="environment environment-arctic"
-                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'" 
-                            @click="(event) => handleClick('biogeography', event)" />
-                            <EnvironmentForest class="environment environment-forest" 
-                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
-                            @click="(event) => handleClick('biogeography', event)" />
-                            <EnvironmentDesert class="environment environment-desert" 
-                            :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
-                            @click="(event) => handleClick('biogeography', event)" />
+                                :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none', regionActive.biogeography ? 'region-active-lg' : ''"
+                                @click="(event) => handleClick('biogeography', event)" />
+                            <EnvironmentForest class="environment environment-forest"
+                                :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none', regionActive.biogeography ? 'region-active-lg' : ''"
+                                @click="(event) => handleClick('biogeography', event)" />
+                            <EnvironmentDesert class="environment environment-desert"
+                                :class="allRegionsInactive ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none', regionActive.biogeography ? 'region-active-lg' : ''"
+                                @click="(event) => handleClick('biogeography', event)" />
                         </g>
                     </g>
-                    <Bones class="bones not-environment" 
-                    :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none'"
-                    @click="(event) => handleClick('palaeontology', event)"/>
+                    <Bones class="bones not-environment not-trunk not-branches"
+                        :class="allRegionsInactive ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none', regionActive.palaeontology ? 'region-active-sm' : ''"
+                        @click="(event) => handleClick('palaeontology', event)" />
                 </svg>
             </div>
         </div>
     </div>
+    <PositionDebugger targetSelector="#svg" />
 
 </template>
 
 
 <style scoped>
-.hover-filter-lg:hover {
+.hover-filter-lg:hover,
+.region-active-lg {
     filter: url(#hover-filter-lg);
-    transition: filter 0.3s ease;
 }
-.hover-filter-sm:hover {
+
+.hover-filter-sm:hover,
+.region-active-sm {
     filter: url(#hover-filter-sm);
-    transition: filter 0.3s ease;
 }
 </style>
