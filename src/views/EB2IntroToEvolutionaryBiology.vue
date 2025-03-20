@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-// import PositionDebugger from '@/components/PositionDebugger.vue';
 import { SVG } from '@svgdotjs/svg.js';
 
 // Stylesheet for EB2 SVG
@@ -11,11 +10,10 @@ import EnvironmentForest from '@/components/eb2/EnvironmentForest.vue';
 import EnvironmentArctic from '@/components/eb2/EnvironmentArctic.vue';
 import Bones from '@/components/eb2/Bones.vue';
 import Ground from '@/components/eb2/Ground.vue';
-import LargeBranches from '@/components/eb2/LargeBranches.vue';
-import SmallBranches from '@/components/eb2/SmallBranches.vue';
+import Branches from '@/components/eb2/Branches.vue';
 import Trunk from '@/components/eb2/Trunk.vue';
 
-const modalActive = ref({
+const regionActive = ref({
     biogeography: false,
     palaeontology: false,
     microevolution: false,
@@ -27,163 +25,107 @@ const svgCanvas = ref(null);
 const svgContainer = ref(null);
 
 // Handle environment clicks
-const handleClick = (region) => {
+const handleClick = (region, event) => {
+    // Stop event propagation to prevent parent SVG click handler from firing
+    if (event) {
+        event.stopPropagation();
+    }
+    
     console.log(`${region} region clicked!`);
-    modalActive.value[region] = !modalActive.value[region];
+    Object.keys(regionActive.value).forEach(key => key !== region && (regionActive.value[key] = false));
+    regionActive.value[region] = !regionActive.value[region];
 };
 
 // Initialize SVG.js after component is mounted
 onMounted(() => {
     // Initialize SVG.js with the main SVG element
     svgCanvas.value = SVG(svgContainer.value);
-    
-    // Add click handlers to environments using SVG.js
-    if (svgCanvas.value) {
-        // Find elements by their class and add event listeners
-        svgCanvas.value.find('#EnvironmentArctic').forEach(element => {
-            element.click(() => handleClick('biogeography'));
-        });
-        
-        svgCanvas.value.find('#EnvironmentForest').forEach(element => {
-            element.click(() => handleClick('biogeography'));
-        });
-        
-        svgCanvas.value.find('#EnvironmentDesert').forEach(element => {
-            element.click(() => handleClick('biogeography'));
-        });
-        
-        svgCanvas.value.find('#Bones').forEach(element => {
-            element.click(() => handleClick('palaeontology'));
-        });
-    }
 });
 
-// Watch for changes to trigger animations
-watch(() => modalActive.value.biogeography, (isActive) => {
-    if (!svgCanvas.value) return;
-    
-    if (isActive) {
-        // Create or find the white overlay
-        let overlay = svgCanvas.value.findOne('#bioOverlay');
-        if (!overlay) {
-            // Create a white rectangle covering the entire SVG
-            overlay = svgCanvas.value.rect(1920, 1920).fill('white').opacity(0).id('bioOverlay');
-            
-            // Position it right before the environment elements
-            // This ensures it covers everything except the environments
-            const firstEnv = svgCanvas.value.findOne('#Environments');
-            if (firstEnv) {
-                overlay.after(firstEnv);
-            }
-        }
-        
-        // Scale up environments
-        svgCanvas.value.find('#Environments').forEach(element => {
-            element.animate(500).scale(1.05);
+// Helper function to reset graphic elements
+const resetElements = (selector) => {
+    // If selector is a string, find elements using SVG.js
+    if (typeof selector === 'string') {
+        svgCanvas.value.find(selector).forEach(element => {
+            element.animate(500).transform({}).opacity(1);
         });
-        
-        // Scale down other elements
-        svgCanvas.value.find('#NotEnvironments').forEach(element => {
-            element.animate(500).scale(0.95);
-        });
-        
-        // Show the overlay with animation
-        overlay.animate(500).opacity(0.5);
     } else {
-        // Hide the overlay
-        const overlay = svgCanvas.value.findOne('#bioOverlay');
-        if (overlay) {
-            overlay.animate(500).opacity(0);
-        }
+        // If it's already an element, animate it directly
+        selector.animate(500).transform({}).opacity(1);
+    }
+    regionActive.value.biogeography = regionActive.value.palaeontology = regionActive.value.microevolution = regionActive.value.macroevolution = false;
+}
+
+// Helper functions to determine state of all regions
+const allRegionsInactive = () => !regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? true : false;
+const anyRegionActive = () => regionActive.biogeography || regionActive.palaeontology || regionActive.microevolution || regionActive.macroevolution ? true : false;
+
+const allElements = '.bones, .not-bones, .branches, .ground, .trunk, .environment, .not-environment';
+
+// Biogeography animation
+watch(() => regionActive.value.biogeography, (isActive) => {
+    if (!svgCanvas.value) return;
+
+    if (isActive) {
+        // Start by resetting all elements
+        // resetElements(allElements);
         
-        // Reset all elements
-        svgCanvas.value.find('#Environments').forEach(element => {
-            element.animate(500).scale(0.95);
-        });
-        
-        svgCanvas.value.find('#NotEnvironments').forEach(element => {
+        // Scale up environments and start wafting
+        svgCanvas.value.find('.environment').forEach(element => {
             element.animate(500).scale(1.05);
         });
+
+        // Scale down other elements
+        svgCanvas.value.find('.not-environment').forEach(element => {
+            element.animate(500).scale(0.95).opacity(0.5);
+        });
+
     }
 });
 
-// Watch for palaeontology changes
-watch(() => modalActive.value.palaeontology, (isActive) => {
+// Palaeontology animation
+watch(() => regionActive.value.palaeontology, (isActive) => {
     if (!svgCanvas.value) return;
-    
+
     if (isActive) {
-        // Create or find the white overlay for palaeontology
-        let overlay = svgCanvas.value.findOne('#palaeoOverlay');
-        if (!overlay) {
-            // Create a white rectangle covering the entire SVG
-            overlay = svgCanvas.value.rect(1920, 1920).fill('white').opacity(0).id('palaeoOverlay');
-            
-            // Position it right before the bones element
-            // This ensures it covers everything except the bones
-            const bones = svgCanvas.value.findOne('#Bones');
-            if (bones) {
-                overlay.before(bones);
-            }
-        }
+        // Start by resetting all elements
+        // resetElements(allElements);
         
         // Scale up bones
-        svgCanvas.value.find('#Bones').forEach(element => {
-            element.animate(500).scale(1.1);
+        svgCanvas.value.find('.bones').forEach(element => {
+            element.animate(500).scale(1.1).translate(0, -50);
         });
-        
+
         // Scale down other elements
-        svgCanvas.value.find('#NotEnvironments').forEach(element => {
-            element.animate(500).scale(0.95);
+        svgCanvas.value.find('.not-bones').forEach(element => {
+            element.animate(500).scale(0.95).opacity(0.5);
         });
-        
-        svgCanvas.value.find('#EnvironmentArctic, #EnvironmentForest, #EnvironmentDesert').forEach(element => {
-            element.animate(500).scale(0.95);
-        });
-        
-        // Show the overlay with animation
-        overlay.animate(500).opacity(0.5);
-    } else {
-        // Hide the overlay
-        const overlay = svgCanvas.value.findOne('#palaeoOverlay');
-        if (overlay) {
-            overlay.animate(500).opacity(0);
-        }
-        
-        // Reset all elements if no other modal is active
-        if (!modalActive.value.biogeography) {
-            svgCanvas.value.find('#Bones').forEach(element => {
-                element.animate(500).scale(1);
-            });
-            
-            svgCanvas.value.find('#NotEnvironments').forEach(element => {
-                element.animate(500).scale(1);
-            });
-            
-            svgCanvas.value.find('#EnvironmentArctic, #EnvironmentForest, #EnvironmentDesert').forEach(element => {
-                element.animate(500).scale(1);
-            });
-        }
+
     }
 });
 </script>
 
 <template>
-    <!-- <PositionDebugger targetSelector="#graphic" /> -->
     <!-- <RotateDeviceBanner class="sm:hidden" /> -->
     <button class="p-1 bg-primary-lighter m-2 rounded"
-        @click="modalActive.biogeography = !modalActive.biogeography">biogeography: {{modalActive.biogeography}}</button>
+        @click="regionActive.biogeography = !regionActive.biogeography">biogeography:
+        {{ regionActive.biogeography }}</button>
     <button class="p-1 bg-primary-lighter m-2 rounded"
-        @click="modalActive.palaeontology = !modalActive.palaeontology">palaeontology: {{modalActive.palaeontology}}</button>
+        @click="regionActive.palaeontology = !regionActive.palaeontology">palaeontology:
+        {{ regionActive.palaeontology }}</button>
     <button class="p-1 bg-primary-lighter m-2 rounded"
-        @click="modalActive.microevolution = !modalActive.microevolution">microevolution: {{modalActive.microevolution}}</button>
+        @click="regionActive.microevolution = !regionActive.microevolution">microevolution:
+        {{ regionActive.microevolution }}</button>
     <button class="p-1 bg-primary-lighter m-2 rounded"
-        @click="modalActive.macroevolution = !modalActive.macroevolution">macroevolution: {{modalActive.macroevolution}}</button>
+        @click="regionActive.macroevolution = !regionActive.macroevolution">macroevolution:
+        {{ regionActive.macroevolution }}</button>
     <div id="graphic" class="max-w-[900px] mx-auto flex flex-col select-none pt-4">
         <div class="flex justify-between items-center">
             <div class="flex-auto relative">
                 <svg ref="svgContainer" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                    viewBox="0 0 1920 1920" class="overflow-visible"
-                    id="eb2-svg">
+                    viewBox="0 0 1920 1920" class="overflow-visible" 
+                    :class="anyRegionActive ? 'cursor-pointer' : ''"
+                    @click="() => { anyRegionActive ? resetElements(allElements) : null }" >
                     <defs>
                         <linearGradient id="linear-gradient" x1="1637.12" y1="815.15" x2="1634.87" y2="649.69"
                             gradientUnits="userSpaceOnUse">
@@ -202,7 +144,7 @@ watch(() => modalActive.value.palaeontology, (isActive) => {
                         <linearGradient id="linear-gradient-4" x1="1303.71" y1="772.03" x2="1301.96" y2="643.3"
                             gradientTransform="translate(474.47)" xlink:href="#linear-gradient" />
                         <filter id="hover-glow">
-                            <feGaussianBlur stdDeviation="2" result="blur" />
+                            <feGaussianBlur stdDeviation="20" result="blur" />
                             <feFlood flood-color="#4299e1" flood-opacity="0.7" result="color" />
                             <feComposite in="color" in2="blur" operator="in" result="glow" />
                             <feMerge>
@@ -210,19 +152,64 @@ watch(() => modalActive.value.palaeontology, (isActive) => {
                                 <feMergeNode in="SourceGraphic" />
                             </feMerge>
                         </filter>
+                        <filter id="drop-shadow">
+                            <feDropShadow dx="10" dy="10" stdDeviation="0" flood-color="#4299e1" flood-opacity="0.7" />
+                        </filter>
+
+                        <filter id="hover-filter-lg" x="-10%" y="-10%" width="120%" height="120%">
+                            <feMorphology in="SourceAlpha" result="expanded" operator="dilate" radius="12" />
+                            <feFlood flood-color="white" result="outlineColor" />
+                            <feComposite in="outlineColor" in2="expanded" operator="in" result="outline" />
+                            <feMorphology in="SourceAlpha" result="glowExpanded" operator="dilate" radius="8" />
+                            <feFlood flood-color="rgba(0, 0, 0, 0.5)" result="glowColor" />
+                            <feComposite in="glowColor" in2="glowExpanded" operator="in" result="glowBase" />
+                            <feGaussianBlur in="glowBase" stdDeviation="12" result="glow" />
+                            <feMerge>
+                                <feMergeNode in="glow" /> <!-- Blurry glow -->
+                                <feMergeNode in="outline" /> <!-- Solid outline -->
+                                <feMergeNode in="SourceGraphic" /> <!-- Original content -->
+                            </feMerge>
+                        </filter>
+                        <filter id="hover-filter-sm" x="-5%" y="-5%" width="110%" height="110%">
+                            <feMorphology in="SourceAlpha" result="expanded" operator="dilate" radius="8" />
+                            <feFlood flood-color="white" result="outlineColor" />
+                            <feComposite in="outlineColor" in2="expanded" operator="in" result="outline" />
+                            <feMorphology in="SourceAlpha" result="glowExpanded" operator="dilate" radius="9" />
+                            <feFlood flood-color="rgba(0, 0, 0, 0.3)" result="glowColor" />
+                            <feComposite in="glowColor" in2="glowExpanded" operator="in" result="glowBase" />
+                            <feGaussianBlur in="glowBase" stdDeviation="12" result="glow" />
+                            <feMerge>
+                                <feMergeNode in="glow" /> <!-- Blurry glow -->
+                                <feMergeNode in="outline" /> <!-- Solid outline -->
+                                <feMergeNode in="SourceGraphic" /> <!-- Original content -->
+                            </feMerge>
+                        </filter>
                     </defs>
-                    <g id="NotEnvironments">
-                        <Ground id="Ground" />
-                        <SmallBranches id="SmallBranches" />
-                        <LargeBranches id="LargeBranches" />
-                        <Trunk id="Trunk" />
-                        <Bones id="Bones" />
+                    <g class="not-bones">
+                        <g class="not-environment">
+                            <Ground class="ground" />
+                            <Branches class="branches" 
+                            :class="allRegionsInactive ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none'"
+                            @click="(event) => handleClick('microevolution', event)" />
+                            <Trunk class="trunk"
+                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
+                            @click="(event) => handleClick('macroevolution', event)" />
+                        </g>
+                        <g class="environments">
+                            <EnvironmentArctic class="environment environment-arctic"
+                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'" 
+                            @click="(event) => handleClick('biogeography', event)" />
+                            <EnvironmentForest class="environment environment-forest" 
+                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
+                            @click="(event) => handleClick('biogeography', event)" />
+                            <EnvironmentDesert class="environment environment-desert" 
+                            :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-lg cursor-pointer' : 'pointer-events-none'"
+                            @click="(event) => handleClick('biogeography', event)" />
+                        </g>
                     </g>
-                    <g id="Environments">
-                        <EnvironmentArctic id="EnvironmentArctic" />
-                        <EnvironmentForest id="EnvironmentForest" />
-                        <EnvironmentDesert id="EnvironmentDesert" />
-                    </g>
+                    <Bones class="bones not-environment" 
+                    :class="!regionActive.biogeography && !regionActive.palaeontology && !regionActive.microevolution && !regionActive.macroevolution ? 'hover-filter-sm cursor-pointer' : 'pointer-events-none'"
+                    @click="(event) => handleClick('palaeontology', event)"/>
                 </svg>
             </div>
         </div>
@@ -231,85 +218,12 @@ watch(() => modalActive.value.palaeontology, (isActive) => {
 
 
 <style scoped>
-path {
-    transition: filter 0.2s ease;
+.hover-filter-lg:hover {
+    filter: url(#hover-filter-lg);
+    transition: filter 0.3s ease;
 }
-
-
-/* Add transition classes for fade effect */
-.fade-enter-active,
-.fade-leave-active {
-    transition: opacity 0.2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-    opacity: 0;
-}
-
-.rotated-text-container {
-    width: 3rem;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.rotated-text {
-    transform: rotate(-90deg);
-    white-space: nowrap;
-    /* Ensures single-line text */
-    display: block;
-}
-
-/* Environment animation styles */
-.scale-initial {
-    transform-origin: center;
-    transition: transform 0.5s ease-out;
-}
-
-.scale-up {
-    transform: scale(1.05);
-    transition: transform 0.5s ease-out, filter 0.5s ease-out;
-}
-
-.glow {
-    /* Refactor for Safari compatibility */
-    filter: drop-shadow(0 0 50px rgba(64, 237, 93, 0.5));
-}
-
-.scale-down {
-    transform: scale(0.95);
-    transition: transform 0.5s ease-out, filter 0.5s ease-out;
-}
-
-#EnvironmentArctic:hover {
-  filter: url(#hover-glow);
-}
-
-/* SVG.js will handle the events, so we don't need these pointer-event styles */
-</style>
-
-<style>
-/* .v-popper__arrow-container {
-    transform: scale(2);
-} */
-
-.v-popper__arrow-outer {
-    border-width: 10px;
-    left: -5px !important;
-}
-
-.v-popper__arrow-inner {
-    border-width: 11px;
-    left: -6px !important;
-}
-
-.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-outer {
-    top: -10px;
-}
-
-.v-popper__popper[data-popper-placement^="bottom"] .v-popper__arrow-inner {
-    top: -9px;
+.hover-filter-sm:hover {
+    filter: url(#hover-filter-sm);
+    transition: filter 0.3s ease;
 }
 </style>
