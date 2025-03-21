@@ -317,7 +317,7 @@ watch(() => regionActive.value.microevolution, (isActive) => {
 
 
 <style scoped>
-.hover-filter-lg:hover,
+/* .hover-filter-lg:hover,
 .region-active-lg {
     filter: url(#hover-filter-lg);
 }
@@ -325,5 +325,5 @@ watch(() => regionActive.value.microevolution, (isActive) => {
 .hover-filter-sm:hover,
 .region-active-sm {
     filter: url(#hover-filter-sm);
-}
+} */
 </style>
