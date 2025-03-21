@@ -46,7 +46,6 @@ onMounted(() => {
 
 // Helper function to reset graphic elements
 const resetElements = (selector) => {
-    animationLoopRunning = false;
     // If selector is a string, find elements using SVG.js
     if (typeof selector === 'string') {
         svgCanvas.value.find(selector).forEach(element => {
@@ -65,19 +64,11 @@ const anyRegionActive = computed(() => regionActive.value.biogeography || region
 
 const allElements = '.bones, .not-bones, .bone-1, .bone-2, .bone-3, .bone-4, .bone-5, .bone-6, .branches, .ground, .trunk, .environment, .not-environment, .environment-desert, .environment-forest, .environment-arctic, .not-trunk, .branches-top, .branches-middle, .branches-bottom, .branches-small';
 
-let animationLoopRunning = false;
-
 // Biogeography animation
 watch(() => regionActive.value.biogeography, (isActive) => {
     if (!svgCanvas.value) return;
 
     if (isActive) {
-
-        animationLoopRunning = true;
-        // Scale up environments
-        // svgCanvas.value.find('.environment').forEach(element => {
-        //     element.animate(500).scale(1.1);
-        // });
         svgCanvas.value.find('.environment-desert').forEach(element => {
             element.animate(1000).translate(30, 0).scale(1.05);
         });
@@ -218,9 +209,25 @@ watch(() => regionActive.value.microevolution, (isActive) => {
         @click="resetElements(allElements)">reset animations</button>
     <p>All regions inactive: {{ allRegionsInactive }}</p>
     <p>Any regions active: {{ anyRegionActive }}</p>
-    <div id="graphic" class="max-w-[900px] mx-auto flex flex-col select-none pt-4">
+    <div id="graphic" class="max-w-[900px] mx-auto flex flex-col select-none pt-4 border">
         <div class="flex justify-between items-center">
             <div class="flex-auto relative">
+                <ModalDialog class="absolute top-[60%] mx-3 min-w-96" :isVisible="regionActive.biogeography" :onClose="() => resetElements(allElements)">
+                    <h3>Biogeography</h3>
+                    <p>Lineages split and diverge, responding to different environmental pressures.</p>
+                </ModalDialog>
+                <ModalDialog class="absolute bottom-[34%] mx-3 min-w-96" :isVisible="regionActive.palaeontology" :onClose="() => resetElements(allElements)">
+                    <h3>Palaeontology</h3>
+                    <p>Study of life of the geologic past that involves the analysis of plant and animal fossils.</p>
+                </ModalDialog>
+                <ModalDialog class="absolute top-[60%] mx-3 min-w-96" :isVisible="regionActive.microevolution" :onClose="() => resetElements(allElements)">
+                    <h3>Microevolution</h3>
+                    <p>Species change over time.</p>
+                </ModalDialog>
+                <ModalDialog class="absolute top-[50%] mx-3 min-w-96" :isVisible="regionActive.macroevolution" :onClose="() => resetElements(allElements)">
+                    <h3>Macroevolution</h3>
+                    <p>New life-forms derive from older forms.</p>
+                </ModalDialog>
                 <svg id="svg" ref="svgContainer" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1920" class="overflow-visible"
                     :class="anyRegionActive ? 'cursor-pointer' : ''"

@@ -34,7 +34,7 @@ const activateModal = (modal) => {
             <div id="map-container" class="absolute inset-0 h-full w-full flex">
                 <!-- Iceland -->
                 <Hotspot class="absolute top-[14.35%] left-[39.83%]" :onClick="() => activateModal('iceland')" />
-                <ModalDialog :isVisible="modalVisibility.iceland" :onClose="() => modalVisibility.iceland = false">
+                <ModalDialog class="w-full" :isVisible="modalVisibility.iceland" :onClose="() => modalVisibility.iceland = false">
                     <h3>Iceland (2021)</h3>
                     <p><strong>Type</strong>: Shield, stratovolcanoes, subglacial and calderas</p>
                     <p><strong>Composition</strong>: Basalt</p>
@@ -53,7 +53,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Sakurajima  -->
                 <Hotspot class="absolute top-[30.76%] left-[87.94%]" :onClick="() => activateModal('sakurajima')" />
-                <ModalDialog :isVisible="modalVisibility.sakurajima"
+                <ModalDialog class="w-full" :isVisible="modalVisibility.sakurajima"
                     :onClose="() => modalVisibility.sakurajima = false">
                     <h3>Sakurajima, Japan (2024)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
@@ -69,7 +69,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Hawaii -->
                 <Hotspot class="absolute top-[40.83%] left-[3.28%]" :onClick="() => activateModal('hawaii')" />
-                <ModalDialog :isVisible="modalVisibility.hawaii" :onClose="() => modalVisibility.hawaii = false">
+                <ModalDialog class="w-full" :isVisible="modalVisibility.hawaii" :onClose="() => modalVisibility.hawaii = false">
                     <h3>Hawaii, USA</h3>
                     <p><strong>Type</strong>: Shield volcanoes</p>
                     <p><strong>Composition</strong>: Basalt</p>
@@ -80,7 +80,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Mount St Helens -->
                 <Hotspot class="absolute top-[28.71%] left-[9.83%]" :onClick="() => activateModal('mountStHelens')" />
-                <ModalDialog :isVisible="modalVisibility.mountStHelens"
+                <ModalDialog class="w-full" :isVisible="modalVisibility.mountStHelens"
                     :onClose="() => modalVisibility.mountStHelens = false">
                     <h3>Mount St Helens, USA (1980)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
@@ -98,7 +98,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Volcan de Fuego -->
                 <Hotspot class="absolute top-[45.12%] left-[19.94%]" :onClick="() => activateModal('volcanDeFuego')" />
-                <ModalDialog :isVisible="modalVisibility.volcanDeFuego"
+                <ModalDialog class="w-full" :isVisible="modalVisibility.volcanDeFuego"
                     :onClose="() => modalVisibility.volcanDeFuego = false">
                     <h3>Volcan de Fuego, Guatemala (2024)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
@@ -116,7 +116,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Volcano Ubinas -->
                 <Hotspot class="absolute top-[53.69%] left-[21.94%]" :onClick="() => activateModal('volcanoUbinas')" />
-                <ModalDialog :isVisible="modalVisibility.volcanoUbinas"
+                <ModalDialog class="w-full" :isVisible="modalVisibility.volcanoUbinas"
                     :onClose="() => modalVisibility.volcanoUbinas = false">
                     <h3>Volcano Ubinas, Peru (2021)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
@@ -132,7 +132,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Mayon -->
                 <Hotspot class="absolute top-[45.67%] left-[82.83%]" :onClick="() => activateModal('mayon')" />
-                <ModalDialog :isVisible="modalVisibility.mayon" :onClose="() => modalVisibility.mayon = false">
+                <ModalDialog class="w-full" :isVisible="modalVisibility.mayon" :onClose="() => modalVisibility.mayon = false">
                     <h3>Mayon, Philippines (2018)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
                     <p><strong>Composition</strong>: Basalt to Andesite</p>
@@ -148,7 +148,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Semeru -->
                 <Hotspot class="absolute top-[56.49%] left-[80.72%]" :onClick="() => activateModal('semeru')" />
-                <ModalDialog :isVisible="modalVisibility.semeru" :onClose="() => modalVisibility.semeru = false">
+                <ModalDialog class="w-full" :isVisible="modalVisibility.semeru" :onClose="() => modalVisibility.semeru = false">
                     <h3>Semeru, Indonesia (2024)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
                     <p><strong>Composition</strong>: Basalt to Andesite</p>
@@ -163,7 +163,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Mt Etna -->
                 <Hotspot class="absolute top-[28.52%] left-[50.5%]" :onClick="() => activateModal('mtEtna')" />
-                <ModalDialog :isVisible="modalVisibility.mtEtna" :onClose="() => modalVisibility.mtEtna = false">
+                <ModalDialog class="w-full" :isVisible="modalVisibility.mtEtna" :onClose="() => modalVisibility.mtEtna = false">
                     <h3>Mt Etna, Sicily (2024)</h3>
                     <p><strong>Type</strong>: Stratovolcano</p>
                     <p><strong>Composition</strong>: Trachybasalt to phonotephrite</p>
@@ -179,7 +179,7 @@ const activateModal = (modal) => {
                 </ModalDialog>
                 <!-- Erte Ale -->
                 <Hotspot class="absolute top-[44.56%] left-[57.22%]" :onClick="() => activateModal('erteAle')" />
-                <ModalDialog :isVisible="modalVisibility.erteAle" :onClose="() => modalVisibility.erteAle = false">
+                <ModalDialog class="w-full" :isVisible="modalVisibility.erteAle" :onClose="() => modalVisibility.erteAle = false">
                     <h3>Erte Ale, Ethiopia (2021)</h3>
                     <p><strong>Type</strong>: Shield volcano</p>
                     <p><strong>Composition</strong>: Basalt to andesite</p>
