@@ -1,6 +1,6 @@
 <template>
     <g id="Layer_6" data-name="Layer 6">
-        <g class="highlight hidden">
+        <g class="highlight">
             <image id="shadow-10" data-name="shadow" class="cls-39" width="616" height="1876"
                 transform="translate(727 4)" xlink:href="@/assets/evolutionary-bio-hover-10.png" />
             <path id="outline-10" data-name="outline" class="cls-38"

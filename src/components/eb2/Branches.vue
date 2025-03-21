@@ -2,7 +2,7 @@
     <g id="Layer_7" data-name="Layer 7">
         <!-- Each path is an individual branch -->
         <g class="branches-top">
-            <g class="highlight hidden">
+            <g class="highlight">
                 <image id="shadow-7" data-name="shadow" class="cls-39" width="352" height="420"
                     transform="translate(1172 127)" xlink:href="@/assets/evolutionary-bio-hover-7.png" />
                 <path id="outline-7" data-name="outline" class="cls-38"
@@ -20,7 +20,7 @@
             </g>
         </g>
         <g class="branches-middle">
-            <g class="highlight hidden">
+            <g class="highlight">
                 <image id="shadow-8" data-name="shadow" class="cls-39" width="411" height="388"
                     transform="translate(428 432)" xlink:href="@/assets/evolutionary-bio-hover-8.png" />
                 <path id="outline-8" data-name="outline" class="cls-38"
@@ -38,7 +38,7 @@
             </g>
         </g>
         <g class="branches-bottom">
-            <g class="highlight hidden">
+            <g class="highlight">
                 <image id="shadow-9" data-name="shadow" class="cls-39" width="421" height="328"
                     transform="translate(1182 824)" xlink:href="@/assets/evolutionary-bio-hover-9.png" />
                 <path id="outline-9" data-name="outline" class="cls-38"

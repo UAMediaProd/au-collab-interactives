@@ -4,7 +4,7 @@
 
 <template>
     <g id="Layer_4" data-name="Layer 4">
-        <g class="highlight hidden">
+        <g class="highlight">
             <image width="667" height="477" transform="translate(124 15)"
                 xlink:href="@/assets/evolutionary-bio-hover-12.png" />
             <path id="outline-12" data-name="outline" class="cls-38"
