@@ -32,7 +32,10 @@
             <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
             <RouterLink to="/eb2-intro-to-evolutionary-biology" class="home-router-link">EB2: Intro to Evolutionary Biology</RouterLink>
           </li>
-
+          <li class="home-list-item">
+            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
+            <RouterLink to="/psp-interactive-coding-template" class="home-router-link">PSP: Interactive Coding Template</RouterLink>
+          </li>
         </ul>
       </div>
     </div>

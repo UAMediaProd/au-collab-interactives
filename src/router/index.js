@@ -30,6 +30,21 @@ const routes = [
     path: '/eb2-intro-to-evolutionary-biology',
     name: 'EB2: Intro to Evolutionary Biology',
     component: () => import('../views/EB2IntroToEvolutionaryBiology.vue')
+  },
+  {
+    path: '/palaeontology',
+    name: 'palaeontology',
+    component: () => import('../views/EB2IntroToEvolutionaryBiology.vue')
+  },
+  {
+    path: '/coding-tutorial',
+    name: 'coding-tutorial',
+    component: () => import('../views/PSPInteractiveCodingTemplate.vue')
+  },
+  {
+    path: '/psp-interactive-coding-template',
+    name: 'PSP: Interactive Coding Template',
+    component: () => import('../views/PSPInteractiveCodingTemplate.vue')
   }
 ]
 

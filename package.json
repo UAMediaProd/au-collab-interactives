@@ -12,6 +12,7 @@
     "@svgdotjs/svg.filter.js": "^3.0.9",
     "@svgdotjs/svg.js": "^3.2.4",
     "floating-vue": "^5.2.2",
+    "highlight.js": "^11.11.1",
     "three": "^0.174.0",
     "vue": "^3.5.11",
     "vue-router": "^4.4.5",
