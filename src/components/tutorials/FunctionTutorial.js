@@ -19,7 +19,11 @@ main()`,
       highlightLines: [0],
       boxes: [
         {
-          title: "Memory",
+          title: "Memory (calculate_sum)",
+          values: {}
+        },
+        {
+          title: "Memory (main)",
           values: {}
         }
       ]

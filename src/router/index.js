@@ -32,19 +32,14 @@ const routes = [
     component: () => import('../views/EB2IntroToEvolutionaryBiology.vue')
   },
   {
-    path: '/palaeontology',
-    name: 'palaeontology',
-    component: () => import('../views/EB2IntroToEvolutionaryBiology.vue')
-  },
-  {
-    path: '/coding-tutorial',
-    name: 'coding-tutorial',
-    component: () => import('../views/PSPInteractiveCodingTemplate.vue')
-  },
-  {
     path: '/psp-interactive-coding-template',
     name: 'PSP: Interactive Coding Template',
     component: () => import('../views/PSPInteractiveCodingTemplate.vue')
+  },
+  {
+    path: '/psp-exercise-2-1',
+    name: 'PSP: Coding Exercise 2.1',
+    component: () => import('../views/PSPExercise2_1.vue')
   }
 ]
 

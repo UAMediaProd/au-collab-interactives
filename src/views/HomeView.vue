@@ -12,29 +12,9 @@
       </div>
       <div class="home-wrapper">
         <ul class="list-none mb-6">
-          <li class="home-list-item">
+          <li v-for="route in displayRoutes" :key="route.path" class="home-list-item">
             <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
-            <RouterLink to="/etgeo-particle-movement-in-fluids" class="home-router-link">ETGeo: Particle movement in fluids</RouterLink>
-          </li>
-          <li class="home-list-item">
-            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
-            <RouterLink to="/etgeo-particle-movement-in-air" class="home-router-link">ETGeo: Particle movement in air</RouterLink>
-          </li>
-          <li class="home-list-item">
-            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
-            <RouterLink to="/etgeo-planets" class="home-router-link">ETGeo: Planets</RouterLink>
-          </li>
-          <li class="home-list-item">
-            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
-            <RouterLink to="/etgeo-volcanic-eruptions" class="home-router-link">ETGeo: Volcanic Eruptions</RouterLink>
-          </li>
-          <li class="home-list-item">
-            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
-            <RouterLink to="/eb2-intro-to-evolutionary-biology" class="home-router-link">EB2: Intro to Evolutionary Biology</RouterLink>
-          </li>
-          <li class="home-list-item">
-            <i class="fas fa-circle text-[6px] my-auto align-middle mr-3" />
-            <RouterLink to="/psp-interactive-coding-template" class="home-router-link">PSP: Interactive Coding Template</RouterLink>
+            <RouterLink :to="route.path" class="home-router-link">{{ route.name }}</RouterLink>
           </li>
         </ul>
       </div>
@@ -53,6 +33,13 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 
+const router = useRouter()
+
+// Filter routes to exclude the home route
+const displayRoutes = router.options.routes.filter(route => {
+  // Skip the home route and routes without a name
+  return route.path !== '/' && route.name
+})
 </script>
