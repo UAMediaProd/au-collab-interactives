@@ -3,7 +3,7 @@ export default {
 num2 = 4
 if num1 == num2:
   print ('Jake')
-elif num2 ‹ num1:
+elif num2 < num1:
   print ('Peralta')
 elif num2 > num1:
   print ('Captain')
@@ -112,7 +112,7 @@ elif num2 > num1:
     },
     {
       lineNumber: 4,
-      explanation: "<p>Now we evaluate the condition <code>num2 ‹ num1</code>. Since <code>num2</code> is <code>4</code> and <code>num1</code> is <code>2</code>, this condition is also <code>False</code> (4 is not less than 2). So we skip this code block too and move to the next <code>elif</code> statement.</p>",
+      explanation: "<p>Now we evaluate the condition <code>num2 &lt; num1</code>. Since <code>num2</code> is <code>4</code> and <code>num1</code> is <code>2</code>, this condition is also <code>False</code> (4 is not less than 2). So we skip this code block too and move to the next <code>elif</code> statement.</p>",
       highlightLines: [6],
       boxes: [
         {

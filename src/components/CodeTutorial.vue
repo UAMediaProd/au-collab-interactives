@@ -5,14 +5,14 @@
         <!-- Left column: Code + Explanation + Navigation -->
         <div class="w-2/3 flex flex-col gap-4">
           <!-- Code Display -->
-          <div class="code-container p-4 bg-gray-50 rounded shadow">
+          <div class="code-container p-4 bg-gray-50 rounded shadow h-[24rem]">
             <pre ref="codePreElement">
               <code :class="`hljs language-${language}`" v-html="highlightedCode"></code>
             </pre>
           </div>
           
           <!-- Explanation -->
-          <div class="explanation p-4 bg-blue-50 rounded min-h-36">
+          <div class="explanation p-4 bg-blue-50 rounded h-[16rem]">
             <p v-html="currentStepData.explanation"></p>
           </div>
           
@@ -56,7 +56,7 @@
           
           <!-- Dynamic Data Boxes -->
           <template v-if="currentStepData.boxes" v-for="(box, index) in currentStepData.boxes" :key="index">
-            <div class="data-box mb-4 p-4 bg-gray-100 rounded min-h-24 relative">
+            <div class="data-box mb-4 p-4 bg-gray-100 rounded min-h-[12rem] relative">
               <h4 class="text-md font-semibold mb-2">{{ box.title }}:</h4>
               
               <!-- Values without keys (simple array of values) -->
@@ -137,7 +137,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted, nextTick } from 'vue';
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue';
 import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/github.css';
 // Import languages
@@ -405,6 +405,22 @@ watch(currentStep, () => {
   });
 });
 
+// Handle keyboard navigation
+const handleKeyDown = (event) => {
+  // Only handle arrow keys
+  if (event.key === 'ArrowLeft') {
+    // Left arrow - previous step
+    if (currentStep.value > 0) {
+      prevStep();
+    }
+  } else if (event.key === 'ArrowRight') {
+    // Right arrow - next step
+    if (currentStep.value < props.tutorial.steps.length - 1) {
+      nextStep();
+    }
+  }
+};
+
 // Initialize on mount
 onMounted(() => {
   updateHighlightedCode();
@@ -415,6 +431,14 @@ onMounted(() => {
       drawArrows();
     }, 100);
   });
+  
+  // Add keyboard event listener
+  window.addEventListener('keydown', handleKeyDown);
+});
+
+// Clean up event listeners on unmount
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeyDown);
 });
 </script>
 
