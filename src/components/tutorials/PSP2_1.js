@@ -42,7 +42,6 @@ elif num2 > num1:
     {
       lineNumber: 0,
       explanation: `<p><strong>Take note of any variable assignments in the current line. Write them down.</strong></p><p>Keep a piece of scrap paper handy. Each time you process a line of code, write down any new variables introduced in that line, or any changes to an existing variable. This is to keep an account of the current state of computer memory.</p><p><em>The highlighted line of code represents the next line to be executed.</em></p>`,
-      highlightLines: [0],
       boxes: [
         {
           title: "Memory",
@@ -56,7 +55,22 @@ elif num2 > num1:
     },
     {
       lineNumber: 0,
-      explanation: "<p>We assign the value <code>2</code> to the variable <code>num1</code>.</p>",
+      explanation: "<p>This line will assign the value <code>2</code> to the variable <code>num1</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>This line will assign the value <code>4</code> to the variable <code>num2</code>.</p>",
       highlightLines: [1],
       boxes: [
         {
@@ -73,8 +87,8 @@ elif num2 > num1:
       ]
     },
     {
-      lineNumber: 1,
-      explanation: "<p>We assign the value <code>4</code> to the variable <code>num2</code>.</p>",
+      lineNumber: 2,
+      explanation: "<p><strong>For conditional statements, evaluate the condition first.</strong></p><p>This line is an <code>if</code> statement. We need to check if <code>num1 == num2</code>. Since <code>num1</code> is <code>2</code> and <code>num2</code> is <code>4</code>, this condition is <code>False</code>. We skip the code block under it and move to the next <code>elif</code> statement.</p>",
       highlightLines: [2],
       boxes: [
         {
@@ -92,8 +106,8 @@ elif num2 > num1:
       ]
     },
     {
-      lineNumber: 2,
-      explanation: "<p><strong>For conditional statements, evaluate the condition first.</strong></p><p>Here we have an <code>if</code> statement. We need to check if <code>num1 == num2</code>. Since <code>num1</code> is <code>2</code> and <code>num2</code> is <code>4</code>, this condition is <code>False</code>. So we skip the code block under this condition and move to the next <code>elif</code> statement.</p>",
+      lineNumber: 4,
+      explanation: "<p>Now we evaluate the condition <code>num2 &lt; num1</code>. Since <code>num2</code> is <code>4</code> and <code>num1</code> is <code>2</code>, this condition is <code>False</code> (4 is not less than 2). We skip this code block too and move to the next <code>elif</code> statement.</p>",
       highlightLines: [4],
       boxes: [
         {
@@ -111,8 +125,8 @@ elif num2 > num1:
       ]
     },
     {
-      lineNumber: 4,
-      explanation: "<p>Now we evaluate the condition <code>num2 &lt; num1</code>. Since <code>num2</code> is <code>4</code> and <code>num1</code> is <code>2</code>, this condition is also <code>False</code> (4 is not less than 2). So we skip this code block too and move to the next <code>elif</code> statement.</p>",
+      lineNumber: 6,
+      explanation: "<p>Now we evaluate the condition <code>num2 > num1</code>. Since <code>num2</code> is <code>4</code> and <code>num1</code> is <code>2</code>, this condition is <code>True</code> (4 is greater than 2).</p>",
       highlightLines: [6],
       boxes: [
         {
@@ -131,7 +145,7 @@ elif num2 > num1:
     },
     {
       lineNumber: 6,
-      explanation: "<p>Now we evaluate the condition <code>num2 > num1</code>. Since <code>num2</code> is <code>4</code> and <code>num1</code> is <code>2</code>, this condition is <code>True</code> (4 is greater than 2). So we will execute the code block under this condition.</p>",
+      explanation: "<p>Since the condition is <code>True</code>, we will execute the code block under this condition.</p><p><strong>If there is a print statement, write down in a separate area any output generated.</strong></p><p>The next line is <code>print('Captain')</code>. This will output the string <code>'Captain'</code>.</p>",
       highlightLines: [7],
       boxes: [
         {
@@ -149,8 +163,8 @@ elif num2 > num1:
       ]
     },
     {
-      lineNumber: 7,
-      explanation: "<p><strong>If there is a print statement, write down in a separate area any output generated.</strong></p><p>We execute the first line in this code block, which prints <code>'Captain'</code>.</p>",
+      lineNumber: 8,
+      explanation: "<p>The next line is <code>print('Holt')</code>. This will output the string <code>'Holt'</code>.</p>",
       highlightLines: [8],
       boxes: [
         {
@@ -169,7 +183,7 @@ elif num2 > num1:
     },
     {
       lineNumber: 8,
-      explanation: "<p>We continue executing the code block and print <code>'Holt'</code>.</p><p>After this line, there are no more statements in the code, so the program ends. The final output contains both lines that were printed.</p>",
+      explanation: "<p>There are no more statements in the code, so the program ends. The final output contains both lines that were printed.</p>",
       highlightLines: [9],
       boxes: [
         {

@@ -12,37 +12,39 @@
           </div>
           
           <!-- Explanation -->
-          <div class="explanation p-4 bg-blue-50 rounded h-[16rem]">
-            <p v-html="currentStepData.explanation"></p>
+          <div class="explanation p-4 bg-gray-50 shadow rounded h-[19rem] flex flex-col">
+            <div class="flex-grow overflow-auto">
+              <p v-html="currentStepData.explanation"></p>
+            </div>
+            <!-- Navigation Controls -->
+            <div class="navigation flex justify-center space-x-2 pt-2 mt-auto">
+              <button 
+                @click="prevStep" 
+                :disabled="currentStep <= 0"
+                class="w-20 h-10 flex items-center justify-center bg-[#666] text-white rounded disabled:bg-[#CCC]"
+                aria-label="Previous step"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <button 
+                @click="nextStep" 
+                :disabled="currentStep >= tutorial.steps.length - 1"
+                class="w-20 h-10 flex items-center justify-center bg-[#666] text-white rounded disabled:bg-[#CCC]"
+                aria-label="Next step"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
           </div>
           
-          <!-- Navigation Controls -->
-          <div class="navigation flex justify-end space-x-2 p-2">
-            <button 
-              @click="prevStep" 
-              :disabled="currentStep <= 0"
-              class="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded disabled:bg-blue-300"
-              aria-label="Previous step"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </button>
-            <button 
-              @click="nextStep" 
-              :disabled="currentStep >= tutorial.steps.length - 1"
-              class="w-10 h-10 flex items-center justify-center bg-blue-500 text-white rounded disabled:bg-blue-300"
-              aria-label="Next step"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-              </svg>
-            </button>
-          </div>
         </div>
         
         <!-- Right column: Data Boxes -->
-        <div class="w-1/3 p-4 bg-white rounded shadow relative">
+        <div class="w-1/3 p-4 bg-gray-50 rounded shadow relative">
           <!-- SVG overlay for arrows -->
           <svg class="arrows-svg" ref="arrowsSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
             <defs>
@@ -56,7 +58,7 @@
           
           <!-- Dynamic Data Boxes -->
           <template v-if="currentStepData.boxes" v-for="(box, index) in currentStepData.boxes" :key="index">
-            <div class="data-box mb-4 p-4 bg-gray-100 rounded min-h-[12rem] relative">
+            <div class="data-box mb-4 p-4 bg-white border-2 border-gray rounded min-h-[12rem] relative">
               <h4 class="text-md font-semibold mb-2">{{ box.title }}:</h4>
               
               <!-- Values without keys (simple array of values) -->
