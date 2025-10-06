@@ -21,7 +21,7 @@
               <button 
                 @click="prevStep" 
                 :disabled="currentStep <= 0"
-                class="w-20 h-10 flex items-center justify-center bg-[#666] text-white rounded disabled:bg-[#CCC]"
+                class="w-20 h-10 flex items-center justify-center bg-[#666] hover:bg-[#555] text-white rounded disabled:bg-[#CCC]"
                 aria-label="Previous step"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -31,7 +31,7 @@
               <button 
                 @click="nextStep" 
                 :disabled="currentStep >= tutorial.steps.length - 1"
-                class="w-20 h-10 flex items-center justify-center bg-[#666] text-white rounded disabled:bg-[#CCC]"
+                class="w-20 h-10 flex items-center justify-center bg-[#666] hover:bg-[#555] text-white rounded disabled:bg-[#CCC]"
                 aria-label="Next step"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">

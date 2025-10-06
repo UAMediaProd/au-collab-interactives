@@ -5,7 +5,7 @@ import psp2_1 from '../components/tutorials/PSP2_1.js';
 </script>
 
 <template>
-  <div class="container mx-auto p-4 w-[1000px]">
+  <div class="container mx-auto p-4 max-w-[1024px]">
     <CodeTutorial :tutorial="psp2_1" language="python" />
   </div>
 </template>
