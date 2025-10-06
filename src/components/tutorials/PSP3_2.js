@@ -1,0 +1,255 @@
+export default {
+  code: `a = 0
+while a < 3:
+  print('going loopy', a)
+  a = a + 1
+
+print('yee ha!')`,
+  steps: [
+    {
+      lineNumber: 0,
+      explanation: "<p>Let's trace through this code step by step to determine what output it will generate.</p><p>Remember the three key steps for while loops: initialise the loop control variable, test the condition, and update the variable inside the loop.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>First, we initialise the loop control variable <code>a</code> to <code>0</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Now we test the condition: <code>a &lt; 3</code>. Since <code>a</code> is <code>0</code>, and 0 is less than 3, the condition is <code>True</code>. We enter the loop body.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 0 },
+          connections: [
+            { from: "a", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>This line prints <code>'going loopy'</code> followed by the value of <code>a</code>, which is <code>0</code>. The output will be <code>going loopy 0</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 0 },
+          connections: [
+            { from: "a", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Update <code>a</code> by adding 1. Now <code>a</code> is <code>1</code>. We go back to test the condition again.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 0 },
+          connections: [
+            { from: "a", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Test the condition: <code>a &lt; 3</code>. Since <code>a</code> is <code>1</code>, and 1 is less than 3, the condition is <code>True</code>. We continue with another iteration.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 1 },
+          connections: [
+            { from: "a", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0"]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>'going loopy'</code> and the current value of <code>a</code>, which is <code>1</code>. The output will be <code>going loopy 1</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 1 },
+          connections: [
+            { from: "a", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Update <code>a</code> to <code>2</code>. Back to testing the condition.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 1 },
+          connections: [
+            { from: "a", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Test the condition: <code>a &lt; 3</code>. Since <code>a</code> is <code>2</code>, and 2 is less than 3, the condition is <code>True</code>. We enter the loop one more time.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 2 },
+          connections: [
+            { from: "a", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1"]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>'going loopy'</code> and <code>a</code>, which is <code>2</code>. The output will be <code>going loopy 2</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 2 },
+          connections: [
+            { from: "a", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Update <code>a</code> to <code>3</code>. Back to testing the condition.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 2 },
+          connections: [
+            { from: "a", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1", "going loopy 2"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Test the condition: <code>a &lt; 3</code>. Since <code>a</code> is now <code>3</code>, and 3 is NOT less than 3, the condition is <code>False</code>.</p><p>The loop exits, and we move to the next statement after the loop.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 3 },
+          connections: [
+            { from: "a", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1", "going loopy 2"]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>This line prints <code>'yee ha!'</code>. This statement is outside the loop, so it only executes once after the loop finishes.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 3 },
+          connections: [
+            { from: "a", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1", "going loopy 2"]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>The program ends. The loop executed 3 times (when <code>a</code> was 0, 1, and 2), and then printed <code>'yee ha!'</code> once at the end.</p><p>The complete output is shown in the Output box.</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 3 },
+          connections: [
+            { from: "a", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["going loopy 0", "going loopy 1", "going loopy 2", "yee ha!"]
+        }
+      ]
+    }
+  ]
+};

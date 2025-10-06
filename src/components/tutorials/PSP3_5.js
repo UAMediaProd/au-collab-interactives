@@ -1,0 +1,179 @@
+export default {
+  code: `for word in ["A", "list", "of", "strings"]:
+  print(word)`,
+  steps: [
+    {
+      lineNumber: 0,
+      explanation: "<p>This example shows that <code>for</code> loops work with any type of data in a list, not just numbers.</p><p>Here, we have a list of strings: <code>[\"A\", \"list\", \"of\", \"strings\"]</code>. The loop will iterate through each string.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>The <code>for</code> loop takes the first value from the list and assigns it to the variable <code>word</code>.</p><p>First iteration: <code>word</code> is assigned <code>\"A\"</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Print the value of <code>word</code>, which is <code>\"A\"</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"A\"" },
+          connections: [
+            { from: "word", toValue: "\"A\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>The loop moves to the next value in the list.</p><p>Second iteration: <code>word</code> is assigned <code>\"list\"</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"A\"" },
+          connections: [
+            { from: "word", toValue: "\"A\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Print the value of <code>word</code>, which is now <code>\"list\"</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"list\"" },
+          connections: [
+            { from: "word", toValue: "\"list\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A"]
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>The loop moves to the next value in the list.</p><p>Third iteration: <code>word</code> is assigned <code>\"of\"</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"list\"" },
+          connections: [
+            { from: "word", toValue: "\"list\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A", "list"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Print the value of <code>word</code>, which is now <code>\"of\"</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"of\"" },
+          connections: [
+            { from: "word", toValue: "\"of\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A", "list"]
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>The loop moves to the next value in the list.</p><p>Fourth iteration: <code>word</code> is assigned <code>\"strings\"</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"of\"" },
+          connections: [
+            { from: "word", toValue: "\"of\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A", "list", "of"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Print the value of <code>word</code>, which is now <code>\"strings\"</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"strings\"" },
+          connections: [
+            { from: "word", toValue: "\"strings\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A", "list", "of"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>There are no more values in the list, so the loop ends.</p><p><strong>Key takeaway:</strong> <code>for</code> loops work with any type of data—numbers, strings, or other objects. The loop variable takes on the type of whatever is in the list.</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { "word": "\"strings\"" },
+          connections: [
+            { from: "word", toValue: "\"strings\"" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["A", "list", "of", "strings"]
+        }
+      ]
+    }
+  ]
+};

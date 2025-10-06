@@ -40,6 +40,46 @@ const routes = [
     path: '/psp-exercise-2-1',
     name: 'PSP: Coding Exercise 2.1',
     component: () => import('../views/PSPExercise2_1.vue')
+  },
+  {
+    path: '/psp-exercise-2-2',
+    name: 'PSP: Coding Exercise 2.2',
+    component: () => import('../views/PSPExercise2_2.vue')
+  },
+  {
+    path: '/psp-exercise-3-1',
+    name: 'PSP: Coding Exercise 3.1',
+    component: () => import('../views/PSPExercise3_1.vue')
+  },
+  {
+    path: '/psp-exercise-3-2',
+    name: 'PSP: Coding Exercise 3.2',
+    component: () => import('../views/PSPExercise3_2.vue')
+  },
+  {
+    path: '/psp-exercise-3-3',
+    name: 'PSP: Coding Exercise 3.3',
+    component: () => import('../views/PSPExercise3_3.vue')
+  },
+  {
+    path: '/psp-exercise-3-4',
+    name: 'PSP: Coding Exercise 3.4',
+    component: () => import('../views/PSPExercise3_4.vue')
+  },
+  {
+    path: '/psp-exercise-3-5',
+    name: 'PSP: Coding Exercise 3.5',
+    component: () => import('../views/PSPExercise3_5.vue')
+  },
+  {
+    path: '/psp-exercise-3-6',
+    name: 'PSP: Coding Exercise 3.6',
+    component: () => import('../views/PSPExercise3_6.vue')
+  },
+  {
+    path: '/psp-exercise-3-7',
+    name: 'PSP: Coding Exercise 3.7',
+    component: () => import('../views/PSPExercise3_7.vue')
   }
 ]
 
