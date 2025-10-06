@@ -5,7 +5,7 @@ import psp3_2 from '../components/tutorials/PSP3_2.js';
 </script>
 
 <template>
-  <div class="container mx-auto p-4 w-[768px]">
+  <div class="container mx-auto p-4 m-w-[1024px]">
     <CodeTutorial :tutorial="psp3_2" language="python" />
   </div>
 </template>
