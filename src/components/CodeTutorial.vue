@@ -5,7 +5,7 @@
         <!-- Left column: Code + Explanation + Navigation -->
         <div class="w-2/3 flex flex-col gap-4">
           <!-- Code Display -->
-          <div class="code-container p-4 bg-gray-50 rounded shadow h-[24rem]">
+          <div class="code-container p-4 bg-gray-50 rounded shadow min-h-[24rem]">
             <pre ref="codePreElement">
               <code :class="`hljs language-${language}`" v-html="highlightedCode"></code>
             </pre>
@@ -86,7 +86,8 @@
                     <!-- For unnamed values, keep the grid layout with an empty cell -->
                     <div v-else class="font-mono variable-name m-auto"></div>
                     
-                    <div class="m-auto">
+                    <!-- Only show value if valued=true (default) or not specified -->
+                    <div v-if="valueData.valued !== false" class="m-auto">
                       <span 
                         v-if="box.useHtml" 
                         v-html="valueData.value" 
@@ -101,6 +102,8 @@
                         :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
                       >{{ valueData.value }}</span>
                     </div>
+                    <!-- For values without a value box, keep grid layout with empty cell -->
+                    <div v-else class="m-auto"></div>
                   </template>
                   
                   <!-- Legacy support for simple values without metadata -->

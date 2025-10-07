@@ -110,6 +110,26 @@ const routes = [
     path: '/psp-exercise-4-6',
     name: 'PSP: Coding Exercise 4.6',
     component: () => import('../views/PSPExercise4_6.vue')
+  },
+  {
+    path: '/psp-exercise-5-1',
+    name: 'PSP: Coding Exercise 5.1',
+    component: () => import('../views/PSPExercise5_1.vue')
+  },
+  {
+    path: '/psp-exercise-5-2',
+    name: 'PSP: Coding Exercise 5.2',
+    component: () => import('../views/PSPExercise5_2.vue')
+  },
+  {
+    path: '/psp-exercise-5-3',
+    name: 'PSP: Coding Exercise 5.3',
+    component: () => import('../views/PSPExercise5_3.vue')
+  },
+  {
+    path: '/psp-exercise-5-4',
+    name: 'PSP: Coding Exercise 5.4',
+    component: () => import('../views/PSPExercise5_4.vue')
   }
 ]
 
