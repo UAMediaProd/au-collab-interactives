@@ -1,13 +1,13 @@
 export default {
-  code: `def sum_numbers(num1, num2):
-  total = num1 * num2
+  code: `def sum_numbers(no1, no2):
+  total = no1 * no2
   return total
 
 
-no1 = 5
-no2 = 10
+num1 = 5
+num2 = 10
 
-result = sum_numbers(no1, no2)
+result = sum_numbers(num1, num2)
 print('Result is: ', result)`,
   steps: [
     {
@@ -16,8 +16,12 @@ print('Result is: ', result)`,
       highlightLines: [],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: {}
+        },
+        {
+          title: "sum_numbers memory",
+          values: {},
         },
         {
           title: "Output",
@@ -27,42 +31,16 @@ print('Result is: ', result)`,
     },
     {
       lineNumber: 0,
-      explanation: "<p>This line defines a function named <code>sum_numbers</code>. The <code>def</code> keyword tells Python we're defining a function.</p><p>The function has two <strong>parameters</strong>: <code>num1</code> and <code>num2</code>. Parameters are placeholders for values that will be passed to the function when it's called.</p>",
+      explanation: "<p>This line defines a function named <code>sum_numbers</code>. The <code>def</code> keyword tells Python we're defining a function.</p><p>The function has two <strong>parameters</strong>: <code>no1</code> and <code>no2</code>. Parameters are placeholders for values that will be passed to the function when it's called.</p>",
       highlightLines: [0],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: {}
         },
         {
-          title: "Output",
-          values: []
-        }
-      ]
-    },
-    {
-      lineNumber: 1,
-      explanation: "<p>This line is inside the function (notice the indentation). It calculates <code>num1 * num2</code> and stores the result in a variable called <code>total</code>.</p><p><strong>Note:</strong> This code doesn't execute yet—we're just defining what the function will do when it's called.</p>",
-      highlightLines: [1],
-      boxes: [
-        {
-          title: "Memory",
-          values: {}
-        },
-        {
-          title: "Output",
-          values: []
-        }
-      ]
-    },
-    {
-      lineNumber: 2,
-      explanation: "<p>The <code>return</code> statement sends the value of <code>total</code> back to wherever the function was called from.</p><p>The function definition is now complete. Python has stored this function in memory, ready to be used.</p>",
-      highlightLines: [2],
-      boxes: [
-        {
-          title: "Memory",
-          values: {}
+          title: "sum_numbers memory",
+          values: {},
         },
         {
           title: "Output",
@@ -72,12 +50,16 @@ print('Result is: ', result)`,
     },
     {
       lineNumber: 5,
-      explanation: "<p>Now we start executing the main program. This line assigns <code>5</code> to the variable <code>no1</code>.</p>",
+      explanation: "<p>Now we start executing the main program. This line assigns <code>5</code> to the variable <code>num1</code>.</p>",
       highlightLines: [5],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: {}
+        },
+        {
+          title: "sum_numbers memory",
+          values: {},
         },
         {
           title: "Output",
@@ -87,15 +69,19 @@ print('Result is: ', result)`,
     },
     {
       lineNumber: 6,
-      explanation: "<p>This line assigns <code>10</code> to the variable <code>no2</code>.</p>",
+      explanation: "<p>This line assigns <code>10</code> to the variable <code>num2</code>.</p>",
       highlightLines: [6],
       boxes: [
         {
-          title: "Memory",
-          values: { "no1": 5 },
+          title: "Global memory",
+          values: { "num1": 5 },
           connections: [
-            { from: "no1", toValue: "5" }
+            { from: "num1", toValue: "5" }
           ]
+        },
+        {
+          title: "sum_numbers memory",
+          values: {},
         },
         {
           title: "Output",
@@ -105,11 +91,42 @@ print('Result is: ', result)`,
     },
     {
       lineNumber: 8,
-      explanation: "<p>Now we <strong>call</strong> the function <code>sum_numbers</code> with <strong>arguments</strong> <code>no1</code> and <code>no2</code>.</p><p><strong>Important distinction:</strong> <code>num1</code> and <code>num2</code> are <em>parameters</em> (in the function definition). <code>no1</code> and <code>no2</code> are <em>arguments</em> (the actual values we pass when calling).</p><p>The function will execute with <code>num1 = 5</code> and <code>num2 = 10</code>.</p>",
+      explanation: "<p>Now we <strong>call</strong> the function <code>sum_numbers</code> with <strong>arguments</strong> <code>num1</code> and <code>num2</code>.</p><p><strong>Important distinction:</strong> <code>no1</code> and <code>no2</code> are <em>parameters</em> (in the function definition). <code>num1</code> and <code>num2</code> are <em>arguments</em> (the actual values we pass when calling).</p><p>The function will execute with <code>no1 = 5</code> and <code>no2 = 10</code>.</p>",
       highlightLines: [8],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10 },
+          connections: [
+            { from: "num1", toValue: "5" },
+            { from: "num2", toValue: "10" }
+          ]
+        },
+        {
+          title: "sum_numbers memory",
+          values: {},
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>We jump to the function definition. The parameters <code>no1</code> and <code>no2</code> now have the values <code>5</code> and <code>10</code> respectively.</p>",
+      highlightLines: [0, 8],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10, "result": { value: "", valued: false } },
+          connections: [
+            { from: "num1", toValue: "5" },
+            { from: "num2", toValue: "10" }
+          ]
+        },
+        {
+          title: "sum_numbers memory",
           values: { "no1": 5, "no2": 10 },
           connections: [
             { from: "no1", toValue: "5" },
@@ -123,49 +140,24 @@ print('Result is: ', result)`,
       ]
     },
     {
-      lineNumber: 0,
-      explanation: "<p>We jump to the function definition. The parameters <code>num1</code> and <code>num2</code> now have the values <code>5</code> and <code>10</code> respectively.</p>",
-      highlightLines: [8, 0],
+      lineNumber: 1,
+      explanation: "<p>Calculate <code>no1 * no2</code>, which is <code>5 * 10 = 50</code>. Store this in <code>total</code>.</p>",
+      highlightLines: [1, 8],
       boxes: [
         {
-          title: "Memory",
-          values: { 
-            "no1": 5, 
-            "no2": 10, 
-            "num1": {value: "", valued: false }, 
-            "num2": {value: "", valued: false } 
-          },
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10, "result": { value: "", valued: false } },
           connections: [
-            { from: "no1", toValue: "5" },
-            { from: "no2", toValue: "10" },
             { from: "num1", toValue: "5" },
             { from: "num2", toValue: "10" }
           ]
         },
         {
-          title: "Output",
-          values: []
-        }
-      ]
-    },
-    {
-      lineNumber: 1,
-      explanation: "<p>Calculate <code>num1 * num2</code>, which is <code>5 * 10 = 50</code>. Store this in <code>total</code>.</p>",
-      highlightLines: [8, 1],
-      boxes: [
-        {
-          title: "Memory",
-          values: { 
-            "no1": 5, 
-            "no2": 10, 
-            "num1": {value: "", valued: false }, 
-            "num2": {value: "", valued: false } 
-          },
+          title: "sum_numbers memory",
+          values: { "no1": 5, "no2": 10 },
           connections: [
             { from: "no1", toValue: "5" },
-            { from: "no2", toValue: "10" },
-            { from: "num1", toValue: "5" },
-            { from: "num2", toValue: "10" }
+            { from: "no2", toValue: "10" }
           ]
         },
         {
@@ -177,22 +169,22 @@ print('Result is: ', result)`,
     {
       lineNumber: 2,
       explanation: "<p>Return the value <code>50</code>. This value goes back to line 8 where the function was called.</p>",
-      highlightLines: [8, 2],
+      highlightLines: [2, 8],
       boxes: [
         {
-          title: "Memory",
-          values: { 
-            "no1": 5, 
-            "no2": 10, 
-            "num1": {value: "", valued: false }, 
-            "num2": {value: "", valued: false },
-            "total": 50 
-          },
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10, "result": { value: "", valued: false } },
+          connections: [
+            { from: "num1", toValue: "5" },
+            { from: "num2", toValue: "10" }
+          ]
+        },
+        {
+          title: "sum_numbers memory",
+          values: { "no1": 5, "no2": 10, "total": 50 },
           connections: [
             { from: "no1", toValue: "5" },
             { from: "no2", toValue: "10" },
-            { from: "num1", toValue: "5" },
-            { from: "num2", toValue: "10" },
             { from: "total", toValue: "50" }
           ]
         },
@@ -204,27 +196,24 @@ print('Result is: ', result)`,
     },
     {
       lineNumber: 8,
-      explanation: "<p>The function has returned <code>50</code>, which is now assigned to the variable <code>result</code>.</p><p>The function's local variables (<code>num1</code>, <code>num2</code>, <code>total</code>) are removed from memory after the function finishes.</p>",
+      explanation: "<p>The function has returned <code>50</code>, which is now assigned to the variable <code>result</code>.</p><p>The function's local variables (<code>no1</code>, <code>no2</code>, <code>total</code>) are removed from memory after the function finishes.</p>",
       highlightLines: [8],
       boxes: [
         {
-          title: "Memory",
-          values: { 
-            "no1": 5, 
-            "no2": 10, 
-            "num1": {value: "", valued: false }, 
-            "num2": {value: "", valued: false },
-            "total": 50 ,
-            "result": {value: "", valued: false },
-
-          },
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10, "result": { value: "", valued: false } },
+          connections: [
+            { from: "num1", toValue: "5" },
+            { from: "num2", toValue: "10" }
+          ]
+        },
+        {
+          title: "sum_numbers memory",
+          values: { "no1": 5, "no2": 10, "total": 50 },
           connections: [
             { from: "no1", toValue: "5" },
             { from: "no2", toValue: "10" },
-            { from: "num1", toValue: "5" },
-            { from: "num2", toValue: "10" },
-            { from: "total", toValue: "50" },
-            { from: "result", toValue: "50" }
+            { from: "total", toValue: "50" }
           ]
         },
         {
@@ -239,11 +228,11 @@ print('Result is: ', result)`,
       highlightLines: [9],
       boxes: [
         {
-          title: "Memory",
-          values: { "no1": 5, "no2": 10, "result": 50 },
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10, "result": 50 },
           connections: [
-            { from: "no1", toValue: "5" },
-            { from: "no2", toValue: "10" },
+            { from: "num1", toValue: "5" },
+            { from: "num2", toValue: "10" },
             { from: "result", toValue: "50" }
           ]
         },
@@ -255,14 +244,14 @@ print('Result is: ', result)`,
     },
     {
       lineNumber: 9,
-      explanation: "<p>The program ends.</p><p><strong>Key concepts:</strong></p><ul><li><strong>Parameters</strong> are variables in the function definition (e.g., <code>num1</code>, <code>num2</code>)</li><li><strong>Arguments</strong> are the actual values passed when calling the function (e.g., <code>no1</code>, <code>no2</code>)</li><li>Functions can <code>return</code> values back to the caller</li><li>Local variables inside functions are removed from memory after the function finishes</li></ul>",
+      explanation: "<p>The program ends.</p><p><strong>Key concepts:</strong></p><ul><li><strong>Parameters</strong> are variables in the function definition (e.g., <code>no1</code>, <code>no2</code>)</li><li><strong>Arguments</strong> are the actual values passed when calling the function (e.g., <code>num1</code>, <code>num2</code>)</li><li>Functions can <code>return</code> values back to the caller</li><li>Local variables inside functions are removed from memory after the function finishes</li></ul>",
       boxes: [
         {
-          title: "Memory",
-          values: { "no1": 5, "no2": 10, "result": 50 },
+          title: "Global memory",
+          values: { "num1": 5, "num2": 10, "result": 50 },
           connections: [
-            { from: "no1", toValue: "5" },
-            { from: "no2", toValue: "10" },
+            { from: "num1", toValue: "5" },
+            { from: "num2", toValue: "10" },
             { from: "result", toValue: "50" }
           ]
         },

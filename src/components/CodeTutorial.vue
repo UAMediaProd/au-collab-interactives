@@ -3,9 +3,9 @@
     <div class="flex flex-col gap-4">
       <div class="flex flex-row gap-4">
         <!-- Left column: Code + Explanation + Navigation -->
-        <div class="w-2/3 flex flex-col gap-4">
+        <div :class="[codeWidth, 'flex', 'flex-col', 'gap-4']">
           <!-- Code Display -->
-          <div class="code-container p-4 bg-gray-50 rounded shadow min-h-[24rem]">
+          <div class="code-container p-4 bg-gray-50 rounded shadow">
             <pre ref="codePreElement">
               <code :class="`hljs language-${language}`" v-html="highlightedCode"></code>
             </pre>
@@ -44,7 +44,7 @@
         </div>
         
         <!-- Right column: Data Boxes -->
-        <div class="w-1/3 p-4 bg-gray-50 rounded shadow relative">
+        <div :class="[dataBoxesWidth, 'p-4', 'bg-gray-50', 'rounded', 'shadow', 'relative']">
           <!-- SVG overlay for arrows -->
           <svg class="arrows-svg" ref="arrowsSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
             <defs>
@@ -59,7 +59,7 @@
           <!-- Dynamic Data Boxes -->
           <template v-if="currentStepData.boxes" v-for="(box, index) in currentStepData.boxes" :key="index">
             <div class="data-box mb-4 p-4 bg-white border-2 border-gray rounded min-h-[12rem] relative">
-              <h4 class="text-md font-semibold mb-2">{{ box.title }}:</h4>
+              <h4 class="text-md font-semibold mb-2 data-box-title">{{ box.title }}:</h4>
               
               <!-- Values without keys (simple array of values) -->
               <div v-if="Array.isArray(box.values)" class="flex flex-col">
@@ -70,13 +70,39 @@
               </div>
               
               <!-- Key-value pairs -->
-              <div v-else class="grid grid-cols-[2fr_1fr] gap-x-4 gap-y-1">
+              <div v-else class="flex flex-col gap-y-1">
                 <template v-for="(valueData, key) in box.values" :key="key">
+                  <!-- Check if value is an array (string/list representation) -->
+                  <template v-if="Array.isArray(valueData)">
+                    <div class="flex flex-col gap-y-1">
+                      <!-- Variable name on its own line -->
+                      <div class="font-mono variable-name">
+                        <span
+                          :data-var-name="key"
+                          :id="`var-${box.title}-${key}`"
+                          :ref="el => { if (el) varRefs.set(`var-${box.title}-${key}`, el) }"
+                        >{{ key }}</span>
+                      </div>
+                      <!-- Array items as connected boxes -->
+                      <div class="flex justify-end">
+                        <span
+                          v-for="(item, index) in valueData"
+                          :key="index"
+                          :class="['font-mono', 'array-item-box', index === 0 ? 'first-item' : '']"
+                          :id="`val-${box.title}-${key}`"
+                          :ref="el => { if (el && index === 0) valueRefs.set(`val-${box.title}-${key}`, el) }"
+                        >{{ item }}</span>
+                      </div>
+                    </div>
+                  </template>
+                  
+                  <!-- Regular grid for non-array values -->
+                  <div v-else class="grid grid-cols-[2fr_1fr] gap-x-4">
                   <!-- Determine if this is a simple value or an object with metadata -->
                   <template v-if="typeof valueData === 'object' && valueData !== null && 'value' in valueData">
                     <!-- This is a value with metadata -->
                     <!-- Only show variable name if named=true (default) or not specified -->
-                    <div v-if="valueData.named !== false" class="font-mono variable-name m-auto">
+                    <div v-if="valueData.named !== false" class="font-mono variable-name">
                       <span
                         :data-var-name="key"
                         :id="`var-${box.title}-${key}`"
@@ -131,6 +157,7 @@
                       >{{ valueData }}</span>
                     </div>
                   </template>
+                  </div>
                 </template>
               </div>
             </div>
@@ -161,6 +188,14 @@ const props = defineProps({
   language: {
     type: String,
     default: 'python'
+  },
+  codeWidth: {
+    type: String,
+    default: 'w-2/3'
+  },
+  dataBoxesWidth: {
+    type: String,
+    default: 'w-1/3'
   }
 });
 
@@ -203,10 +238,14 @@ const currentStepData = computed(() => {
     lastExplanation.value = step.explanation;
   }
   
-  // Handle code changes
-  if (step.code !== undefined) {
-    lastCode.value = step.code;
+  // Handle code changes - scan backwards to find the most recent code
+  let codeToUse = props.tutorial.code || '';
+  for (let i = 0; i <= currentStep.value; i++) {
+    if (props.tutorial.steps[i].code !== undefined) {
+      codeToUse = props.tutorial.steps[i].code;
+    }
   }
+  lastCode.value = codeToUse;
   
   // Update highlighted lines
   currentHighlightLines.value = step.highlightLines || [];
@@ -244,8 +283,12 @@ const updateHighlightedCode = () => {
   
   // Create line elements with highlight classes
   const formattedLines = lines.map((line, index) => {
-    const isHighlighted = currentHighlightLines.value.includes(index);
-    const highlightClass = isHighlighted ? 'line-highlight' : '';
+    const highlightIndex = currentHighlightLines.value.indexOf(index);
+    const isHighlighted = highlightIndex !== -1;
+    // First highlighted line gets primary highlight, others get secondary
+    const highlightClass = isHighlighted 
+      ? (highlightIndex === 0 ? 'line-highlight' : 'line-highlight-secondary')
+      : '';
     return `<div class="hljs-line ${highlightClass}">${line || ' '}</div>`;
   });
   
@@ -287,7 +330,7 @@ const drawArrows = () => {
   const memoryBoxes = document.querySelectorAll('.data-box');
   memoryBoxes.forEach(box => {
     const boxTitle = box.querySelector('h4')?.textContent?.trim().replace(':', '');
-    if (!boxTitle?.includes('Memory')) return;
+    if (!boxTitle?.toLowerCase().includes('memory')) return;
     
     // Find the current box data
     let boxData = null;
@@ -304,6 +347,7 @@ const drawArrows = () => {
       const fromVar = connection.from;
       const toValue = connection.toValue;
       const toKey = connection.toKey;
+      const toBox = connection.toBox; // Optional: specify which box to search in
       
       if (!fromVar) return;
       if (!toValue && !toKey) return;
@@ -314,16 +358,38 @@ const drawArrows = () => {
       
       let targetValueEl = null;
       
+      // Determine which box to search in for the target value
+      let searchBox = box; // Default to current box
+      if (toBox) {
+        // Find the specified box by title
+        const allBoxes = document.querySelectorAll('.data-box');
+        for (const b of allBoxes) {
+          const bTitle = b.querySelector('h4')?.textContent?.trim().replace(':', '');
+          if (bTitle === toBox || bTitle?.includes(toBox) || toBox.includes(bTitle)) {
+            searchBox = b;
+            break;
+          }
+        }
+      }
+      
+      // Get the target box's data for value lookup
+      let targetBoxData = boxData;
+      if (toBox && currentStepData.value.boxes) {
+        targetBoxData = currentStepData.value.boxes.find(b => 
+          b.title === toBox || b.title.includes(toBox) || toBox.includes(b.title)
+        ) || boxData;
+      }
+      
       // Case 1: Using toKey to point to another variable's value
       if (toKey) {
         // Find the value element associated with the specified key
-        const targetValueSelector = `#val-${boxData.title.replace(/\s+/g, '-')}-${toKey}`;
-        targetValueEl = box.querySelector(targetValueSelector);
+        const targetValueSelector = `#val-${targetBoxData.title.replace(/\s+/g, '-')}-${toKey}`;
+        targetValueEl = searchBox.querySelector(targetValueSelector);
       }
       // Case 2: Using toValue to point to a value by its content
       else if (toValue) {
-        // Find all value elements in this box
-        const valueElements = box.querySelectorAll('.value-box');
+        // Find all value elements in the search box (both .value-box and .array-item-box)
+        const valueElements = searchBox.querySelectorAll('.value-box, .array-item-box.first-item');
         
         // Check each value element to find the one matching our target value
         valueElements.forEach(valueEl => {
@@ -334,8 +400,8 @@ const drawArrows = () => {
           const keyName = valueEl.id.split('-').pop(); // Extract key from id
           if (!keyName) return;
           
-          // Find the original value in boxData
-          const originalValue = boxData.values[keyName];
+          // Find the original value in targetBoxData
+          const originalValue = targetBoxData.values[keyName];
           
           // Extract the actual value depending on if it's a simple value or one with metadata
           if (typeof originalValue === 'object' && originalValue !== null && 'value' in originalValue) {
@@ -344,13 +410,19 @@ const drawArrows = () => {
             elValue = originalValue;
           }
           
-          // Compare with the toValue
-          if (elValue !== undefined && elValue.toString() === toValue.toString()) {
+          // For arrays, compare the arrays themselves
+          if (Array.isArray(toValue) && Array.isArray(elValue)) {
+            if (JSON.stringify(elValue) === JSON.stringify(toValue)) {
+              targetValueEl = valueEl;
+            }
+          }
+          // For non-arrays, compare as strings
+          else if (elValue !== undefined && elValue.toString() === toValue.toString()) {
             targetValueEl = valueEl;
           }
           
           // Fallback to text content if the above approach fails
-          if (!targetValueEl) {
+          if (!targetValueEl && !Array.isArray(toValue)) {
             const textContent = valueEl.textContent?.trim();
             if (textContent === toValue.toString()) {
               targetValueEl = valueEl;
@@ -360,14 +432,14 @@ const drawArrows = () => {
       }
       
       if (sourceVarEl && targetValueEl) {
-        createArrow(sourceVarEl, targetValueEl);
+        createArrow(sourceVarEl, targetValueEl, !!toBox);
       }
     });
   });
 };
 
 // Create an arrow between two DOM elements
-const createArrow = (fromElement, toElement) => {
+const createArrow = (fromElement, toElement, isCrossBox = false) => {
   if (!arrowsSvg.value || !fromElement || !toElement) return;
   
   // Get the positions relative to the SVG
@@ -375,12 +447,27 @@ const createArrow = (fromElement, toElement) => {
   const fromRect = fromElement.getBoundingClientRect();
   const toRect = toElement.getBoundingClientRect();
   
-  // Calculate start point (right edge of text span) and end point (left edge of value)
-  // Add 5px offset on each end for better spacing
-  const fromX = fromRect.left + fromRect.width - svgRect.left + 5;
-  const fromY = fromRect.top + fromRect.height / 2 - svgRect.top;
-  const toX = toRect.left - svgRect.left - 5;
-  const toY = toRect.top + toRect.height / 2 - svgRect.top;
+  // Check if target is an array item box (string/list)
+  // Only use array-style arrow if it's NOT a cross-box connection
+  const isArrayTarget = toElement.classList.contains('array-item-box') && !isCrossBox;
+  
+  let fromX, fromY, toX, toY;
+  
+  if (isArrayTarget) {
+    // For arrays in the same box: start from bottom center of variable name
+    fromX = fromRect.left + fromRect.width / 2 - svgRect.left;
+    fromY = fromRect.top + fromRect.height - svgRect.top + 5;
+    // End at left edge of first array item
+    toX = toRect.left - svgRect.left - 5;
+    toY = toRect.top + toRect.height / 2 - svgRect.top;
+  } else {
+    // For regular values: start from right edge of variable name
+    fromX = fromRect.left + fromRect.width - svgRect.left + 5;
+    fromY = fromRect.top + fromRect.height / 2 - svgRect.top;
+    // End at left edge of value
+    toX = toRect.left - svgRect.left - 5;
+    toY = toRect.top + toRect.height / 2 - svgRect.top;
+  }
   
   // Create the arrow line
   const arrowLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -458,6 +545,12 @@ p {
   border-radius: 4px;
 }
 
+.line-highlight-secondary {
+  background-color: rgba(152, 236, 160, 0.15); /* Paler green for secondary highlights */
+  display: block;
+  border-radius: 4px;
+}
+
 /* Styling for highlight.js */
 pre {
   margin: 0;
@@ -466,7 +559,7 @@ pre {
   border-radius: 0.25rem;
   /* Probably gonna need to switch this back on at some point */
   /* overflow: auto; */
-  max-height: 400px;
+  min-height: 24rem;
 }
 
 .hljs-line {
@@ -507,6 +600,23 @@ pre code.hljs {
   background: white;
   position: relative;
   display: inline-block;
+  min-width: 2rem;
+  text-align: center;
+}
+
+.array-item-box {
+  border: 1px solid black;
+  border-left: none;
+  padding: 0.1rem 0.3rem;
+  background: white;
+  position: relative;
+  display: inline-block;
+  min-width: 1.5rem;
+  text-align: center;
+}
+
+.array-item-box.first-item {
+  border-left: 1px solid black;
 }
 
 del {
@@ -526,5 +636,11 @@ del::before {
   /* This transformation ensures the line goes from bottom-left to top-right */
   transform-origin: center;
   transform: translateY(-50%) rotate(-12deg) scaleX(1.2);
+}
+
+.data-box-title {
+  position: relative;
+  z-index: 20;
+  text-shadow: 3px 3px 5px white, 3px -3px 5px white;
 }
 </style>

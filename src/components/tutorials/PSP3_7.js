@@ -282,7 +282,7 @@ export default {
     },
     {
       lineNumber: 2,
-      explanation: "<p><strong>Inner loop starts:</strong> <code>range(0, 3)</code> generates <code>0, 1, 2</code>. The inner loop will run three times, printing three asterisks.</p><p><em>We'll skip ahead through these iterations...</em></p>",
+      explanation: "<p><strong>Inner loop starts:</strong> <code>range(0, 3)</code> generates <code>0, 1, 2</code>. The inner loop will run three times.</p><p>First iteration: <code>num2</code> is assigned <code>0</code>.</p>",
       highlightLines: [2],
       boxes: [
         {
@@ -300,8 +300,103 @@ export default {
       ]
     },
     {
+      lineNumber: 3,
+      explanation: "<p>Print <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 3, "num2": 0 },
+          connections: [
+            { from: "num1", toValue: "3" },
+            { from: "num2", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Second iteration of inner loop: <code>num2</code> is assigned <code>1</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 3, "num2": 0 },
+          connections: [
+            { from: "num1", toValue: "3" },
+            { from: "num2", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 *"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print another <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 3, "num2": 1 },
+          connections: [
+            { from: "num1", toValue: "3" },
+            { from: "num2", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 *"]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Third iteration of inner loop: <code>num2</code> is assigned <code>2</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 3, "num2": 1 },
+          connections: [
+            { from: "num1", toValue: "3" },
+            { from: "num2", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 **"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print another <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 3, "num2": 2 },
+          connections: [
+            { from: "num1", toValue: "3" },
+            { from: "num2", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 **"]
+        }
+      ]
+    },
+    {
       lineNumber: 4,
-      explanation: "<p>After printing three asterisks, the inner loop finishes and we move to a new line.</p>",
+      explanation: "<p>The inner loop has finished. Move to a new line.</p>",
       highlightLines: [4],
       boxes: [
         {
@@ -358,7 +453,7 @@ export default {
     },
     {
       lineNumber: 2,
-      explanation: "<p><strong>Inner loop starts:</strong> <code>range(0, 4)</code> generates <code>0, 1, 2, 3</code>. The inner loop will run four times, printing four asterisks.</p>",
+      explanation: "<p><strong>Inner loop starts:</strong> <code>range(0, 4)</code> generates <code>0, 1, 2, 3</code>. The inner loop will run four times.</p><p>First iteration: <code>num2</code> is assigned <code>0</code>.</p>",
       highlightLines: [2],
       boxes: [
         {
@@ -376,8 +471,141 @@ export default {
       ]
     },
     {
+      lineNumber: 3,
+      explanation: "<p>Print <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 0 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Second iteration of inner loop: <code>num2</code> is assigned <code>1</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 0 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "0" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 *"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print another <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 1 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 *"]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Third iteration of inner loop: <code>num2</code> is assigned <code>2</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 1 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "1" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 **"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print another <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 2 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 **"]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Fourth iteration of inner loop: <code>num2</code> is assigned <code>3</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 2 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 ***"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print another <code>\"*\"</code>.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num1": 4, "num2": 3 },
+          connections: [
+            { from: "num1", toValue: "4" },
+            { from: "num2", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["1 *", "2 **", "3 ***", "4 ***"]
+        }
+      ]
+    },
+    {
       lineNumber: 4,
-      explanation: "<p>After printing four asterisks, the inner loop finishes and we move to a new line.</p>",
+      explanation: "<p>The inner loop has finished. Move to a new line.</p>",
       highlightLines: [4],
       boxes: [
         {

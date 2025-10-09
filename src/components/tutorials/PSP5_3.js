@@ -54,7 +54,7 @@ display_info()`,
     {
       lineNumber: 0,
       explanation: "<p>Jump to the function definition and begin executing the function body.</p>",
-      highlightLines: [5, 0],
+      highlightLines: [0, 5],
       boxes: [
         {
           title: "Memory",
@@ -69,7 +69,7 @@ display_info()`,
     {
       lineNumber: 1,
       explanation: "<p>Print the first line of text: <code>'This is an example of a function that'</code>.</p>",
-      highlightLines: [5, 1],
+      highlightLines: [1, 5],
       boxes: [
         {
           title: "Memory",
@@ -84,7 +84,7 @@ display_info()`,
     {
       lineNumber: 2,
       explanation: "<p>Print the second line of text: <code>'just prints some text and that's about it...'</code>.</p><p>Note the escaped apostrophe (<code>\\'</code>) in the string.</p>",
-      highlightLines: [5, 2],
+      highlightLines: [2, 5],
       boxes: [
         {
           title: "Memory",

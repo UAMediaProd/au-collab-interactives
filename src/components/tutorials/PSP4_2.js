@@ -1,6 +1,6 @@
 export default {
-  code: `myString = 'someString'
-for letter in myString:
+  code: `my_string = 'some_string'
+for letter in my_string:
   print(letter, end=' ')`,
   steps: [
     {
@@ -20,7 +20,7 @@ for letter in myString:
     },
     {
       lineNumber: 0,
-      explanation: "<p>This line assigns the string <code>'someString'</code> to the variable <code>myString</code>.</p>",
+      explanation: "<p>This line assigns the string <code>'some_string'</code> to the variable <code>my_string</code>.</p>",
       highlightLines: [0],
       boxes: [
         {
@@ -35,14 +35,14 @@ for letter in myString:
     },
     {
       lineNumber: 1,
-      explanation: "<p>The <code>for</code> loop will iterate through each character in <code>myString</code>.</p><p>First iteration: <code>letter</code> is assigned the first character, <code>'s'</code>.</p>",
+      explanation: "<p>The <code>for</code> loop will iterate through each character in <code>my_string</code>.</p><p>First iteration: <code>letter</code> is assigned the first character, <code>s</code>.</p>",
       highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
           connections: [
-            { from: "myString", toValue: "'someString'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] }
           ]
         },
         {
@@ -53,15 +53,15 @@ for letter in myString:
     },
     {
       lineNumber: 2,
-      explanation: "<p>Print <code>'s'</code> followed by a space. The <code>end=' '</code> parameter keeps us on the same line.</p>",
+      explanation: "<p>Print <code>s</code> followed by a space. The <code>end=' '</code> parameter keeps us on the same line.</p>",
       highlightLines: [2],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'s'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "s" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'s'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "s" }
           ]
         },
         {
@@ -72,15 +72,15 @@ for letter in myString:
     },
     {
       lineNumber: 1,
-      explanation: "<p>Second iteration: <code>letter</code> is assigned <code>'o'</code>.</p>",
+      explanation: "<p>Second iteration: <code>letter</code> is assigned <code>o</code>.</p>",
       highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'s'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "s" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'s'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "s" }
           ]
         },
         {
@@ -91,15 +91,15 @@ for letter in myString:
     },
     {
       lineNumber: 2,
-      explanation: "<p>Print <code>'o'</code> followed by a space.</p>",
+      explanation: "<p>Print <code>o</code> followed by a space.</p>",
       highlightLines: [2],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'o'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "o" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'o'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "o" }
           ]
         },
         {
@@ -110,15 +110,15 @@ for letter in myString:
     },
     {
       lineNumber: 1,
-      explanation: "<p>Third iteration: <code>letter</code> is assigned <code>'m'</code>.</p>",
+      explanation: "<p>Third iteration: <code>letter</code> is assigned <code>m</code>.</p>",
       highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'o'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "o" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'o'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "o" }
           ]
         },
         {
@@ -129,15 +129,15 @@ for letter in myString:
     },
     {
       lineNumber: 2,
-      explanation: "<p>Print <code>'m'</code> followed by a space.</p>",
+      explanation: "<p>Print <code>m</code> followed by a space.</p>",
       highlightLines: [2],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'m'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "m" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'m'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "m" }
           ]
         },
         {
@@ -148,15 +148,15 @@ for letter in myString:
     },
     {
       lineNumber: 1,
-      explanation: "<p>Fourth iteration: <code>letter</code> is assigned <code>'e'</code>.</p>",
+      explanation: "<p>Fourth iteration: <code>letter</code> is assigned <code>e</code>.</p>",
       highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'m'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "m" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'m'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "m" }
           ]
         },
         {
@@ -167,15 +167,15 @@ for letter in myString:
     },
     {
       lineNumber: 2,
-      explanation: "<p>Print <code>'e'</code> followed by a space.</p>",
+      explanation: "<p>Print <code>e</code> followed by a space.</p>",
       highlightLines: [2],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'e'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "e" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'e'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "e" }
           ]
         },
         {
@@ -186,15 +186,15 @@ for letter in myString:
     },
     {
       lineNumber: 1,
-      explanation: "<p>Fifth iteration: <code>letter</code> is assigned <code>'S'</code> (uppercase S).</p>",
+      explanation: "<p>Fifth iteration: <code>letter</code> is assigned <code>_</code> (underscore).</p>",
       highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'e'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "e" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'e'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "e" }
           ]
         },
         {
@@ -205,15 +205,15 @@ for letter in myString:
     },
     {
       lineNumber: 2,
-      explanation: "<p>Print <code>'S'</code> followed by a space.</p>",
+      explanation: "<p>Print <code>_</code> followed by a space.</p>",
       highlightLines: [2],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'S'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "_" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'S'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "_" }
           ]
         },
         {
@@ -224,38 +224,247 @@ for letter in myString:
     },
     {
       lineNumber: 1,
-      explanation: "<p>The loop continues through the remaining characters: <code>'t'</code>, <code>'r'</code>, <code>'i'</code>, <code>'n'</code>, <code>'g'</code>.</p><p><em>Let's skip ahead to the end...</em></p>",
+      explanation: "<p>Sixth iteration: <code>letter</code> is assigned <code>s</code>.</p>",
       highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'S'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "_" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'S'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "_" }
           ]
         },
         {
           title: "Output",
-          values: ["s o m e S "]
+          values: ["s o m e _ "]
         }
       ]
     },
     {
       lineNumber: 2,
-      explanation: "<p>After iterating through all 10 characters, the loop ends.</p><p><strong>Key takeaway:</strong> Strings are sequences of characters, so you can iterate over them with <code>for</code> loops just like lists. Each character becomes the loop variable in turn.</p>",
+      explanation: "<p>Print <code>s</code> followed by a space.</p>",
+      highlightLines: [2],
       boxes: [
         {
           title: "Memory",
-          values: { "myString": "'someString'", "letter": "'g'" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "s" },
           connections: [
-            { from: "myString", toValue: "'someString'" },
-            { from: "letter", toValue: "'g'" }
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "s" }
           ]
         },
         {
           title: "Output",
-          values: ["s o m e S t r i n g "]
+          values: ["s o m e _ "]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Seventh iteration: <code>letter</code> is assigned <code>t</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "s" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "s" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>t</code> followed by a space.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "t" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "t" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s "]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Eighth iteration: <code>letter</code> is assigned <code>r</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "t" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "t" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>r</code> followed by a space.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "r" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "r" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t "]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Ninth iteration: <code>letter</code> is assigned <code>i</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "r" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "r" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>i</code> followed by a space.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "i" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "i" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r "]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Tenth iteration: <code>letter</code> is assigned <code>n</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "i" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "i" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r i "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>n</code> followed by a space.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "n" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "n" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r i "]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Eleventh iteration: <code>letter</code> is assigned <code>g</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "n" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "n" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r i n "]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Print <code>g</code> followed by a space.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "g" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "g" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r i n "]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>After iterating through all 11 characters, the loop ends.</p><p><strong>Key takeaway:</strong> Strings are sequences of characters, so you can iterate over them with <code>for</code> loops just like lists. Each character becomes the loop variable in turn.</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "g" },
+          connections: [
+            { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+            { from: "letter", toValue: "g" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["s o m e _ s t r i n g "]
         }
       ]
     }

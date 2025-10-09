@@ -40,9 +40,9 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'this is fun'" },
+          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
           connections: [
-            { from: "str1", toValue: "'this is fun'" }
+            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
           ]
         },
         {
@@ -58,9 +58,9 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'this is fun'" },
+          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
           connections: [
-            { from: "str1", toValue: "'this is fun'" }
+            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
           ]
         },
         {
@@ -76,9 +76,9 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'this is fun'" },
+          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
           connections: [
-            { from: "str1", toValue: "'this is fun'" }
+            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
           ]
         },
         {
@@ -127,9 +127,9 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'this is fun'" },
+          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
           connections: [
-            { from: "str1", toValue: "'this is fun'" }
+            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
           ]
         },
         {
@@ -145,9 +145,9 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'THIS IS FUN'" },
+          values: { "str1": ['T','H','I','S',' ','I','S',' ','F','U','N'] },
           connections: [
-            { from: "str1", toValue: "'THIS IS FUN'" }
+            { from: "str1", toValue: ['T','H','I','S',' ','I','S',' ','F','U','N'] }
           ]
         },
         {
@@ -162,9 +162,9 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'THIS IS FUN'" },
+          values: { "str1": ['T','H','I','S',' ','I','S',' ','F','U','N'] },
           connections: [
-            { from: "str1", toValue: "'THIS IS FUN'" }
+            { from: "str1", toValue: ['T','H','I','S',' ','I','S',' ','F','U','N'] }
           ]
         },
         {

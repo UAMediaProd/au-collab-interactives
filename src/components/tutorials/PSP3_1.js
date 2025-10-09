@@ -133,7 +133,7 @@ print('done')`,
     },
     {
       lineNumber: 8,
-      explanation: "<p>Update <code>a</code> to <code>2</code>. The loop continues...</p><p><em>This pattern repeats: test condition → print → update → test condition → print → update...</em></p>",
+      explanation: "<p>Update <code>a</code> to <code>2</code>.</p>",
       highlightLines: [8],
       boxes: [
         {
@@ -151,7 +151,385 @@ print('done')`,
     },
     {
       lineNumber: 4,
-      explanation: "<p>Let's skip ahead. After several iterations, <code>a</code> is now <code>9</code>. We test: <code>9 &lt; 10</code> is <code>True</code>, so we enter the loop one more time.</p>",
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>2</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 2 },
+          connections: [
+            { from: "a", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>2</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 2 },
+          connections: [
+            { from: "a", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>3</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 2 },
+          connections: [
+            { from: "a", toValue: "2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>3</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 3 },
+          connections: [
+            { from: "a", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>3</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 3 },
+          connections: [
+            { from: "a", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>4</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 3 },
+          connections: [
+            { from: "a", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>4</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 4 },
+          connections: [
+            { from: "a", toValue: "4" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>4</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 4 },
+          connections: [
+            { from: "a", toValue: "4" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>5</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 4 },
+          connections: [
+            { from: "a", toValue: "4" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>5</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 5 },
+          connections: [
+            { from: "a", toValue: "5" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>5</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 5 },
+          connections: [
+            { from: "a", toValue: "5" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>6</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 5 },
+          connections: [
+            { from: "a", toValue: "5" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>6</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 6 },
+          connections: [
+            { from: "a", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>6</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 6 },
+          connections: [
+            { from: "a", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>7</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 6 },
+          connections: [
+            { from: "a", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>7</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 7 },
+          connections: [
+            { from: "a", toValue: "7" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>7</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 7 },
+          connections: [
+            { from: "a", toValue: "7" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>8</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 7 },
+          connections: [
+            { from: "a", toValue: "7" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6, 7]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>8</code>, the condition is <code>True</code>.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 8 },
+          connections: [
+            { from: "a", toValue: "8" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6, 7]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Print the current value of <code>a</code>, which is <code>8</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 8 },
+          connections: [
+            { from: "a", toValue: "8" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6, 7]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Update <code>a</code> to <code>9</code>.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "a": 8 },
+          connections: [
+            { from: "a", toValue: "8" }
+          ]
+        },
+        {
+          title: "Output",
+          values: [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Test the condition: <code>a &lt; 10</code>. Since <code>a</code> is <code>9</code>, the condition is <code>True</code>, so we enter the loop one more time.</p>",
       highlightLines: [4],
       boxes: [
         {

@@ -46,9 +46,9 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": "[7, 8, 9, 10]" },
+          values: { "my_list": [7, 8, 9, 10] },
           connections: [
-            { from: "my_list", toValue: "[7, 8, 9, 10]" }
+            { from: "my_list", toValue: [7, 8, 9, 10] }
           ]
         },
         {
@@ -64,9 +64,9 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": "[7, 8, 9, 10]" },
+          values: { "my_list": [7, 8, 9, 10] },
           connections: [
-            { from: "my_list", toValue: "[7, 8, 9, 10]" }
+            { from: "my_list", toValue: [7, 8, 9, 10] }
           ]
         },
         {
@@ -82,9 +82,9 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": "[7, 8, 9, 10, 11]" },
+          values: { "my_list": [7, 8, 9, 10, 11] },
           connections: [
-            { from: "my_list", toValue: "[7, 8, 9, 10, 11]" }
+            { from: "my_list", toValue: [7, 8, 9, 10, 11] }
           ]
         },
         {
@@ -100,9 +100,9 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": "[7, 8, 9, 10, 11]" },
+          values: { "my_list": [7, 8, 9, 10, 11] },
           connections: [
-            { from: "my_list", toValue: "[7, 8, 9, 10, 11]" }
+            { from: "my_list", toValue: [7, 8, 9, 10, 11] }
           ]
         },
         {
@@ -118,9 +118,9 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": "[7, 8, 9, 10, 11, 'twelve']" },
+          values: { "my_list": [7, 8, 9, 10, 11, "'twelve'"] },
           connections: [
-            { from: "my_list", toValue: "[7, 8, 9, 10, 11, 'twelve']" }
+            { from: "my_list", toValue: [7, 8, 9, 10, 11, "'twelve'"] }
           ]
         },
         {
@@ -135,9 +135,9 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": "[7, 8, 9, 10, 11, 'twelve']" },
+          values: { "my_list": [7, 8, 9, 10, 11, "'twelve'"] },
           connections: [
-            { from: "my_list", toValue: "[7, 8, 9, 10, 11, 'twelve']" }
+            { from: "my_list", toValue: [7, 8, 9, 10, 11, "'twelve'"] }
           ]
         },
         {

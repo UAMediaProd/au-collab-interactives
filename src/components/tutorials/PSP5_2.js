@@ -1,11 +1,11 @@
 export default {
   code: `def get_maximum(no1, no2, no3):
-  maxValue = no1
-  if no2 > maxValue:
-    maxValue = no2
-  if no3 > maxValue:
-    maxValue = no3
-  return maxValue
+  max_value = no1
+  if no2 > max_value:
+    max_value = no2
+  if no3 > max_value:
+    max_value = no3
+  return max_value
 
 num1 = 4
 num2 = 7
@@ -20,7 +20,11 @@ print('Maximum is: ', result)`,
       highlightLines: [],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "get_maximum memory",
           values: {}
         },
         {
@@ -35,7 +39,11 @@ print('Maximum is: ', result)`,
       highlightLines: [0],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "get_maximum memory",
           values: {}
         },
         {
@@ -50,7 +58,11 @@ print('Maximum is: ', result)`,
       highlightLines: [8],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "get_maximum memory",
           values: {}
         },
         {
@@ -65,11 +77,15 @@ print('Maximum is: ', result)`,
       highlightLines: [9],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { "num1": 4 },
           connections: [
             { from: "num1", toValue: "4" }
           ]
+        },
+        {
+          title: "get_maximum memory",
+          values: {}
         },
         {
           title: "Output",
@@ -83,12 +99,16 @@ print('Maximum is: ', result)`,
       highlightLines: [10],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { "num1": 4, "num2": 7 },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" }
           ]
+        },
+        {
+          title: "get_maximum memory",
+          values: {}
         },
         {
           title: "Output",
@@ -102,13 +122,17 @@ print('Maximum is: ', result)`,
       highlightLines: [12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { "num1": 4, "num2": 7, "num3": 1 },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
             { from: "num3", toValue: "1" }
           ]
+        },
+        {
+          title: "get_maximum memory",
+          values: {}
         },
         {
           title: "Output",
@@ -119,22 +143,26 @@ print('Maximum is: ', result)`,
     {
       lineNumber: 0,
       explanation: "<p>Jump to the function definition. The parameters <code>no1</code>, <code>no2</code>, and <code>no3</code> now have the values <code>4</code>, <code>7</code>, and <code>1</code> respectively.</p>",
-      highlightLines: [12, 0],
+      highlightLines: [0, 12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1 },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
             { from: "no3", toValue: "1" }
@@ -148,26 +176,31 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 1,
-      explanation: "<p>Initialize <code>maxValue</code> with the value of <code>no1</code>, which is <code>4</code>. This is our starting assumption for the maximum value.</p>",
-      highlightLines: [12, 1],
+      explanation: "<p>Initialize <code>max_value</code> with the value of <code>no1</code>, which is <code>4</code>. This is our starting assumption for the maximum value.</p>",
+      highlightLines: [1, 12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "4 " },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
-            { from: "no3", toValue: "1" }
+            { from: "no3", toValue: "1" },
+            { from: "max_value", toValue: "4 " } // Space after 4 is a hack to ensure we don't point to no1
           ]
         },
         {
@@ -178,28 +211,31 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 2,
-      explanation: "<p>Test the condition: <code>no2 > maxValue</code>. Since <code>no2</code> is <code>7</code> and <code>maxValue</code> is <code>4</code>, the condition is <code>True</code> (7 > 4).</p>",
-      highlightLines: [12, 2],
+      explanation: "<p>Test the condition: <code>no2 > max_value</code>. Since <code>no2</code> is <code>7</code> and <code>max_value</code> is <code>4</code>, the condition is <code>True</code> (7 > 4).</p>",
+      highlightLines: [2, 12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false },
-            "maxValue": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "4 " },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
             { from: "no3", toValue: "1" },
-            { from: "maxValue", toValue: "4" }
+            { from: "max_value", toValue: "4 " }
           ]
         },
         {
@@ -210,28 +246,31 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 3,
-      explanation: "<p>Since the condition is <code>True</code>, update <code>maxValue</code> to <code>7</code> (the value of <code>no2</code>).</p>",
-      highlightLines: [12, 3],
+      explanation: "<p>Since the condition is <code>True</code>, update <code>max_value</code> to <code>7</code> (the value of <code>no2</code>).</p>",
+      highlightLines: [3, 12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false },
-            "maxValue": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "7 " },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
             { from: "no3", toValue: "1" },
-            { from: "maxValue", toValue: "4" }
+            { from: "max_value", toValue: "7 " }
           ]
         },
         {
@@ -242,28 +281,31 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 4,
-      explanation: "<p>Test the condition: <code>no3 > maxValue</code>. Since <code>no3</code> is <code>1</code> and <code>maxValue</code> is now <code>7</code>, the condition is <code>False</code> (1 is not greater than 7).</p>",
-      highlightLines: [12, 4],
+      explanation: "<p>Test the condition: <code>no3 > max_value</code>. Since <code>no3</code> is <code>1</code> and <code>max_value</code> is now <code>7</code>, the condition is <code>False</code> (1 is not greater than 7).</p>",
+      highlightLines: [4, 12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false },
-            "maxValue": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "7 " },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
             { from: "no3", toValue: "1" },
-            { from: "maxValue", toValue: "7" }
+            { from: "max_value", toValue: "7 " }
           ]
         },
         {
@@ -274,28 +316,31 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 6,
-      explanation: "<p>Since the condition was <code>False</code>, we skip the code block and move to the return statement.</p><p>Return <code>maxValue</code>, which is <code>7</code>. This value goes back to line 13 where the function was called.</p>",
-      highlightLines: [12, 6],
+      explanation: "<p>Since the condition was <code>False</code>, we skip the code block and move to the return statement.</p><p>Return <code>max_value</code>, which is <code>7</code>. This value goes back to line 13 where the function was called.</p>",
+      highlightLines: [6, 12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false },
-            "maxValue": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "7 " },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
             { from: "no3", toValue: "1" },
-            { from: "maxValue", toValue: "7" }
+            { from: "max_value", toValue: "7 " }
           ]
         },
         {
@@ -306,28 +351,31 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 13,
-      explanation: "<p>The function has returned <code>7</code>, which is now assigned to <code>result</code>.</p><p>The function's local variables (<code>no1</code>, <code>no2</code>, <code>no3</code>, <code>maxValue</code>) are removed from memory.</p>",
+      explanation: "<p>The function has returned <code>7</code>, which is now assigned to <code>result</code>.</p><p>The function's local variables (<code>no1</code>, <code>no2</code>, <code>no3</code>, <code>max_value</code>) are removed from memory.</p>",
       highlightLines: [12],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "no1": { value: "", valued: false },
-            "no2": { value: "", valued: false },
-            "no3": { value: "", valued: false },
-            "maxValue": { value: "", valued: false }
+            "result": { value: "", valued: false }
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
-            { from: "num3", toValue: "1" },
+            { from: "num3", toValue: "1" }
+          ]
+        },
+        {
+          title: "get_maximum memory",
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "7 " },
+          connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
             { from: "no3", toValue: "1" },
-            { from: "maxValue", toValue: "7" }
+            { from: "max_value", toValue: "7 " }
           ]
         },
         {
@@ -342,19 +390,23 @@ print('Maximum is: ', result)`,
       highlightLines: [13],
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "result": { value: "", valued: false }
+            "result": "7 "
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
             { from: "num3", toValue: "1" },
-            { from: "result", toValue: "7" }
+            { from: "result", toValue: "7 " }
           ]
+        },
+        {
+          title: "get_maximum memory",
+          values: {}
         },
         {
           title: "Output",
@@ -367,19 +419,23 @@ print('Maximum is: ', result)`,
       explanation: "<p>The program ends.</p><p><strong>Key takeaway:</strong> This function demonstrates a common pattern for finding the maximum value—start with one value as the assumed maximum, then compare each other value and update if a larger one is found.</p>",
       boxes: [
         {
-          title: "Memory",
+          title: "Global memory",
           values: { 
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "result": { value: "", valued: false }
+            "result": "7 "
           },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
             { from: "num3", toValue: "1" },
-            { from: "result", toValue: "7" }
+            { from: "result", toValue: "7 " }
           ]
+        },
+        {
+          title: "get_maximum memory",
+          values: {}
         },
         {
           title: "Output",

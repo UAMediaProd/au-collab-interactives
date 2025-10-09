@@ -45,9 +45,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'" },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'] },
           connections: [
-            { from: "str1", toValue: "'kramer'" }
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] }
           ]
         },
         {
@@ -63,9 +63,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 0 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 0 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "0" }
           ]
         },
@@ -82,9 +82,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 0 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 0 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "0" }
           ]
         },
@@ -101,9 +101,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 0 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 0 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "0" }
           ]
         },
@@ -120,9 +120,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 1 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 1 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "1" }
           ]
         },
@@ -139,9 +139,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 1 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 1 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "1" }
           ]
         },
@@ -158,9 +158,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 1 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 1 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "1" }
           ]
         },
@@ -177,9 +177,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 2 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 2 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "2" }
           ]
         },
@@ -196,9 +196,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 2 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 2 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "2" }
           ]
         },
@@ -215,9 +215,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 2 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 2 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "2" }
           ]
         },
@@ -234,9 +234,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 6 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 6 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "6" }
           ]
         },
@@ -253,9 +253,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 6 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 6 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "6" }
           ]
         },
@@ -271,9 +271,9 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": "'kramer'", "index": 6 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 6 },
           connections: [
-            { from: "str1", toValue: "'kramer'" },
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "6" }
           ]
         },
