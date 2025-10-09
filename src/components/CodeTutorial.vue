@@ -12,7 +12,7 @@
           </div>
           
           <!-- Explanation -->
-          <div class="explanation p-4 bg-gray-50 shadow rounded h-[19rem] flex flex-col">
+          <div class="explanation p-4 bg-gray-50 shadow rounded min-h-[19rem] h-full flex flex-col">
             <div class="flex-grow overflow-auto">
               <p v-html="currentStepData.explanation"></p>
             </div>
@@ -44,7 +44,7 @@
         </div>
         
         <!-- Right column: Data Boxes -->
-        <div :class="[dataBoxesWidth, 'p-4', 'bg-gray-50', 'rounded', 'shadow', 'relative']">
+        <div :class="[dataBoxesWidth, dataBoxesHeight, 'p-4', 'bg-gray-50', 'rounded', 'shadow', 'relative']">
           <!-- SVG overlay for arrows -->
           <svg class="arrows-svg" ref="arrowsSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
             <defs>
@@ -70,7 +70,7 @@
               </div>
               
               <!-- Key-value pairs -->
-              <div v-else class="flex flex-col gap-y-1">
+              <div v-else class="flex flex-col gap-y-1 leading-[1.2]">
                 <template v-for="(valueData, key) in box.values" :key="key">
                   <!-- Check if value is an array (string/list representation) -->
                   <template v-if="Array.isArray(valueData)">
@@ -84,11 +84,11 @@
                         >{{ key }}</span>
                       </div>
                       <!-- Array items as connected boxes -->
-                      <div class="flex justify-end">
+                      <div :class="box.stacked ? 'flex flex-col items-end gap-y-0' : 'flex justify-end'">
                         <span
                           v-for="(item, index) in valueData"
                           :key="index"
-                          :class="['font-mono', 'array-item-box', index === 0 ? 'first-item' : '']"
+                          :class="['font-mono', 'array-item-box', index === 0 ? 'first-item' : '', box.stacked ? 'stacked-item' : '']"
                           :id="`val-${box.title}-${key}`"
                           :ref="el => { if (el && index === 0) valueRefs.set(`val-${box.title}-${key}`, el) }"
                         >{{ item }}</span>
@@ -196,6 +196,10 @@ const props = defineProps({
   dataBoxesWidth: {
     type: String,
     default: 'w-1/3'
+  },
+  dataBoxesHeight: {
+    type: String,
+    default: ''
   }
 });
 
@@ -617,6 +621,16 @@ pre code.hljs {
 
 .array-item-box.first-item {
   border-left: 1px solid black;
+}
+
+/* Stacked array items */
+.array-item-box.stacked-item {
+  border-left: 1px solid black;
+  border-top: none;
+}
+
+.array-item-box.stacked-item.first-item {
+  border-top: 1px solid black;
 }
 
 del {

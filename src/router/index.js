@@ -137,9 +137,24 @@ const routes = [
     component: () => import('../views/PSPExercise6_1.vue')
   },
   {
+    path: '/psp-exercise-6-2',
+    name: 'PSP: Coding Exercise 6.2',
+    component: () => import('../views/PSPExercise6_2.vue')
+  },
+  {
+    path: '/psp-exercise-6-3',
+    name: 'PSP: Coding Exercise 6.3',
+    component: () => import('../views/PSPExercise6_3.vue')
+  },
+  {
     path: '/psp-exercise-6-4',
     name: 'PSP: Coding Exercise 6.4',
     component: () => import('../views/PSPExercise6_4.vue')
+  },
+  {
+    path: '/psp-exercise-6-5',
+    name: 'PSP: Coding Exercise 6.5',
+    component: () => import('../views/PSPExercise6_5.vue')
   }
 ]
 

@@ -1,0 +1,177 @@
+export default {
+  code: `def example_function():
+  print('String in function is:', global_str)
+
+
+global_str = 'global'
+
+example_function()`,
+  steps: [
+    {
+      lineNumber: 0,
+      explanation: "<p>This tutorial demonstrates <strong>global variables</strong>—variables defined outside of functions that can be accessed from inside functions.</p><p>We'll see how a function can read a global variable without needing it as a parameter.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>Define a function named <code>example_function</code>.</p><p>This function will print a variable called <code>global_str</code>, even though it's not passed as a parameter.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Create a <strong>global</strong> variable <code>global_str</code> and assign it the value <code>'global'</code>.</p><p>This variable is defined outside any function, so it's accessible from anywhere in the program.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 6,
+      explanation: "<p>Call <code>example_function()</code>. Jump to the function definition.</p>",
+      highlightLines: [6],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "global_str": "'global'" },
+          connections: [
+            { from: "global_str", toValue: "'global'" }
+          ]
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>Enter <code>example_function</code>.</p>",
+      highlightLines: [0, 6],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "global_str": "'global'" },
+          connections: [
+            { from: "global_str", toValue: "'global'" }
+          ]
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Print <code>global_str</code>.</p><p>Even though <code>global_str</code> is not a local variable or parameter, the function can access it because it's a <strong>global variable</strong>.</p><p>Python looks for the variable in the local scope first, then in the global scope if not found locally.</p>",
+      highlightLines: [1, 6],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "global_str": "'global'" },
+          connections: [
+            { from: "global_str", toValue: "'global'" }
+          ]
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 6,
+      explanation: "<p>The function ends. Control returns to line 6.</p>",
+      highlightLines: [6],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "global_str": "'global'" },
+          connections: [
+            { from: "global_str", toValue: "'global'" }
+          ]
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["String in function is: global"]
+        }
+      ]
+    },
+    {
+      lineNumber: 6,
+      explanation: "<p>The program ends.</p><p><strong>Key takeaway:</strong> Functions can <strong>read</strong> global variables without needing them as parameters. Python searches for variables in the local scope first, then in the global scope.</p><p><strong>Note:</strong> While functions can read global variables, modifying them requires the <code>global</code> keyword (covered in a later tutorial).</p>",
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "global_str": "'global'" },
+          connections: [
+            { from: "global_str", toValue: "'global'" }
+          ]
+        },
+        {
+          title: "example_function memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["String in function is: global"]
+        }
+      ]
+    }
+  ]
+};
