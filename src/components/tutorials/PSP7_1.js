@@ -72,7 +72,7 @@ example_function(no2=3, no1=4)`,
         },
         {
           title: "example_function memory",
-          values: { "no1": 4, "no2": 3 },
+          values: { "no1": { value: 4, highlight: true }, "no2": { value: 3, highlight: true } },
           connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "3" }

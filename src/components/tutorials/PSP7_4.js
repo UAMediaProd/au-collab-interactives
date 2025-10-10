@@ -75,7 +75,7 @@ print(num, num_list)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num_list": [1, 2] },
+          values: { "num_list": { value: [1, 2], highlight: true } },
           connections: [
             { from: "num_list", toValue: [1, 2] }
           ]
@@ -99,7 +99,7 @@ print(num, num_list)`,
           title: "Global memory",
           values: { 
             "num_list": [1, 2],
-            "num": 3
+            "num": { value: 3, highlight: true }
           },
           connections: [
             { from: "num_list", toValue: [1, 2] },
@@ -162,7 +162,7 @@ print(num, num_list)`,
           title: "change_me memory",
           values: {
             "the_list": { value: "", valued: false },
-            "the_num": 3
+            "the_num": { value: 3, highlight: true }
           },
           connections: [
             { from: "the_list", toValue: [1, 2], toBox: "Global memory" },
@@ -216,7 +216,7 @@ print(num, num_list)`,
         {
           title: "Global memory",
           values: { 
-            "num_list": [1, 2, 3],
+            "num_list": { value: [1, 2, 3], highlight: 2 },
             "num": 3
           },
           connections: [
@@ -228,11 +228,11 @@ print(num, num_list)`,
           title: "change_me memory",
           values: {
             "the_list": { value: "", valued: false },
-            "the_num": 3
+            "the_num": { value: 4, highlight: true }
           },
           connections: [
             { from: "the_list", toValue: [1, 2, 3], toBox: "Global memory" },
-            { from: "the_num", toValue: "3" }
+            { from: "the_num", toValue: "4" }
           ]
         },
         {
@@ -339,7 +339,7 @@ print(num, num_list)`,
           title: "change_me memory",
           values: {
             "the_list": { value: "", valued: false },
-            "the_num": 3
+            "the_num": { value: 3, highlight: true }
           },
           connections: [
             { from: "the_list", toValue: [1, 2, 3], toBox: "Global memory" },
@@ -393,7 +393,7 @@ print(num, num_list)`,
         {
           title: "Global memory",
           values: { 
-            "num_list": [1, 2, 3, 3],
+            "num_list": { value: [1, 2, 3, 3], highlight: 3 },
             "num": 3
           },
           connections: [

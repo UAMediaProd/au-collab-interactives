@@ -75,7 +75,7 @@ elif num2 > num1:
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 2 },
+          values: { "num1": { value: 2, highlight: true } },
           connections: [
             { from: "num1", toValue: "2" }
           ]
@@ -93,7 +93,7 @@ elif num2 > num1:
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 2, "num2": 4 },
+          values: { "num1": 2, "num2": { value: 4, highlight: true } },
           connections: [
             { from: "num1", toValue: "2" },
             { from: "num2", toValue: "4" }

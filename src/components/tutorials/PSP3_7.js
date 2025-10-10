@@ -42,7 +42,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 1 },
+          values: { "num1": { value: 1, highlight: true } },
           connections: [
             { from: "num1", toValue: "1" }
           ]
@@ -78,7 +78,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 1, "num2": 0 },
+          values: { "num1": 1, "num2": { value: 0, highlight: true } },
           connections: [
             { from: "num1", toValue: "1" },
             { from: "num2", toValue: "0" }
@@ -135,7 +135,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 2, "num2": 0 },
+          values: { "num1": { value: 2, highlight: true }, "num2": 0 },
           connections: [
             { from: "num1", toValue: "2" },
             { from: "num2", toValue: "0" }
@@ -211,7 +211,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 2, "num2": 1 },
+          values: { "num1": 2, "num2": { value: 1, highlight: true } },
           connections: [
             { from: "num1", toValue: "2" },
             { from: "num2", toValue: "1" }
@@ -268,7 +268,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 3, "num2": 1 },
+          values: { "num1": { value: 3, highlight: true }, "num2": 1 },
           connections: [
             { from: "num1", toValue: "3" },
             { from: "num2", toValue: "1" }
@@ -306,7 +306,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 3, "num2": 0 },
+          values: { "num1": 3, "num2": { value: 0, highlight: true } },
           connections: [
             { from: "num1", toValue: "3" },
             { from: "num2", toValue: "0" }
@@ -344,7 +344,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 3, "num2": 1 },
+          values: { "num1": 3, "num2": { value: 1, highlight: true } },
           connections: [
             { from: "num1", toValue: "3" },
             { from: "num2", toValue: "1" }
@@ -382,7 +382,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 3, "num2": 2 },
+          values: { "num1": 3, "num2": { value: 2, highlight: true } },
           connections: [
             { from: "num1", toValue: "3" },
             { from: "num2", toValue: "2" }
@@ -439,7 +439,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 4, "num2": 2 },
+          values: { "num1": { value: 4, highlight: true }, "num2": 2 },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "2" }
@@ -477,7 +477,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 4, "num2": 0 },
+          values: { "num1": 4, "num2": { value: 0, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "0" }
@@ -515,7 +515,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 4, "num2": 1 },
+          values: { "num1": 4, "num2": { value: 1, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "1" }
@@ -553,7 +553,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 4, "num2": 2 },
+          values: { "num1": 4, "num2": { value: 2, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "2" }
@@ -591,7 +591,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "num1": 4, "num2": 3 },
+          values: { "num1": 4, "num2": { value: 3, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "3" }

@@ -39,7 +39,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "word": "\"A\"" },
+          values: { "word": { value: "\"A\"", highlight: true } },
           connections: [
             { from: "word", toValue: "\"A\"" }
           ]
@@ -75,7 +75,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "word": "\"list\"" },
+          values: { "word": { value: "\"list\"", highlight: true } },
           connections: [
             { from: "word", toValue: "\"list\"" }
           ]
@@ -111,7 +111,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "word": "\"of\"" },
+          values: { "word": { value: "\"of\"", highlight: true } },
           connections: [
             { from: "word", toValue: "\"of\"" }
           ]
@@ -147,7 +147,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "word": "\"strings\"" },
+          values: { "word": { value: "\"strings\"", highlight: true } },
           connections: [
             { from: "word", toValue: "\"strings\"" }
           ]

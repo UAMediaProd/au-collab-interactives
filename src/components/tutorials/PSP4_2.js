@@ -40,7 +40,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
+          values: { "my_string": { value: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] }
           ]
@@ -58,7 +58,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "s" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "s", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "s" }
@@ -96,7 +96,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "o" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "o", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "o" }
@@ -134,7 +134,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "m" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "m", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "m" }
@@ -172,7 +172,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "e" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "e", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "e" }
@@ -210,7 +210,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "_" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "_", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "_" }
@@ -248,7 +248,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "s" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "s", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "s" }
@@ -286,7 +286,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "t" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "t", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "t" }
@@ -324,7 +324,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "r" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "r", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "r" }
@@ -362,7 +362,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "i" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "i", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "i" }
@@ -400,7 +400,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "n" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "n", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "n" }
@@ -438,7 +438,7 @@ for letter in my_string:
       boxes: [
         {
           title: "Memory",
-          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": "g" },
+          values: { "my_string": ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'], "letter": { value: "g", highlight: true } },
           connections: [
             { from: "my_string", toValue: ['s', 'o', 'm', 'e', '_', 's', 't', 'r', 'i', 'n', 'g'] },
             { from: "letter", toValue: "g" }

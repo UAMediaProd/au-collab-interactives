@@ -39,7 +39,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "k": 1 },
+          values: { "k": { value: 1, highlight: true } },
           connections: [
             { from: "k", toValue: "1" }
           ]
@@ -75,7 +75,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "k": 3 },
+          values: { "k": { value: 3, highlight: true } },
           connections: [
             { from: "k", toValue: "3" }
           ]
@@ -111,7 +111,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "k": 7 },
+          values: { "k": { value: 7, highlight: true } },
           connections: [
             { from: "k", toValue: "7" }
           ]

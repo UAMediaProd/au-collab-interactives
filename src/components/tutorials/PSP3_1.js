@@ -48,7 +48,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 0 },
+          values: { "a": { value: 0, highlight: true } },
           connections: [
             { from: "a", toValue: "0" }
           ]
@@ -102,7 +102,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 1 },
+          values: { "a": { value: 1, highlight: true } },
           connections: [
             { from: "a", toValue: "1" }
           ]
@@ -156,7 +156,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 2 },
+          values: { "a": { value: 2, highlight: true } },
           connections: [
             { from: "a", toValue: "2" }
           ]
@@ -210,7 +210,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 3 },
+          values: { "a": { value: 3, highlight: true } },
           connections: [
             { from: "a", toValue: "3" }
           ]
@@ -264,7 +264,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 4 },
+          values: { "a": { value: 4, highlight: true } },
           connections: [
             { from: "a", toValue: "4" }
           ]
@@ -318,7 +318,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 5 },
+          values: { "a": { value: 5, highlight: true } },
           connections: [
             { from: "a", toValue: "5" }
           ]
@@ -372,7 +372,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 6 },
+          values: { "a": { value: 6, highlight: true } },
           connections: [
             { from: "a", toValue: "6" }
           ]
@@ -426,7 +426,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 7 },
+          values: { "a": { value: 7, highlight: true } },
           connections: [
             { from: "a", toValue: "7" }
           ]
@@ -480,7 +480,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 8 },
+          values: { "a": { value: 8, highlight: true } },
           connections: [
             { from: "a", toValue: "8" }
           ]
@@ -534,7 +534,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 9 },
+          values: { "a": { value: 9, highlight: true } },
           connections: [
             { from: "a", toValue: "9" }
           ]
@@ -588,7 +588,7 @@ print('done')`,
       boxes: [
         {
           title: "Memory",
-          values: { "a": 10 },
+          values: { "a": { value: 10, highlight: true } },
           connections: [
             { from: "a", toValue: "10" }
           ]

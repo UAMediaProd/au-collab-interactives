@@ -73,7 +73,7 @@ print('Back from function call, value is still:', value)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "value": 99 },
+          values: { "value": { value: 99, highlight: true } },
           connections: [
             { from: "value", toValue: "99" }
           ]
@@ -124,7 +124,7 @@ print('Back from function call, value is still:', value)`,
         },
         {
           title: "change_me memory",
-          values: { "number": 99 },
+          values: { "number": { value: 99, highlight: true } },
           connections: [
             { from: "number", toValue: "99" }
           ]
@@ -199,7 +199,7 @@ print('Back from function call, value is still:', value)`,
         },
         {
           title: "change_me memory",
-          values: { "number": 0 },
+          values: { "number": { value: 0, highlight: true } },
           connections: [
             { from: "number", toValue: "0" }
           ]

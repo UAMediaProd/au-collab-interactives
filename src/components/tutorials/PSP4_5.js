@@ -46,7 +46,7 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": [1, 2, 3, 4, 5, 6, 7] },
+          values: { "my_list": { value: [1, 2, 3, 4, 5, 6, 7], highlight: true } },
           connections: [
             { from: "my_list", toValue: [1, 2, 3, 4, 5, 6, 7] }
           ]

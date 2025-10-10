@@ -42,7 +42,7 @@ while (index < len(name_list)):
       boxes: [
         {
           title: "Memory",
-          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"] },
+          values: { "name_list": { value: ["'kramer'", "'jerry'", "'elaine'"], highlight: true } },
           connections: [
             { from: "name_list", toValue: ["'kramer'", "'jerry'", "'elaine'"] }
           ]
@@ -60,7 +60,7 @@ while (index < len(name_list)):
       boxes: [
         {
           title: "Memory",
-          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": 0 },
+          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": { value: 0, highlight: true } },
           connections: [
             { from: "name_list", toValue: ["'kramer'", "'jerry'", "'elaine'"] },
             { from: "index", toValue: "0" }
@@ -117,7 +117,7 @@ while (index < len(name_list)):
       boxes: [
         {
           title: "Memory",
-          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": 1 },
+          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": { value: 1, highlight: true } },
           connections: [
             { from: "name_list", toValue: ["'kramer'", "'jerry'", "'elaine'"] },
             { from: "index", toValue: "1" }
@@ -174,7 +174,7 @@ while (index < len(name_list)):
       boxes: [
         {
           title: "Memory",
-          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": 2 },
+          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": { value: 2, highlight: true } },
           connections: [
             { from: "name_list", toValue: ["'kramer'", "'jerry'", "'elaine'"] },
             { from: "index", toValue: "2" }
@@ -231,7 +231,7 @@ while (index < len(name_list)):
       boxes: [
         {
           title: "Memory",
-          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": 3 },
+          values: { "name_list": ["'kramer'", "'jerry'", "'elaine'"], "index": { value: 3, highlight: true } },
           connections: [
             { from: "name_list", toValue: ["'kramer'", "'jerry'", "'elaine'"] },
             { from: "index", toValue: "3" }

@@ -39,7 +39,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "n": 1 },
+          values: { "n": { value: 1, highlight: true } },
           connections: [
             { from: "n", toValue: "1" }
           ]
@@ -75,7 +75,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "n": 2 },
+          values: { "n": { value: 2, highlight: true } },
           connections: [
             { from: "n", toValue: "2" }
           ]
@@ -111,7 +111,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "n": 3 },
+          values: { "n": { value: 3, highlight: true } },
           connections: [
             { from: "n", toValue: "3" }
           ]
@@ -147,7 +147,7 @@ export default {
       boxes: [
         {
           title: "Memory",
-          values: { "n": 4 },
+          values: { "n": { value: 4, highlight: true } },
           connections: [
             { from: "n", toValue: "4" }
           ]

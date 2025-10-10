@@ -93,7 +93,7 @@ print(local_str)`,
         {
           title: "example_function memory",
           values: {
-            "local_str": "'local'"
+            "local_str": { value: "'local'", highlight: true }
           },
           connections: [
             { from: "local_str", toValue: "'local'" }

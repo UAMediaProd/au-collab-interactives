@@ -68,7 +68,7 @@ infile.close()`,
         {
           title: "Global memory",
           stacked: true,
-          values: { "infile": "file object" },
+          values: { "infile": { value: "file object", highlight: true } },
           connections: [
             { from: "infile", toValue: "file object" }
           ]
@@ -99,7 +99,7 @@ infile.close()`,
           stacked: true,
           values: { 
             "infile": "file object",
-            "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"]
+            "string_list": { value: ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"], highlight: true }
           },
           connections: [
             { from: "infile", toValue: "file object" },
@@ -133,7 +133,7 @@ infile.close()`,
           values: { 
             "infile": "file object",
             "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"],
-            "line": ["'this is line 1\\n'"]
+            "line": { value: ["'this is line 1\\n'"], highlight: true }
           },
           connections: [
             { from: "infile", toValue: "file object" },
@@ -203,7 +203,7 @@ infile.close()`,
           values: { 
             "infile": "file object",
             "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"],
-            "line": ["'this is line 2\\n'"]
+            "line": { value: ["'this is line 2\\n'"], highlight: true }
           },
           connections: [
             { from: "infile", toValue: "file object" },
@@ -273,7 +273,7 @@ infile.close()`,
           values: { 
             "infile": "file object",
             "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"],
-            "line": ["'this is line 3\\n'"]
+            "line": { value: ["'this is line 3\\n'"], highlight: true }
           },
           connections: [
             { from: "infile", toValue: "file object" },
@@ -343,7 +343,7 @@ infile.close()`,
           values: { 
             "infile": "file object",
             "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"],
-            "line": ["'this is line 4\\n'"]
+            "line": { value: ["'this is line 4\\n'"], highlight: true }
           },
           connections: [
             { from: "infile", toValue: "file object" },
@@ -413,7 +413,7 @@ infile.close()`,
           values: { 
             "infile": "file object",
             "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"],
-            "line": ["'this is line 5'"]
+            "line": { value: ["'this is line 5'"], highlight: true }
           },
           connections: [
             { from: "infile", toValue: "file object" },
@@ -486,7 +486,7 @@ infile.close()`,
           title: "Global memory",
           stacked: true,
           values: { 
-            "infile": "file object (closed)",
+            "infile": { value: "file object (closed)", highlight: true },
             "string_list": ["'this is line 1\\n'", "'this is line 2\\n'", "'this is line 3\\n'", "'this is line 4\\n'", "'this is line 5'"],
             "line": ["'this is line 5'"]
           },

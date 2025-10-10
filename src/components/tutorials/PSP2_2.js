@@ -63,7 +63,7 @@ elif direction == 3:
       boxes: [
         {
           title: "Memory",
-          values: { "direction": 2 },
+          values: { "direction": { value: 2, highlight: true } },
           connections: [
             { from: "direction", toValue: "2" }
           ]

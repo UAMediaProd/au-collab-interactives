@@ -71,7 +71,7 @@ example_function()`,
       boxes: [
         {
           title: "Global memory",
-          values: { "global_str": "'global'" },
+          values: { "global_str": { value: "'global'", highlight: true } },
           connections: [
             { from: "global_str", toValue: "'global'" }
           ]

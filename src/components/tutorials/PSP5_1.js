@@ -74,7 +74,7 @@ print('Result is: ', result)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num1": 5 },
+          values: { "num1": { value: 5, highlight: true } },
           connections: [
             { from: "num1", toValue: "5" }
           ]
@@ -96,7 +96,7 @@ print('Result is: ', result)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num1": 5, "num2": 10 },
+          values: { "num1": 5, "num2": { value: 10, highlight: true } },
           connections: [
             { from: "num1", toValue: "5" },
             { from: "num2", toValue: "10" }
@@ -127,7 +127,7 @@ print('Result is: ', result)`,
         },
         {
           title: "sum_numbers memory",
-          values: { "no1": 5, "no2": 10 },
+          values: { "no1": { value: 5, highlight: true }, "no2": { value: 10, highlight: true } },
           connections: [
             { from: "no1", toValue: "5" },
             { from: "no2", toValue: "10" }
@@ -181,7 +181,7 @@ print('Result is: ', result)`,
         },
         {
           title: "sum_numbers memory",
-          values: { "no1": 5, "no2": 10, "total": 50 },
+          values: { "no1": 5, "no2": 10, "total": { value: 50, highlight: true } },
           connections: [
             { from: "no1", toValue: "5" },
             { from: "no2", toValue: "10" },
@@ -229,7 +229,7 @@ print('Result is: ', result)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num1": 5, "num2": 10, "result": 50 },
+          values: { "num1": 5, "num2": 10, "result": { value: 50, highlight: true } },
           connections: [
             { from: "num1", toValue: "5" },
             { from: "num2", toValue: "10" },

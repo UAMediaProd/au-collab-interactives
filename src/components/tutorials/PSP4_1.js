@@ -40,7 +40,7 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
+          values: { "str1": { value: ['t','h','i','s',' ','i','s',' ','f','u','n'], highlight: true } },
           connections: [
             { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
           ]
@@ -127,7 +127,7 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
+          values: { "str1": { value: ['t','h','i','s',' ','i','s',' ','f','u','n'], highlight: true } },
           connections: [
             { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
           ]
@@ -145,7 +145,7 @@ print(str1)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['T','H','I','S',' ','I','S',' ','F','U','N'] },
+          values: { "str1": { value: ['T','H','I','S',' ','I','S',' ','F','U','N'], highlight: true } },
           connections: [
             { from: "str1", toValue: ['T','H','I','S',' ','I','S',' ','F','U','N'] }
           ]

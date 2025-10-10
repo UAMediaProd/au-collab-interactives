@@ -73,7 +73,7 @@ print('String is:', global_str)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "global_str": "'global'" },
+          values: { "global_str": { value: "'global'", highlight: true } },
           connections: [
             { from: "global_str", toValue: "'global'" }
           ]
@@ -146,7 +146,7 @@ print('String is:', global_str)`,
         },
         {
           title: "example_function memory",
-          values: { "global_str": "'local'" },
+          values: { "global_str": { value: "'local'", highlight: true } },
           connections: [
             { from: "global_str", toValue: "'local'" }
           ]

@@ -46,7 +46,7 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": [7, 8, 9, 10] },
+          values: { "my_list": { value: [7, 8, 9, 10], highlight: true } },
           connections: [
             { from: "my_list", toValue: [7, 8, 9, 10] }
           ]
@@ -82,7 +82,7 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": [7, 8, 9, 10, 11] },
+          values: { "my_list": { value: [7, 8, 9, 10, 11], highlight: 4 } },
           connections: [
             { from: "my_list", toValue: [7, 8, 9, 10, 11] }
           ]
@@ -118,7 +118,7 @@ print(my_list)`,
       boxes: [
         {
           title: "Memory",
-          values: { "my_list": [7, 8, 9, 10, 11, "'twelve'"] },
+          values: { "my_list": { value: [7, 8, 9, 10, 11, "'twelve'"], highlight: 5 } },
           connections: [
             { from: "my_list", toValue: [7, 8, 9, 10, 11, "'twelve'"] }
           ]

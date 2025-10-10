@@ -73,25 +73,25 @@
               <div v-else class="flex flex-col gap-y-1 leading-[1.2]">
                 <template v-for="(valueData, key) in box.values" :key="key">
                   <!-- Check if value is an array (string/list representation) -->
-                  <template v-if="Array.isArray(valueData)">
+                  <!-- Arrays can be in simple format or wrapped in object with metadata -->
+                  <template v-if="Array.isArray(valueData) || (typeof valueData === 'object' && valueData !== null && 'value' in valueData && Array.isArray(valueData.value))">
                     <div class="flex flex-col gap-y-1">
                       <!-- Variable name on its own line -->
                       <div class="font-mono variable-name">
                         <span
                           :data-var-name="key"
                           :id="`var-${box.title}-${key}`"
-                          :ref="el => { if (el) varRefs.set(`var-${box.title}-${key}`, el) }"
                         >{{ key }}</span>
                       </div>
                       <!-- Array items as connected boxes -->
                       <div :class="box.stacked ? 'flex flex-col items-end gap-y-0' : 'flex justify-end'">
                         <span
-                          v-for="(item, index) in valueData"
-                          :key="index"
-                          :class="['font-mono', 'array-item-box', index === 0 ? 'first-item' : '', box.stacked ? 'stacked-item' : '']"
-                          :id="`val-${box.title}-${key}`"
-                          :ref="el => { if (el && index === 0) valueRefs.set(`val-${box.title}-${key}`, el) }"
-                        >{{ item }}</span>
+                        v-for="(item, index) in (Array.isArray(valueData) ? valueData : valueData.value)"
+                        :key="index"
+                        :class="['font-mono', 'array-item-box', index === 0 ? 'first-item' : '', box.stacked ? 'stacked-item' : '', shouldHighlightArrayItem(box, key, index) ? 'highlighted' : '']"
+                        :id="`val-${box.title}-${key}`"
+                        :ref="el => { if (el && index === 0) valueRefs.set(`val-${box.title}-${key}`, el) }"
+                      >{{ item }}</span>
                       </div>
                     </div>
                   </template>
@@ -123,7 +123,7 @@
                       ></span>
                       <span 
                         v-else 
-                        :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']"
+                        :class="['font-mono', box.title !== 'Output' ? 'value-box' : '', valueData.highlight ? 'highlighted' : '']"
                         :id="`val-${box.title}-${key}`"
                         :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
                       >{{ valueData.value }}</span>
@@ -258,6 +258,29 @@ const currentStepData = computed(() => {
 });
 
 // No longer needed - boxes are now structured in the data
+
+// Helper function to determine if an array item should be highlighted
+const shouldHighlightArrayItem = (box, key, index) => {
+  if (!box.values || !box.values[key]) return false;
+  const varData = box.values[key];
+  
+  // Check if there's a highlight property
+  if (varData.highlight !== undefined) {
+    // If highlight is a number, check if it matches the index
+    if (typeof varData.highlight === 'number') {
+      return varData.highlight === index;
+    }
+    // If highlight is an array of numbers, check if index is in the array
+    if (Array.isArray(varData.highlight)) {
+      return varData.highlight.includes(index);
+    }
+    // If highlight is true, highlight all items
+    if (varData.highlight === true) {
+      return true;
+    }
+  }
+  return false;
+};
 
 // Methods
 const nextStep = () => {
@@ -631,6 +654,11 @@ pre code.hljs {
 
 .array-item-box.stacked-item.first-item {
   border-top: 1px solid black;
+}
+
+/* Highlighted value boxes */
+.highlighted {
+  background-color: #fef9c3 !important; /* Pale yellow */
 }
 
 del {

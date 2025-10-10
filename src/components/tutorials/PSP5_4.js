@@ -77,7 +77,7 @@ print('The sum of the list', the_list , 'is', total)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "the_list": [2, 3, 4, 5] },
+          values: { "the_list": { value: [2, 3, 4, 5], highlight: true } },
           connections: [
             { from: "the_list", toValue: [2, 3, 4, 5] }
           ]
@@ -139,7 +139,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "sum_list memory",
           values: {
             "num_list": { value: "", valued: false },
-            "count": 0
+            "count": { value: 0, highlight: true }
           },
           connections: [
             { from: "num_list", toValue: [2, 3, 4, 5], toBox: "Global memory" },
@@ -202,7 +202,7 @@ print('The sum of the list', the_list , 'is', total)`,
           values: {
             "num_list": { value: "", valued: false },
             "count": 0,
-            "num": 2
+            "num": { value: 2, highlight: true }
           },
           connections: [
             { from: "num_list", toValue: [2, 3, 4, 5], toBox: "Global memory" },
@@ -234,7 +234,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "sum_list memory",
           values: {
             "num_list": { value: "", valued: false },
-            "count": "2 ", // The space is here to ensure that the connection arrow does not point to num
+            "count": { value: "2 ", highlight: true }, // The space is here to ensure that the connection arrow does not point to num
             "num": 2
           },
           connections: [
@@ -268,7 +268,7 @@ print('The sum of the list', the_list , 'is', total)`,
           values: {
             "num_list": { value: "", valued: false },
             "count": 2,
-            "num": 3
+            "num": { value: 3, highlight: true }
           },
           connections: [
             { from: "num_list", toValue: [2, 3, 4, 5], toBox: "Global memory" },
@@ -300,7 +300,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "sum_list memory",
           values: {
             "num_list": { value: "", valued: false },
-            "count": 5,
+            "count": { value: 5, highlight: true },
             "num": 3
           },
           connections: [
@@ -334,7 +334,7 @@ print('The sum of the list', the_list , 'is', total)`,
           values: {
             "num_list": { value: "", valued: false },
             "count": 5,
-            "num": 4
+            "num": { value: 4, highlight: true }
           },
           connections: [
             { from: "num_list", toValue: [2, 3, 4, 5], toBox: "Global memory" },
@@ -366,7 +366,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "sum_list memory",
           values: {
             "num_list": { value: "", valued: false },
-            "count": 9,
+            "count": { value: 9, highlight: true },
             "num": 4
           },
           connections: [
@@ -400,7 +400,7 @@ print('The sum of the list', the_list , 'is', total)`,
           values: {
             "num_list": { value: "", valued: false },
             "count": 9,
-            "num": 5
+            "num": { value: 5, highlight: true }
           },
           connections: [
             { from: "num_list", toValue: [2, 3, 4, 5], toBox: "Global memory" },
@@ -432,7 +432,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "sum_list memory",
           values: {
             "num_list": { value: "", valued: false },
-            "count": 14,
+            "count": { value: 14, highlight: true },
             "num": 5
           },
           connections: [
@@ -489,7 +489,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "Global memory",
           values: { 
             "the_list": [2, 3, 4, 5],
-            "total": { value: "14"}
+            "total": { value: "14", highlight: true }
           },
           connections: [
             { from: "the_list", toValue: [2, 3, 4, 5] },
@@ -514,7 +514,7 @@ print('The sum of the list', the_list , 'is', total)`,
           title: "Global memory",
           values: { 
             "the_list": [2, 3, 4, 5],
-            "total": { value: "", valued: false }
+            "total": 14
           },
           connections: [
             { from: "the_list", toValue: [2, 3, 4, 5] },

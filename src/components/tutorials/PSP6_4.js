@@ -73,7 +73,7 @@ print('j is:', j, 'k is', k)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "j": 1 },
+          values: { "j": { value: 1, highlight: true } },
           connections: [
             { from: "j", toValue: "1" }
           ]
@@ -99,7 +99,7 @@ print('j is:', j, 'k is', k)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "j": 1, "k": 2 },
+          values: { "j": 1, "k": { value: 2, highlight: true } },
           connections: [
             { from: "j", toValue: "1" },
             { from: "k", toValue: "2" }
@@ -180,7 +180,7 @@ print('j is:', j, 'k is', k)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "j": 1, "k": 7 },
+          values: { "j": 1, "k": { value: 7, highlight: true } },
           connections: [
             { from: "j", toValue: "1" },
             { from: "k", toValue: "7" }
@@ -242,7 +242,10 @@ print('j is:', j, 'k is', k)`,
         },
         {
           title: "function1 memory",
-          values: {}
+          values: { "j": { value: 3, highlight: true } },
+          connections: [
+            { from: "j", toValue: "3" }
+          ]
         },
         {
           title: "function2 memory",
@@ -269,9 +272,10 @@ print('j is:', j, 'k is', k)`,
         },
         {
           title: "function1 memory",
-          values: { "j": 3 },
+          values: { "j": 3, "k": { value: 4, highlight: true } },
           connections: [
-            { from: "j", toValue: "3" }
+            { from: "j", toValue: "3" },
+            { from: "k", toValue: "4" }
           ]
         },
         {
@@ -403,7 +407,7 @@ print('j is:', j, 'k is', k)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "j": 8, "k": 7 },
+          values: { "j": { value: 8, highlight: true }, "k": 7 },
           connections: [
             { from: "j", toValue: "8" },
             { from: "k", toValue: "7" }
@@ -469,7 +473,7 @@ print('j is:', j, 'k is', k)`,
         },
         {
           title: "function2 memory",
-          values: { "j": 6 },
+          values: { "j": { value: 6, highlight: true } },
           connections: [
             { from: "j", toValue: "6" }
           ]
@@ -555,7 +559,10 @@ print('j is:', j, 'k is', k)`,
         },
         {
           title: "function1 memory",
-          values: {}
+          values: { "j": { value: 3, highlight: true } },
+          connections: [
+            { from: "j", toValue: "3" }
+          ]
         },
         {
           title: "function2 memory",
@@ -585,9 +592,10 @@ print('j is:', j, 'k is', k)`,
         },
         {
           title: "function1 memory",
-          values: { "j": 3 },
+          values: { "j": 3, "k": { value: 4, highlight: true } },
           connections: [
-            { from: "j", toValue: "3" }
+            { from: "j", toValue: "3" },
+            { from: "k", toValue: "4" }
           ]
         },
         {

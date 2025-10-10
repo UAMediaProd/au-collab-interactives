@@ -45,7 +45,7 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'] },
+          values: { "str1": { value: ['k', 'r', 'a', 'm', 'e', 'r'], highlight: true } },
           connections: [
             { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] }
           ]
@@ -63,7 +63,7 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 0 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 0, highlight: true } },
           connections: [
             { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "0" }
@@ -120,7 +120,7 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 1 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 1, highlight: true } },
           connections: [
             { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "1" }
@@ -177,7 +177,7 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 2 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 2, highlight: true } },
           connections: [
             { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "2" }
@@ -234,7 +234,7 @@ print('\\n\\nThe End!')`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 6 },
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 6, highlight: true } },
           connections: [
             { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
             { from: "index", toValue: "6" }

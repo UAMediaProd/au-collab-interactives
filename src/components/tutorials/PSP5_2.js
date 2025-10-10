@@ -78,7 +78,7 @@ print('Maximum is: ', result)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num1": 4 },
+          values: { "num1": { value: 4, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" }
           ]
@@ -100,7 +100,7 @@ print('Maximum is: ', result)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num1": 4, "num2": 7 },
+          values: { "num1": 4, "num2": { value: 7, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" }
@@ -123,7 +123,7 @@ print('Maximum is: ', result)`,
       boxes: [
         {
           title: "Global memory",
-          values: { "num1": 4, "num2": 7, "num3": 1 },
+          values: { "num1": 4, "num2": 7, "num3": { value: 1, highlight: true } },
           connections: [
             { from: "num1", toValue: "4" },
             { from: "num2", toValue: "7" },
@@ -161,7 +161,7 @@ print('Maximum is: ', result)`,
         },
         {
           title: "get_maximum memory",
-          values: { "no1": 4, "no2": 7, "no3": 1 },
+          values: { "no1": { value: 4, highlight: true }, "no2": { value: 7, highlight: true }, "no3": { value: 1, highlight: true } },
           connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
@@ -195,7 +195,7 @@ print('Maximum is: ', result)`,
         },
         {
           title: "get_maximum memory",
-          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "4 " },
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": { value: "4 ", highlight: true } },
           connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
@@ -265,7 +265,7 @@ print('Maximum is: ', result)`,
         },
         {
           title: "get_maximum memory",
-          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": "7 " },
+          values: { "no1": 4, "no2": 7, "no3": 1, "max_value": { value: "7 ", highlight: true } },
           connections: [
             { from: "no1", toValue: "4" },
             { from: "no2", toValue: "7" },
@@ -395,7 +395,7 @@ print('Maximum is: ', result)`,
             "num1": 4, 
             "num2": 7, 
             "num3": 1,
-            "result": "7 "
+            "result": { value: "7 ", highlight: true }
           },
           connections: [
             { from: "num1", toValue: "4" },
