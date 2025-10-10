@@ -1,0 +1,89 @@
+export default {
+  code: `num = 6
+num = num + 1`,
+  steps: [
+    {
+      lineNumber: 0,
+      explanation: "<p>This tutorial demonstrates a common pattern: <strong>using a variable in its own reassignment</strong>.</p><p>The expression <code>num = num + 1</code> might look confusing at first, but we'll see how Python evaluates it step by step.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>Assign the value <code>6</code> to the variable <code>num</code>.</p><p>The value <code>6</code> is created in memory, and <code>num</code> points to it.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>The variable <code>num</code> now points to <code>6</code> in memory.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num": { value: 6, highlight: true } },
+          connections: [
+            { from: "num", toValue: "6" }
+          ]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Now we evaluate <code>num = num + 1</code>.</p><p><strong>Step 1:</strong> Python first evaluates the <strong>right side</strong> of the assignment: <code>num + 1</code>.</p><p>It looks up the current value of <code>num</code>, which is <code>6</code>, and calculates <code>6 + 1 = 7</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "num": 6 },
+          connections: [
+            { from: "num", toValue: "6" }
+          ]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p><strong>Step 2:</strong> Now that the right side has been evaluated to <code>7</code>, Python performs the assignment.</p><p>A new value <code>7</code> is created in memory, and <code>num</code> now points to <code>7</code>.</p><p>The old value <code>6</code> remains in memory but is no longer referenced.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { 
+            "num": 6,
+            "_1": { value: 7, highlight: true }
+          },
+          connections: [
+            { from: "num", toValue: "7" }
+          ]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>The program ends with <code>num</code> pointing to <code>7</code>.</p><p><strong>Key takeaway:</strong> In <code>num = num + 1</code>, Python always evaluates the right side first using the <strong>current</strong> value of <code>num</code>, then creates a new value and redirects the variable to point to it.</p><p>This pattern is commonly used to increment variables in loops and calculations.</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { 
+            "num": 6,
+            "_1": { value: 7, highlight: true }
+          },
+          connections: [
+            { from: "num", toValue: "7" }
+          ]
+        }
+      ]
+    }
+  ]
+};

@@ -1,0 +1,754 @@
+export default {
+  code: `def function1():
+  j = 7
+  k = 8
+  print('j is:', j, 'k is', k)
+
+def function2(j):
+  k = 6
+  function1()
+  print('j is:', j, 'k is', k)
+
+j = 'one'
+k = 3
+function1()
+print('j is:', j, 'k is', k)
+
+j = 'two'
+function2(j)
+print('j is:', j, 'k is', k)`,
+  steps: [
+    {
+      lineNumber: 0,
+      explanation: "<p>This tutorial demonstrates <strong>function parameters and scope</strong>.</p><p>We'll see how function parameters create local variables, and how local variables in different functions are completely separate from each other and from global variables.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>Define <code>function1</code>. This function creates its own local variables <code>j</code> and <code>k</code>.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Define <code>function2</code>, which takes a <strong>parameter</strong> <code>j</code>.</p><p>When called, this parameter will create a local variable <code>j</code> in function2's memory.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 10,
+      explanation: "<p>Assign the string <code>'one'</code> to the global variable <code>j</code>.</p>",
+      highlightLines: [10],
+      boxes: [
+        {
+          title: "Global memory",
+          values: {}
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 11,
+      explanation: "<p>Assign <code>3</code> to the global variable <code>k</code>.</p>",
+      highlightLines: [11],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": { value: "'one'", highlight: true } },
+          connections: [
+            { from: "j", toValue: "'one'" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 12,
+      explanation: "<p>Call <code>function1()</code>. Jump to the function definition.</p>",
+      highlightLines: [12],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": { value: 3, highlight: true } },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>Enter <code>function1</code>.</p>",
+      highlightLines: [0, 12],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Create a <strong>local</strong> variable <code>j</code> inside <code>function1</code> and assign it <code>7</code>.</p><p>This is separate from the global <code>j</code>. The global <code>j</code> remains <code>'one'</code>.</p>",
+      highlightLines: [1, 12],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Create a <strong>local</strong> variable <code>k</code> inside <code>function1</code> and assign it <code>8</code>.</p><p>This is separate from the global <code>k</code>. The global <code>k</code> remains <code>3</code>.</p>",
+      highlightLines: [2, 12],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: { "j": { value: 7, highlight: true } },
+          connections: [
+            { from: "j", toValue: "7" }
+          ]
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print the <strong>local</strong> values of <code>j</code> and <code>k</code> (7 and 8).</p>",
+      highlightLines: [3, 12],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: { "j": 7, "k": { value: 8, highlight: true } },
+          connections: [
+            { from: "j", toValue: "7" },
+            { from: "k", toValue: "8" }
+          ]
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      lineNumber: 12,
+      explanation: "<p>The function ends. Local variables are removed from <code>function1 memory</code>.</p>",
+      highlightLines: [12],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8"]
+        }
+      ]
+    },
+    {
+      lineNumber: 13,
+      explanation: "<p>Print the global <code>j</code> and <code>k</code>.</p><p>They are still <code>'one'</code> and <code>3</code>. The local changes inside <code>function1</code> did not affect the global variables.</p>",
+      highlightLines: [13],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8"]
+        }
+      ]
+    },
+    {
+      lineNumber: 15,
+      explanation: "<p>Reassign the global variable <code>j</code> to <code>'two'</code>.</p>",
+      highlightLines: [15],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'one'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'one'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 16,
+      explanation: "<p>Call <code>function2(j)</code>, passing the global variable <code>j</code> (which is <code>'two'</code>) as an argument.</p>",
+      highlightLines: [16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": { value: "'two'", highlight: true }, "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Enter <code>function2</code>.</p><p>The parameter <code>j</code> receives the value <code>'two'</code>, creating a <strong>local</strong> variable <code>j</code> in function2's memory.</p>",
+      highlightLines: [5, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": { value: "'two'", highlight: true } },
+          connections: [
+            { from: "j", toValue: "'two'" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 6,
+      explanation: "<p>Create a <strong>local</strong> variable <code>k</code> inside <code>function2</code> and assign it <code>6</code>.</p>",
+      highlightLines: [6, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'" },
+          connections: [
+            { from: "j", toValue: "'two'" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 7,
+      explanation: "<p>Call <code>function1()</code> from inside <code>function2</code>. Jump to <code>function1</code>.</p>",
+      highlightLines: [7, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": { value: 6, highlight: true } },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 0,
+      explanation: "<p>Enter <code>function1</code> (called from inside <code>function2</code>).</p>",
+      highlightLines: [0, 7, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": 6 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 1,
+      explanation: "<p>Create a <strong>local</strong> variable <code>j</code> inside <code>function1</code> and assign it <code>7</code>.</p><p>Now we have three different <code>j</code> variables: global (<code>'two'</code>), in function2 (<code>'two'</code>), and in function1 (<code>7</code>).</p>",
+      highlightLines: [1, 7, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": 6 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 2,
+      explanation: "<p>Create a <strong>local</strong> variable <code>k</code> inside <code>function1</code> and assign it <code>8</code>.</p>",
+      highlightLines: [2, 7, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: { "j": { value: 7, highlight: true } },
+          connections: [
+            { from: "j", toValue: "7" }
+          ]
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": 6 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Print the <strong>local</strong> values of <code>j</code> and <code>k</code> from <code>function1</code> (7 and 8).</p>",
+      highlightLines: [3, 7, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: { "j": 7, "k": { value: 8, highlight: true } },
+          connections: [
+            { from: "j", toValue: "7" },
+            { from: "k", toValue: "8" }
+          ]
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": 6 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3"]
+        }
+      ]
+    },
+    {
+      lineNumber: 7,
+      explanation: "<p><code>function1</code> ends and returns to <code>function2</code>. Local variables are removed from <code>function1 memory</code>.</p>",
+      highlightLines: [7, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": 6 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3", "j is: 7 k is 8"]
+        }
+      ]
+    },
+    {
+      lineNumber: 8,
+      explanation: "<p>Print the <strong>local</strong> values of <code>j</code> and <code>k</code> from <code>function2</code>.</p><p><code>j</code> is <code>'two'</code> (from the parameter), and <code>k</code> is <code>6</code> (local to function2).</p>",
+      highlightLines: [8, 16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: { "j": "'two'", "k": 6 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "6" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3", "j is: 7 k is 8"]
+        }
+      ]
+    },
+    {
+      lineNumber: 16,
+      explanation: "<p><code>function2</code> ends. Local variables are removed from <code>function2 memory</code>.</p>",
+      highlightLines: [16],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3", "j is: 7 k is 8", "j is: two k is 6"]
+        }
+      ]
+    },
+    {
+      lineNumber: 17,
+      explanation: "<p>Print the global <code>j</code> and <code>k</code>.</p><p>They are still <code>'two'</code> and <code>3</code>. None of the local changes affected the global variables.</p>",
+      highlightLines: [17],
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3", "j is: 7 k is 8", "j is: two k is 6"]
+        }
+      ]
+    },
+    {
+      lineNumber: 17,
+      explanation: "<p>The program ends.</p><p><strong>Key takeaways:</strong></p><ul><li>Function <strong>parameters</strong> create local variables that receive the passed values</li><li>Each function has its own separate memory space for local variables</li><li>Local variables in one function don't affect local variables in another function</li><li>Local variables don't affect global variables with the same name</li><li>Functions can use different data types for the same variable names (e.g., strings globally, numbers locally)</li></ul>",
+      boxes: [
+        {
+          title: "Global memory",
+          values: { "j": "'two'", "k": 3 },
+          connections: [
+            { from: "j", toValue: "'two'" },
+            { from: "k", toValue: "3" }
+          ]
+        },
+        {
+          title: "function1 memory",
+          values: {}
+        },
+        {
+          title: "function2 memory",
+          values: {}
+        },
+        {
+          title: "Output",
+          values: ["j is: 7 k is 8", "j is: one k is 3", "j is: 7 k is 8", "j is: two k is 6", "j is: two k is 3"]
+        }
+      ]
+    }
+  ]
+};

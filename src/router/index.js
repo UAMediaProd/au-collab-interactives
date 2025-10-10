@@ -37,6 +37,21 @@ const routes = [
     component: () => import('../views/PSPInteractiveCodingTemplate.vue')
   },
   {
+    path: '/psp-exercise-1-1',
+    name: 'PSP: Coding Exercise 1.1',
+    component: () => import('../views/PSPExercise1_1.vue')
+  },
+  {
+    path: '/psp-exercise-1-2',
+    name: 'PSP: Coding Exercise 1.2',
+    component: () => import('../views/PSPExercise1_2.vue')
+  },
+  {
+    path: '/psp-exercise-1-3',
+    name: 'PSP: Coding Exercise 1.3',
+    component: () => import('../views/PSPExercise1_3.vue')
+  },
+  {
     path: '/psp-exercise-2-1',
     name: 'PSP: Coding Exercise 2.1',
     component: () => import('../views/PSPExercise2_1.vue')
@@ -155,6 +170,11 @@ const routes = [
     path: '/psp-exercise-6-5',
     name: 'PSP: Coding Exercise 6.5',
     component: () => import('../views/PSPExercise6_5.vue')
+  },
+  {
+    path: '/psp-exercise-6-6',
+    name: 'PSP: Coding Exercise 6.6',
+    component: () => import('../views/PSPExercise6_6.vue')
   },
   {
     path: '/psp-exercise-7-1',
