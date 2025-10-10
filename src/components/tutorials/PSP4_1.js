@@ -89,8 +89,9 @@ print(str1)`,
     },
     {
       lineNumber: 0,
-      explanation: "<p><strong>Now let's look at the correct way to modify the string.</strong></p><p>This time, we'll reassign <code>str1</code> to the result of <code>str1.upper()</code>.</p>",
+      explanation: "<p><strong>Now let's look at the correct way to modify the string.</strong></p><p>This time, we'll reassign <code>str1</code> to the result of <code>str1.upper()</code>. Notice that line 2 has changed.</p>",
       highlightLines: [],
+      secondaryHighlightLines: [1],
       code: `str1 = 'this is fun'
 str1 = str1.upper()
 print(str1)`,

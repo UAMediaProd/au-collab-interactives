@@ -222,12 +222,14 @@ const highlightedCode = ref('');
 
 // Track current highlights
 const currentHighlightLines = ref([]);
+const currentSecondaryHighlightLines = ref([]);
 
 const currentStepData = computed(() => {
   const step = props.tutorial.steps[currentStep.value] || { 
     lineNumber: 0, 
     explanation: '', 
     highlightLines: [],
+    secondaryHighlightLines: [],
   };
   
   // Handle missing explanation - reuse previous explanation
@@ -253,6 +255,7 @@ const currentStepData = computed(() => {
   
   // Update highlighted lines
   currentHighlightLines.value = step.highlightLines || [];
+  currentSecondaryHighlightLines.value = step.secondaryHighlightLines || [];
   
   return step;
 });
@@ -310,12 +313,19 @@ const updateHighlightedCode = () => {
   
   // Create line elements with highlight classes
   const formattedLines = lines.map((line, index) => {
-    const highlightIndex = currentHighlightLines.value.indexOf(index);
-    const isHighlighted = highlightIndex !== -1;
-    // First highlighted line gets primary highlight, others get secondary
-    const highlightClass = isHighlighted 
-      ? (highlightIndex === 0 ? 'line-highlight' : 'line-highlight-secondary')
-      : '';
+    const primaryHighlightIndex = currentHighlightLines.value.indexOf(index);
+    const isPrimaryHighlighted = primaryHighlightIndex !== -1;
+    const isSecondaryHighlighted = currentSecondaryHighlightLines.value.indexOf(index) !== -1;
+    
+    let highlightClass = '';
+    if (isPrimaryHighlighted) {
+      // First highlighted line gets primary highlight, others get secondary green
+      highlightClass = primaryHighlightIndex === 0 ? 'line-highlight' : 'line-highlight-secondary';
+    } else if (isSecondaryHighlighted) {
+      // Secondary highlight lines get yellow highlight
+      highlightClass = 'line-highlight-yellow';
+    }
+    
     return `<div class="hljs-line ${highlightClass}">${line || ' '}</div>`;
   });
   
@@ -337,6 +347,11 @@ watch(() => lastCode.value, () => {
 
 // Update when highlight lines change
 watch(() => currentHighlightLines.value, () => {
+  updateHighlightedCode();
+});
+
+// Update when secondary highlight lines change
+watch(() => currentSecondaryHighlightLines.value, () => {
   updateHighlightedCode();
 });
 
@@ -574,6 +589,12 @@ p {
 
 .line-highlight-secondary {
   background-color: rgba(152, 236, 160, 0.15); /* Paler green for secondary highlights */
+  display: block;
+  border-radius: 4px;
+}
+
+.line-highlight-yellow {
+  background-color: #fef9c3; /* Yellow highlight - same as value box highlight */
   display: block;
   border-radius: 4px;
 }
