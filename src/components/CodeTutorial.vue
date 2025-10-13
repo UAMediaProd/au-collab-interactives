@@ -81,7 +81,7 @@
                         <span
                           :data-var-name="key"
                           :id="`var-${box.title}-${key}`"
-                        >{{ key }}</span>
+                        >{{ key.startsWith('_') ? '' : key }}</span>
                       </div>
                       <!-- Array items as connected boxes -->
                       <div :class="box.stacked ? 'flex flex-col items-end gap-y-0' : 'flex justify-end'">

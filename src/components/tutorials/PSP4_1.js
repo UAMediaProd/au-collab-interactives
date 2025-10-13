@@ -44,9 +44,9 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": { value: ['t','h','i','s',' ','i','s',' ','f','u','n'], highlight: true } },
+          values: { "str1": { value: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'], highlight: true } },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] }
           ]
         },
         {
@@ -62,9 +62,12 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
+          values: {
+            "str1": ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'],
+            "_1": {value: ['T', 'H', 'I', 'S', ' ', 'I', 'S', ' ', 'F', 'U', 'N'], highlight: true }
+          },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] }
           ]
         },
         {
@@ -80,9 +83,12 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
+          values: {
+            "str1": ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'],
+            "_1": ['T', 'H', 'I', 'S', ' ', 'I', 'S', ' ', 'F', 'U', 'N']
+          },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] }
           ]
         },
         {
@@ -98,9 +104,12 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'] },
+          values: {
+            "str1": ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'],
+            "_1": ['T', 'H', 'I', 'S', ' ', 'I', 'S', ' ', 'F', 'U', 'N']
+          },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] }
           ]
         },
         {
@@ -116,13 +125,14 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { 
-            "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'],
-            "str2": { value: ['s','o',' ','m','u','c','h',' ','f','u','n'], highlight: true }
+          values: {
+            "str1": ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'],
+            "_1": ['T', 'H', 'I', 'S', ' ', 'I', 'S', ' ', 'F', 'U', 'N'],
+            "str2": { value: ['s', 'o', ' ', 'm', 'u', 'c', 'h', ' ', 'f', 'u', 'n'], highlight: true }
           },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] },
-            { from: "str2", toValue: ['s','o',' ','m','u','c','h',' ','f','u','n'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] },
+            { from: "str2", toValue: ['s', 'o', ' ', 'm', 'u', 'c', 'h', ' ', 'f', 'u', 'n'] }
           ]
         },
         {
@@ -138,13 +148,15 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { 
-            "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'],
-            "str2": { value: ['S','O',' ','M','U','C','H',' ','F','U','N'], highlight: true }
+          values: {
+            "str1": ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'],
+            "_1": ['T', 'H', 'I', 'S', ' ', 'I', 'S', ' ', 'F', 'U', 'N'],
+            "str2": { value: ['s', 'o', ' ', 'm', 'u', 'c', 'h', ' ', 'f', 'u', 'n'] },
+            "_2": { value: ['S', 'O', ' ', 'M', 'U', 'C', 'H', ' ', 'F', 'U', 'N'], highlight: true }
           },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] },
-            { from: "str2", toValue: ['S','O',' ','M','U','C','H',' ','F','U','N'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] },
+            { from: "str2", toValue: ['S', 'O', ' ', 'M', 'U', 'C', 'H', ' ', 'F', 'U', 'N'] }
           ]
         },
         {
@@ -161,13 +173,15 @@ print(str2)`,
       boxes: [
         {
           title: "Memory",
-          values: { 
-            "str1": ['t','h','i','s',' ','i','s',' ','f','u','n'],
-            "str2": ['S','O',' ','M','U','C','H',' ','F','U','N']
+          values: {
+            "str1": ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'],
+            "_1": ['T', 'H', 'I', 'S', ' ', 'I', 'S', ' ', 'F', 'U', 'N'],
+            "str2": { value: ['s', 'o', ' ', 'm', 'u', 'c', 'h', ' ', 'f', 'u', 'n'] },
+            "_2": ['S', 'O', ' ', 'M', 'U', 'C', 'H', ' ', 'F', 'U', 'N']
           },
           connections: [
-            { from: "str1", toValue: ['t','h','i','s',' ','i','s',' ','f','u','n'] },
-            { from: "str2", toValue: ['S','O',' ','M','U','C','H',' ','F','U','N'] }
+            { from: "str1", toValue: ['t', 'h', 'i', 's', ' ', 'i', 's', ' ', 'f', 'u', 'n'] },
+            { from: "str2", toValue: ['S', 'O', ' ', 'M', 'U', 'C', 'H', ' ', 'F', 'U', 'N'] }
           ]
         },
         {
