@@ -65,7 +65,7 @@
               <div v-if="Array.isArray(box.values)" class="flex flex-col">
                 <div v-for="(value, i) in box.values" :key="i" class="mb-1">
                   <span v-if="box.useHtml" v-html="value" class="font-mono"></span>
-                  <span v-else :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']">{{ value }}</span>
+                  <span v-else :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']">{{ value === '' ? '\u00A0' : value }}</span>
                 </div>
               </div>
               

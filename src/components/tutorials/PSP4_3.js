@@ -210,7 +210,7 @@ print('\\n\\nThe End!')`,
     },
     {
       lineNumber: 5,
-      explanation: "<p>Increment <code>index</code> to <code>3</code>.</p><p><em>The loop continues through the remaining characters: 'm', 'e', 'r'...</em></p>",
+      explanation: "<p>Increment <code>index</code> to <code>3</code>.</p>",
       highlightLines: [5],
       boxes: [
         {
@@ -229,7 +229,178 @@ print('\\n\\nThe End!')`,
     },
     {
       lineNumber: 3,
-      explanation: "<p>After processing all characters, <code>index</code> is now <code>6</code>. Test the condition: <code>6 &lt; 6</code> is <code>False</code>.</p><p>The loop exits, and we move to the next statement.</p>",
+      explanation: "<p>Test: <code>3 &lt; 6</code> is <code>True</code>. Continue.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 3, highlight: true } },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a "]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Access <code>str1[3]</code>, which is <code>'m'</code>. Print it followed by a space.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 3 },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a "]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Increment <code>index</code> to <code>4</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 3 },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "3" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m "]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Test: <code>4 &lt; 6</code> is <code>True</code>. Continue.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 4, highlight: true } },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "4" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m "]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Access <code>str1[4]</code>, which is <code>'e'</code>. Print it followed by a space.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 4 },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "4" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m "]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Increment <code>index</code> to <code>5</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 4 },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "4" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m e "]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Test: <code>5 &lt; 6</code> is <code>True</code>. Continue.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": { value: 5, highlight: true } },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "5" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m e "]
+        }
+      ]
+    },
+    {
+      lineNumber: 4,
+      explanation: "<p>Access <code>str1[5]</code>, which is <code>'r'</code>. Print it followed by a space.</p>",
+      highlightLines: [4],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 5 },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "5" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m e "]
+        }
+      ]
+    },
+    {
+      lineNumber: 5,
+      explanation: "<p>Increment <code>index</code> to <code>6</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "str1": ['k', 'r', 'a', 'm', 'e', 'r'], "index": 5 },
+          connections: [
+            { from: "str1", toValue: ['k', 'r', 'a', 'm', 'e', 'r'] },
+            { from: "index", toValue: "5" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["k r a m e r "]
+        }
+      ]
+    },
+    {
+      lineNumber: 3,
+      explanation: "<p>Test the condition: <code>6 &lt; 6</code> is <code>False</code>.</p><p>The loop exits, and we move to the next statement.</p>",
       highlightLines: [3],
       boxes: [
         {
@@ -248,7 +419,7 @@ print('\\n\\nThe End!')`,
     },
     {
       lineNumber: 7,
-      explanation: "<p>This line prints <code>'\\n\\nThe End!'</code>. The <code>\\n</code> represents a newline character, so this will print two blank lines followed by <code>'The End!'</code>.</p>",
+      explanation: "<p>This line prints <code>'\\n\\nThe End!'</code>. The <code>\\n</code> represents a newline character, so this will print two new lines, resulting in a blank line followed by <code>'The End!'</code>.</p>",
       highlightLines: [7],
       boxes: [
         {
@@ -280,7 +451,7 @@ print('\\n\\nThe End!')`,
         {
           title: "Output",
           // TODO: Print blank lines!
-          values: ["k r a m e r ", "", "", "The End!"]
+          values: ["k r a m e r ", "", "The End!"]
         }
       ]
     }
