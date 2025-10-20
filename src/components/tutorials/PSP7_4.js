@@ -228,11 +228,12 @@ print(num, num_list)`,
           title: "change_me memory",
           values: {
             "the_list": { value: "", valued: false },
-            "the_num": { value: 4, highlight: true }
+            "the_num": 3
+            //"the_num": { value: 4, highlight: true }
           },
           connections: [
             { from: "the_list", toValue: [1, 2, 3], toBox: "Global memory" },
-            { from: "the_num", toValue: "4" }
+            { from: "the_num", toValue: "3" }
           ]
         },
         {
@@ -259,7 +260,14 @@ print(num, num_list)`,
         },
         {
           title: "change_me memory",
-          values: {}
+          values: {
+            "the_list": { value: "", valued: false },
+            "the_num": { value: 4, highlight: true }
+          },
+          connections: [
+            { from: "the_list", toValue: [1, 2, 3], toBox: "Global memory" },
+            { from: "the_num", toValue: "4" }
+          ]
         },
         {
           title: "Output",
@@ -436,7 +444,14 @@ print(num, num_list)`,
         },
         {
           title: "change_me memory",
-          values: {}
+          values: {
+            "the_list": { value: "", valued: false },
+            "the_num": { value: 4, highlight: true }
+          },
+          connections: [
+            { from: "the_list", toValue: [1, 2, 3, 3], toBox: "Global memory" },
+            { from: "the_num", toValue: "4" }
+          ]
         },
         {
           title: "Output",
