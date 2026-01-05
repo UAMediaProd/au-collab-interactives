@@ -6,7 +6,7 @@ import psp7_4 from '../components/tutorials/PSP7_4.js';
 
 <template>
   <div class="container mx-auto p-4 max-w-[1024px]">
-    <CodeTutorial :tutorial="psp7_4" language="python" />
+    <CodeTutorial :tutorial="psp7_4" language="python"/>
   </div>
 </template>
 

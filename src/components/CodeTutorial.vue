@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-4">
       <div class="flex flex-row gap-4">
         <!-- Left column: Code + Explanation + Navigation -->
-        <div :class="[codeWidth, 'flex', 'flex-col', 'gap-4']">
+        <div :class="[computedCodeWidth, 'flex', 'flex-col', 'gap-4']">
           <!-- Code Display -->
           <div class="code-container p-4 bg-gray-50 rounded shadow">
             <pre ref="codePreElement">
@@ -44,7 +44,7 @@
         </div>
         
         <!-- Right column: Data Boxes -->
-        <div :class="[dataBoxesWidth, dataBoxesHeight, 'p-4', 'bg-gray-50', 'rounded', 'shadow', 'relative']">
+        <div v-if="showBoxes" :class="[dataBoxesWidth, dataBoxesHeight, 'p-4', 'bg-gray-50', 'rounded', 'shadow', 'relative']">
           <!-- SVG overlay for arrows -->
           <svg class="arrows-svg" ref="arrowsSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
             <defs>
@@ -200,7 +200,16 @@ const props = defineProps({
   dataBoxesHeight: {
     type: String,
     default: ''
+  },
+  showBoxes: {
+    type: Boolean,
+    default: true
   }
+});
+
+// Compute code width
+const computedCodeWidth = computed(() => {
+  return props.showBoxes ? props.codeWidth : 'w-full';
 });
 
 // Reactive state
