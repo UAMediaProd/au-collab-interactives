@@ -174,10 +174,12 @@ import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/github.css';
 // Import languages
 import python from 'highlight.js/lib/languages/python';
+import pythonRepl from 'highlight.js/lib/languages/python-repl';
 import javascript from 'highlight.js/lib/languages/javascript';
 
 // Register languages
 hljs.registerLanguage('python', python);
+hljs.registerLanguage('python-repl', pythonRepl);
 hljs.registerLanguage('javascript', javascript);
 
 const props = defineProps({
