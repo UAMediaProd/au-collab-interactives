@@ -1,4 +1,4 @@
-// How to lay out your code properly
+// Mutable and Immutable Objects
 export default {
     code: `# Program 1 (Immutable objects)
 def string_function(input_string):

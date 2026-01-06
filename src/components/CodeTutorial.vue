@@ -5,7 +5,7 @@
         <!-- Left column: Code + Explanation + Navigation -->
         <div :class="[computedCodeWidth, 'flex', 'flex-col', 'gap-4']">
           <!-- Code Display -->
-          <div class="code-container p-4 bg-gray-50 rounded shadow">
+          <div v-if="showCode" class="code-container p-4 bg-gray-50 rounded shadow">
             <pre ref="codePreElement">
               <code :class="`hljs language-${language}`" v-html="highlightedCode"></code>
             </pre>
@@ -127,6 +127,10 @@ const props = defineProps({
     default: ''
   },
   showBoxes: {
+    type: Boolean,
+    default: true
+  },
+  showCode: {
     type: Boolean,
     default: true
   }
@@ -641,5 +645,24 @@ del::before {
   position: relative;
   z-index: 20;
   text-shadow: 3px 3px 5px white, 3px -3px 5px white;
+}
+
+.inline-highlight {
+  background-color: #fef9c3;
+  padding: 0px;
+  outline: 2px solid black;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 6px #fef9c3;
+}
+
+.inline-pre {
+	text-align: left;
+	background-color: #f0f0f0;
+	font-size: 1.2rem;
+	min-height: unset;
+	margin: 0 auto;
+	width: 32ch;
+	padding-bottom: 0.2rem;
+	margin-bottom: 0.5rem;
 }
 </style>
