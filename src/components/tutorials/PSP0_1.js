@@ -15,7 +15,7 @@ False`,
     },
     {
       explanation: "<p>Notice that in each of these expressions, the result is always either <code>True</code> or <code>False</code>.<p>This is the key characteristic of Boolean expressions.<p>",
-      highlightLines: [1,3,5,7],
+      secondaryHighlightLines: [1,3,5,7],
     },
     {
       explanation: "<p>Boolean expressions can be combined with the two Boolean operators: <code>and</code>, <code>or</code>.</p><p>​When combined correctly in this way, the resulting expression is also a Boolean expression: that is, it will resolve down to <code>True</code> or <code>False</code>.</p>",
@@ -28,7 +28,7 @@ True
 False
 >>> True or False
 True`,
-      highlightLines: [0, 2, 5, 7],
+      secondaryHighlightLines: [0, 2, 5, 7],
     },
     {
       explanation: "<p>Now, lets look at what doesn’t work.<p>",
