@@ -25,16 +25,10 @@ print(initial_list)`,
                     title: "Program 1 Memory",
                 },
                 {
-                    title: "string_function Memory",
-                },
-                {
                     title: "Program 1 Output"
                 },
                 {
                     title: "Program 2 Memory"
-                },
-                {
-                    title: "list_function Memory"
                 },
                 {
                     title: "Program 2 Output"
@@ -49,16 +43,10 @@ print(initial_list)`,
                     title: "Program 1 Memory",
                 },
                 {
-                    title: "string_function Memory",
-                },
-                {
                     title: "Program 1 Output"
                 },
                 {
                     title: "Program 2 Memory"
-                },
-                {
-                    title: "list_function Memory"
                 },
                 {
                     title: "Program 2 Output"
@@ -80,9 +68,6 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
-                    },
-                    {
                         title: "Program 1 Output"
                     },
                     {
@@ -93,9 +78,6 @@ print(initial_list)`,
                         connections: [
                             { from: "initial_list", toValue: ["'mutable'"] }
                         ]
-                    },
-                    {
-                        title: "list_function Memory"
                     },
                     {
                         title: "Program 2 Output"
@@ -117,9 +99,6 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
-                    },
-                    {
                         title: "Program 1 Output"
                     },
                     {
@@ -130,9 +109,6 @@ print(initial_list)`,
                         connections: [
                             { from: "initial_list", toValue: ["'mutable'"] }
                         ]
-                    },
-                    {
-                        title: "list_function Memory"
                     },
                     {
                         title: "Program 2 Output"
@@ -154,9 +130,6 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
-                    },
-                    {
                         title: "Program 1 Output"
                     },
                     {
@@ -167,9 +140,6 @@ print(initial_list)`,
                         connections: [
                             { from: "initial_list", toValue: ["'mutable'"] }
                         ]
-                    },
-                    {
-                        title: "list_function Memory"
                     },
                     {
                         title: "Program 2 Output"
@@ -191,7 +161,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
+                        title: "string_function",
+                        parentBox: "Program 1 Memory",
                         values: {
                             "input_string": { value: "", valued: false }
                         },
@@ -212,7 +183,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "list_function Memory",
+                        title: "list_function",
+                        parentBox: "Program 2 Memory",
                         values: {
                             "input_list": { value: "", valued: false }
                         },
@@ -240,7 +212,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
+                        title: "string_function",
+                        parentBox: "Program 1 Memory",
                         values: {
                             "input_string": { value: "'test'", highlight: true }
                         },
@@ -261,7 +234,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "list_function Memory",
+                        title: "list_function",
+                        parentBox: "Program 2 Memory",
                         values: {
                             "input_list": { value: "", valued: false }
                         },
@@ -289,7 +263,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
+                        title: "string_function",
+                        parentBox: "Program 1 Memory",
                         values: {
                             "input_string": { value: "'test'" }
                         },
@@ -310,7 +285,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "list_function Memory",
+                        title: "list_function",
+                        parentBox: "Program 2 Memory",
                         values: {
                             "input_list": { value: "", valued: false }
                         },
@@ -338,7 +314,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
+                        title: "string_function",
+                        parentBox: "Program 1 Memory",
                         values: {
                             "input_string": { value: "'test'" }
                         },
@@ -362,7 +339,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "list_function Memory",
+                        title: "list_function",
+                        parentBox: "Program 2 Memory",
                         values: {
                             "input_list": { value: "", valued: false }
                         },
@@ -379,7 +357,7 @@ print(initial_list)`,
                 ]
         },
         {
-            explanation: "<p>...</p>",
+            explanation: "<p>In summary: When passing an immutable object such as a string or integer as a parameter to a function, you do not need to worry about its value being modified.</p><p>However the same is clearly not true for mutable objects such as lists. If a mutable object is passed to a function and operated on, any changes will be reflected by any variable name bound to that object – even outside of the scope of the function.</p>",
             secondaryHighlightLines: [7, 16],
             boxes:
                 [
@@ -393,7 +371,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "string_function Memory",
+                        title: "string_function",
+                        parentBox: "Program 1 Memory",
                         values: {
                             "input_string": { value: "'test'" }
                         },
@@ -418,7 +397,8 @@ print(initial_list)`,
                         ]
                     },
                     {
-                        title: "list_function Memory",
+                        title: "list_function",
+                        parentBox: "Program 2 Memory",
                         values: {
                             "input_list": { value: "", valued: false }
                         },

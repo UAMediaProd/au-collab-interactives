@@ -58,108 +58,30 @@
           
           <!-- Dynamic Data Boxes -->
           <template v-if="currentStepData.boxes" v-for="(box, index) in currentStepData.boxes" :key="index">
-            <div class="data-box mb-4 p-4 bg-white border-2 border-gray rounded min-h-[12rem] relative">
+            <!-- Only render parent boxes (boxes without parentBox property) -->
+            <div v-if="!box.parentBox" class="data-box mb-4 p-4 bg-white border-2 border-gray rounded min-h-[12rem] relative">
               <h4 class="text-md font-semibold mb-2 data-box-title">{{ box.title }}:</h4>
               
-              <!-- Values without keys (simple array of values) -->
-              <div v-if="Array.isArray(box.values)" class="flex flex-col">
-                <div v-for="(value, i) in box.values" :key="i" class="mb-1">
-                  <span v-if="box.useHtml" v-html="value" class="font-mono"></span>
-                  <span v-else :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']">{{ value === '' ? '\u00A0' : value }}</span>
-                </div>
-              </div>
+              <DataBoxContent 
+                :box="box" 
+                :varRefs="varRefs" 
+                :valueRefs="valueRefs" 
+                :shouldHighlightArrayItem="shouldHighlightArrayItem" 
+              />
               
-              <!-- Key-value pairs -->
-              <div v-else class="flex flex-col gap-y-1 leading-[1.2]">
-                <template v-for="(valueData, key) in box.values" :key="key">
-                  <!-- Check if value is an array (string/list representation) -->
-                  <!-- Arrays can be in simple format or wrapped in object with metadata -->
-                  <template v-if="Array.isArray(valueData) || (typeof valueData === 'object' && valueData !== null && 'value' in valueData && Array.isArray(valueData.value))">
-                    <div class="flex flex-col gap-y-1">
-                      <!-- Variable name on its own line -->
-                      <div class="font-mono variable-name">
-                        <span
-                          :data-var-name="key"
-                          :id="`var-${box.title}-${key}`"
-                        >{{ key.startsWith('_') ? '' : key }}</span>
-                      </div>
-                      <!-- Array items as connected boxes -->
-                      <div :class="box.stacked ? 'flex flex-col items-end gap-y-0' : 'flex justify-end'">
-                        <span
-                        v-for="(item, index) in (Array.isArray(valueData) ? valueData : valueData.value)"
-                        :key="index"
-                        :class="['font-mono', 'array-item-box', index === 0 ? 'first-item' : '', box.stacked ? 'stacked-item' : '', shouldHighlightArrayItem(box, key, index) ? 'highlighted' : '']"
-                        :id="`val-${box.title}-${key}`"
-                        :ref="el => { if (el && index === 0) valueRefs.set(`val-${box.title}-${key}`, el) }"
-                      >{{ item }}</span>
-                      </div>
-                    </div>
-                  </template>
+              <!-- Render child boxes here -->
+              <template v-for="(childBox, childIndex) in currentStepData.boxes" :key="'child-' + childIndex">
+                <div v-if="childBox.parentBox === box.title" class="data-box mt-4 p-4 bg-gray-100 border-2 border-gray-400 rounded min-h-[8rem] relative">
+                  <h4 class="text-md font-semibold mb-2 data-box-title">{{ childBox.title }}:</h4>
                   
-                  <!-- Regular grid for non-array values -->
-                  <div v-else class="grid grid-cols-[2fr_1fr] gap-x-4">
-                  <!-- Determine if this is a simple value or an object with metadata -->
-                  <template v-if="typeof valueData === 'object' && valueData !== null && 'value' in valueData">
-                    <!-- This is a value with metadata -->
-                    <!-- Only show variable name if named=true (default) or not specified -->
-                    <div v-if="valueData.named !== false" class="font-mono variable-name">
-                      <span
-                        :data-var-name="key"
-                        :id="`var-${box.title}-${key}`"
-                        :ref="el => { if (el) varRefs.set(`var-${box.title}-${key}`, el) }"
-                      >{{ key.startsWith('_') ? '' : key }}</span>
-                    </div>
-                    <!-- For unnamed values, keep the grid layout with an empty cell -->
-                    <div v-else class="font-mono variable-name m-auto"></div>
-                    
-                    <!-- Only show value if valued=true (default) or not specified -->
-                    <div v-if="valueData.valued !== false" class="m-auto">
-                      <span 
-                        v-if="box.useHtml" 
-                        v-html="valueData.value" 
-                        class="font-mono"
-                        :id="`val-${box.title}-${key}`"
-                        :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
-                      ></span>
-                      <span 
-                        v-else 
-                        :class="['font-mono', box.title !== 'Output' ? 'value-box' : '', valueData.highlight ? 'highlighted' : '']"
-                        :id="`val-${box.title}-${key}`"
-                        :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
-                      >{{ valueData.value }}</span>
-                    </div>
-                    <!-- For values without a value box, keep grid layout with empty cell -->
-                    <div v-else class="m-auto"></div>
-                  </template>
-                  
-                  <!-- Legacy support for simple values without metadata -->
-                  <template v-else>
-                    <div class="font-mono variable-name">
-                      <span
-                        :data-var-name="key"
-                        :id="`var-${box.title}-${key}`"
-                        :ref="el => { if (el) varRefs.set(`var-${box.title}-${key}`, el) }"
-                      >{{ key === '' ? '' : key }}</span>
-                    </div>
-                    <div class="m-auto">
-                      <span 
-                        v-if="box.useHtml" 
-                        v-html="valueData" 
-                        class="font-mono"
-                        :id="`val-${box.title}-${key}`"
-                        :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
-                      ></span>
-                      <span 
-                        v-else 
-                        :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']"
-                        :id="`val-${box.title}-${key}`"
-                        :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
-                      >{{ valueData }}</span>
-                    </div>
-                  </template>
-                  </div>
-                </template>
-              </div>
+                  <DataBoxContent 
+                    :box="childBox" 
+                    :varRefs="varRefs" 
+                    :valueRefs="valueRefs" 
+                    :shouldHighlightArrayItem="shouldHighlightArrayItem" 
+                  />
+                </div>
+              </template>
             </div>
           </template>
         </div>
@@ -172,6 +94,7 @@
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue';
 import hljs from 'highlight.js/lib/core';
 import 'highlight.js/styles/github.css';
+import DataBoxContent from './DataBoxContent.vue';
 // Import languages
 import python from 'highlight.js/lib/languages/python';
 import pythonRepl from 'highlight.js/lib/languages/python-repl';
@@ -379,11 +302,13 @@ const drawArrows = () => {
     arrowElements.forEach(arrow => arrow.remove());
   }
   
-  // Find all Memory boxes
-  const memoryBoxes = document.querySelectorAll('.data-box');
-  memoryBoxes.forEach(box => {
+  // Find all boxes (parent and child)
+  const allBoxes = document.querySelectorAll('.data-box');
+  allBoxes.forEach(box => {
     const boxTitle = box.querySelector('h4')?.textContent?.trim().replace(':', '');
-    if (!boxTitle?.toLowerCase().includes('memory')) return;
+    // Previously we were only using boxes with 'memory' in the title.
+    // if (!boxTitle?.toLowerCase().includes('memory')) return;
+    if (!boxTitle) return;
     
     // Find the current box data
     let boxData = null;
