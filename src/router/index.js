@@ -205,6 +205,11 @@ const routes = [
     path: '/psp-exercise-0-2',
     name: 'PSP: Coding Exercise 0.2',
     component: () => import('../views/PSPExercise0_2.vue')
+  },
+  {
+    path: '/psp-exercise-0-3',
+    name: 'PSP: Coding Exercise 0.3',
+    component: () => import('../views/PSPExercise0_3.vue')
   }
 ]
 
