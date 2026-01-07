@@ -226,6 +226,11 @@ const routes = [
     name: 'PSP: Prac 3 Question 11',
     component: () => import('../views/PSP_P3Q11.vue')
   },
+  {
+    path: '/psp-p3q12',
+    name: 'PSP: Prac 3 Question 12',
+    component: () => import('../views/PSP_P3Q12.vue')
+  },
 ]
 
 const router = createRouter({
