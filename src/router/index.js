@@ -216,6 +216,16 @@ const routes = [
     name: 'PSP: Coding Exercise 0.4',
     component: () => import('../views/PSPExercise0_4.vue')
   },
+  {
+    path: '/psp-p2q14',
+    name: 'PSP: Prac 2 Question 14',
+    component: () => import('../views/PSP_P2Q14.vue')
+  },
+  {
+    path: '/psp-p3q11',
+    name: 'PSP: Prac 3 Question 11',
+    component: () => import('../views/PSP_P3Q11.vue')
+  },
 ]
 
 const router = createRouter({

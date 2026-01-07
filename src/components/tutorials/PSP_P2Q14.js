@@ -1,0 +1,230 @@
+// 01 Prac 2 Question 14 Solution
+export default {
+    code: `width = 5
+height = 10
+area = width * height
+print(area)
+
+width = 7
+print(area)
+
+area = width * height
+print(area)`,
+    steps: [
+        {
+            explanation: `<p>In this example, we will step through the code on the left of screen, line by line, and examine:
+            <ol>
+                <li>1. How the table in computer memory is updated</li>
+                <li>2. What output will be displayed</li>
+            </ol></p>`,
+            boxes: [
+                {
+                    title: "Memory",
+                },
+                {
+                    title: "Output",
+                }
+            ]
+        },
+        {
+            explanation: `<p>Assign value <code>5</code> to variable <code>width</code></p>`,
+            highlightLines: [0],
+            boxes: [
+                {
+                    title: "Memory",
+                },
+                {
+                    title: "Output",
+                }
+            ]
+        },
+        {
+            explanation: `<p>Assign value <code>10</code> to variable <code>height</code></p>`,
+            highlightLines: [1],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "5", highlight: true },
+                    },
+                    connections: [
+                        { from: "width", toValue: "5" }
+                    ]
+                },
+                {
+                    title: "Output",
+                }
+            ]
+        },
+        {
+            explanation: `<p>Assign value <code>width * height</code> to variable <code>area</code></p>`,
+            highlightLines: [2],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "5" },
+                        "height": { value: "10", highlight: true }
+                    },
+                    connections: [
+                        { from: "width", toValue: "5" },
+                        { from: "height", toValue: "10" }
+                    ]
+                },
+                {
+                    title: "Output",
+                }
+            ]
+        },
+        {
+            explanation: `<p>Display the current value of variable <code>area</code> to the Shell Window</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "5" },
+                        "height": { value: "10" },
+                        "area": { value: "50", highlight: true }
+                    },
+                    connections: [
+                        { from: "width", toValue: "5" },
+                        { from: "height", toValue: "10" },
+                        { from: "area", toValue: "50" }
+                    ]
+                },
+                {
+                    title: "Output",
+                }
+            ]
+        },
+        {
+            explanation: `<p>Assign value <code>7</code> to variable <code>width</code></p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "5" },
+                        "height": { value: "10" },
+                        "area": { value: "50" }
+                    },
+                    connections: [
+                        { from: "width", toValue: "5" },
+                        { from: "height", toValue: "10" },
+                        { from: "area", toValue: "50" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: {
+                        "50": { value: "" }
+                    }
+                }
+            ]
+        },
+        {
+            explanation: `<p>Display the current value of variable <code>area</code> to the Shell Window.</p><p>Note that the value of <code>area</code> was never updated to reflect the change in the variable <code>width</code>!</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "7", highlight: true },
+                        "height": { value: "10" },
+                        "area": { value: "50" }
+                    },
+                    connections: [
+                        { from: "width", toValue: "7" },
+                        { from: "height", toValue: "10" },
+                        { from: "area", toValue: "50" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: {
+                        "50": { value: "" }
+                    }
+                }
+            ]
+        },
+        {
+            explanation: `<p>Assign value <code>width * height</code> to variable <code>area</code>.</p><p>Here, the value of <code>area</code> is re-calculated to reflect the new value of <code>width</code>.</p>`,
+            highlightLines: [8],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "7" },
+                        "height": { value: "10" },
+                        "area": { value: "50" }
+                    },
+                    connections: [
+                        { from: "width", toValue: "7" },
+                        { from: "height", toValue: "10" },
+                        { from: "area", toValue: "50" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: {
+                        "50": { value: "" },
+                        "50 ": { value: "" },
+                    }
+                }
+            ]
+        },
+        {
+            explanation: `<p>Display the current value of variable <code>area</code> to the Shell Window.</p>`,
+            highlightLines: [9],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "7" },
+                        "height": { value: "10" },
+                        "area": { value: "70", highlight: true }
+                    },
+                    connections: [
+                        { from: "width", toValue: "7" },
+                        { from: "height", toValue: "10" },
+                        { from: "area", toValue: "70" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: {
+                        "50": { value: "" },
+                        "50 ": { value: "" },
+                    }
+                }
+            ]
+        },
+        {
+            explanation: `<p>This example shows that it is important to remember that variable assignment does not form persistent connections between the variables used.</p>`,
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "width": { value: "7" },
+                        "height": { value: "10" },
+                        "area": { value: "70" }
+                    },
+                    connections: [
+                        { from: "width", toValue: "7" },
+                        { from: "height", toValue: "10" },
+                        { from: "area", toValue: "70" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: {
+                        "50": { value: "" },
+                        "50 ": { value: "" },
+                        "70 ": { value: "", highlight: true },
+                    }
+                }
+            ]
+        },
+    ]
+};
