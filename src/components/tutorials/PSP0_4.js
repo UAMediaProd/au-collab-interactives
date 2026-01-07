@@ -112,7 +112,7 @@ export default {
             explanation: `
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
-                        <pre class="inline-pre"><code>if a % b == 0:
+                        <pre class="inline-pre"><code class="language-python">if a % b == 0:
     print("a is divisible by b")</code></pre>
                         <p>This is because if <code>a % b == 0</code> is <code>True</code>, then the remainder after division (<code>a/b</code>) was zero. Therefore <code>a</code> is exactly divisible by <code>b</code>.</p>
                     </div>
@@ -123,7 +123,7 @@ export default {
             explanation: `
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
-                        <pre class="inline-pre"><code>if a % 10 == 0:
+                        <pre class="inline-pre"><code class="language-python">if a % 10 == 0:
     print("a is divisible by 10")</code></pre>
                         <p>In this example we set <code>b = 10</code>. We can then test any integer <code>a</code> for divisibility by 10.</p>
                     </div>
@@ -134,7 +134,7 @@ export default {
             explanation: `
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
-                        <pre class="inline-pre"><code>if a % 2 == 0:
+                        <pre class="inline-pre"><code class="language-python">if a % 2 == 0:
      print("a is even")
  else:
      print("a is odd")</code></pre>
@@ -252,8 +252,8 @@ the result of the Boolean expression is zero, then <code>a</code> is divisible b
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
                         <p>This is not the same thing as decimal rounding, which will round up or down to the nearest integer. An example will illustrate:</p>
-                        <pre class="inline-pre"><code>>>> 8/3
- 2.6666666666666665</code></pre>
+                        <pre class="inline-pre"><code class="language-python">>>> 8/3
+2.6666666666666665</code></pre>
                         <p>Entered directly into the shell here is the result of regular division <code>8/3</code>.</p>
                     </div>
             </div>
@@ -263,8 +263,8 @@ the result of the Boolean expression is zero, then <code>a</code> is divisible b
             explanation: `
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
-                        <pre class="inline-pre"><code>>>> 8//3
- 2</code></pre>
+                        <pre class="inline-pre"><code class="language-python">>>> 8//3
+2</code></pre>
                         <p>As seen previously, the result of <code>8//3</code> is <code>2</code>.</p>
                         <p>Everything after the decimal place has been discarded, even though the nearest integer to 2.666 is actually 3.</p>
                     </div>
@@ -275,8 +275,8 @@ the result of the Boolean expression is zero, then <code>a</code> is divisible b
             explanation: `
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
-                        <pre class="inline-pre"><code>>>> round(8/3)
- 3</code></pre>
+                        <pre class="inline-pre"><code class="language-python">>>> round(8/3)
+3</code></pre>
                         <p>Here we use the inbuilt <code>round()</code> function to illustrate the difference. </p>
                         <p>The result of <code>8/3</code> is rounded to the nearest integer (in this instance, up) to 3.</p>
                     </div>

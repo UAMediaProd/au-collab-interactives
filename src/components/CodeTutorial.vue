@@ -12,7 +12,7 @@
           </div>
           
           <!-- Explanation -->
-          <div class="explanation p-4 bg-gray-50 shadow rounded min-h-[19rem] h-full flex flex-col">
+          <div ref="explanationElement" class="explanation p-4 bg-gray-50 shadow rounded min-h-[19rem] h-full flex flex-col">
             <div class="flex-grow overflow-auto">
               <p v-html="currentStepData.explanation"></p>
             </div>
@@ -144,6 +144,7 @@ const computedCodeWidth = computed(() => {
 // Reactive state
 const currentStep = ref(0);
 const codePreElement = ref(null);
+const explanationElement = ref(null);
 const arrowsSvg = ref(null);
 
 // Maps to store references to variable and value DOM elements
@@ -236,6 +237,21 @@ const prevStep = () => {
   }
 };
 
+// Function to highlight inline code blocks in the explanation
+const highlightExplanationCode = () => {
+  if (!explanationElement.value) return;
+  
+  // Find all code elements within the explanation that have a language class
+  const codeBlocks = explanationElement.value.querySelectorAll('code.language-python, code.language-javascript');
+  
+  codeBlocks.forEach(block => {
+    // Only highlight if not already highlighted
+    if (!block.classList.contains('hljs')) {
+      hljs.highlightElement(block);
+    }
+  });
+};
+
 // Function to update the highlighted code
 const updateHighlightedCode = () => {
   // First highlight the code with highlight.js
@@ -275,6 +291,7 @@ const updateHighlightedCode = () => {
 watch(currentStep, () => {
   nextTick(() => {
     updateHighlightedCode();
+    highlightExplanationCode();
   });
 });
 
@@ -498,6 +515,7 @@ const handleKeyDown = (event) => {
 // Initialize on mount
 onMounted(() => {
   updateHighlightedCode();
+  highlightExplanationCode();
   
   // Draw arrows after initial render
   nextTick(() => {
@@ -575,7 +593,8 @@ pre code.hljs {
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-size: 0.9em;
   padding: 0.2em 0.4em;
-  color: #d73a49; /* GitHub style red for code */
+  /* GitHub style red for code */
+  /* color: #d73a49; */
 }
 
 .variable-name {
@@ -661,7 +680,7 @@ del::before {
 	font-size: 1.2rem;
 	min-height: unset;
 	margin: 0 auto;
-	width: 32ch;
+	width: 34ch;
 	padding-bottom: 0.2rem;
 	margin-bottom: 0.5rem;
 }
