@@ -43,7 +43,7 @@
           
         </div>
         
-        <!-- Right column: Data Boxes -->
+        <!-- Right column: Data Boxes / Supplementary Information -->
         <div v-if="showBoxes" :class="[dataBoxesWidth, dataBoxesHeight, 'p-4', 'bg-gray-50', 'rounded', 'shadow', 'relative']">
           <!-- SVG overlay for arrows -->
           <svg class="arrows-svg" ref="arrowsSvg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10;">
@@ -56,6 +56,8 @@
             <!-- Arrows will be added here dynamically -->
           </svg>
           
+          <!-- Supllementary Info -->
+           <div v-html="currentStepData.info" class="info"></div>
           <!-- Dynamic Data Boxes -->
           <template v-if="currentStepData.boxes" v-for="(box, index) in currentStepData.boxes" :key="index">
             <!-- Only render parent boxes (boxes without parentBox property) -->
@@ -591,8 +593,8 @@ pre code.hljs {
 }
 
 /* Styling for inline code in explanations */
-.explanation code {
-  background-color: #f0f0f0;
+.explanation code, .info code {
+  background-color: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
   font-size: 0.9em;
@@ -691,5 +693,28 @@ del::before {
 
 hr {
   margin: 1rem 0;
+}
+
+.flowchart-solid {
+	text-align: center;
+	margin: 1rem 0;
+  background-color: #E5E1FF;
+  border: 2px solid #c1b5ff;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.flowchart-outline {
+  text-align: center;
+  margin: 1rem 0;
+  border: 2px solid #c1b5ff;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+.flowchart-connection {
+  text-align: center;
+	font-size: 1.4rem;
+	line-height: 0;
 }
 </style>
