@@ -5,7 +5,7 @@
         <!-- Left column: Code + Explanation + Navigation -->
         <div :class="[computedCodeWidth, 'flex', 'flex-col', 'gap-4']">
           <!-- Code Display -->
-          <div v-if="showCode" class="code-container p-4 bg-gray-50 rounded shadow">
+          <div v-if="showCode" class="code-container p-4 bg-gray-50 rounded shadow" :class="codeHeight">
             <pre ref="codePreElement">
               <code :class="`hljs language-${language}`" v-html="highlightedCode"></code>
             </pre>
@@ -117,6 +117,10 @@ const props = defineProps({
   codeWidth: {
     type: String,
     default: 'w-2/3'
+  },
+  codeHeight: {
+    type: String,
+    default: 'h-full'
   },
   dataBoxesWidth: {
     type: String,
@@ -683,5 +687,9 @@ del::before {
 	width: 34ch;
 	padding-bottom: 0.2rem;
 	margin-bottom: 0.5rem;
+}
+
+hr {
+  margin: 1rem 0;
 }
 </style>

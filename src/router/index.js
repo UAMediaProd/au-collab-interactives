@@ -231,6 +231,66 @@ const routes = [
     name: 'PSP: Prac 3 Question 12',
     component: () => import('../views/PSP_P3Q12.vue')
   },
+  {
+    path: '/psp-p4q11',
+    name: 'PSP: Prac 4 Question 11',
+    component: () => import('../views/PSP_P4Q11.vue')
+  },
+  {
+    path: '/psp-p4q11',
+    name: 'PSP: Prac 4 Question 11',
+    component: () => import('../views/PSP_P4Q11.vue')
+  },
+  {
+    path: '/psp-p4q13',
+    name: 'PSP: Prac 4 Question 13',
+    component: () => import('../views/PSP_P4Q13.vue')
+  },
+  {
+    path: '/psp-p5q05',
+    name: 'PSP: Prac 5 Question 5',
+    component: () => import('../views/PSP_P5Q05.vue')
+  },
+  {
+    path: '/psp-p5q06',
+    name: 'PSP: Prac 5 Question 6',
+    component: () => import('../views/PSP_P5Q06.vue')
+  },
+  {
+    path: '/psp-p5q07',
+    name: 'PSP: Prac 5 Question 7',
+    component: () => import('../views/PSP_P5Q07.vue')
+  },
+  {
+    path: '/psp-p6q08',
+    name: 'PSP: Prac 6 Question 8',
+    component: () => import('../views/PSP_P6Q08.vue')
+  },
+  {
+    path: '/psp-p6q09',
+    name: 'PSP: Prac 6 Question 9',
+    component: () => import('../views/PSP_P6Q09.vue')
+  },
+  {
+    path: '/psp-p6q10',
+    name: 'PSP: Prac 6 Question 10',
+    component: () => import('../views/PSP_P6Q10.vue')
+  },
+  {
+    path: '/psp-p7q07',
+    name: 'PSP: Prac 7 Question 7',
+    component: () => import('../views/PSP_P7Q07.vue')
+  },
+  {
+    path: '/psp-p7q08',
+    name: 'PSP: Prac 7 Question 8',
+    component: () => import('../views/PSP_P7Q08.vue')
+  },
+  {
+    path: '/psp-p7q13',
+    name: 'PSP: Prac 7 Question 13',
+    component: () => import('../views/PSP_P7Q13.vue')
+  },
 ]
 
 const router = createRouter({

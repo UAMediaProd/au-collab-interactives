@@ -1,4 +1,4 @@
-// 02 Prac 3 Question 11 Solution
+// 03 Prac 3 Question 12 Solution
 export default {
     code: `x = int(input("Enter a number: "))
 display = x * "-"
