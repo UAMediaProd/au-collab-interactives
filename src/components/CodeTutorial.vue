@@ -717,4 +717,21 @@ hr {
 	font-size: 1.4rem;
 	line-height: 0;
 }
+
+ul, ol {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+  display: list-item;
+  list-style-position: outside;
+}
+
+ol {
+	list-style-type: decimal;
+}
+
 </style>

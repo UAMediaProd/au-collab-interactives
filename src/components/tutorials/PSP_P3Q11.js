@@ -259,9 +259,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: ": { value: "" }
-                    }
+                    values: ["Please enter an integer: "]
                 }
             ]
         },
@@ -280,10 +278,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: 6": { value: "" },
-                        "Please enter another integer: ": { value: "" }
-                    }
+                    values: ["Please enter an integer: 6", "Please enter another integer: "]
                 }
             ]
         },
@@ -304,10 +299,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: 6": { value: "" },
-                        "Please enter another integer: 4": { value: "" }
-                    }
+                    values: ["Please enter an integer: 6", "Please enter another integer: 4"]
                 }
             ]
         },
@@ -330,10 +322,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: 6": { value: "" },
-                        "Please enter another integer: 4": { value: "" }
-                    }
+                    values: ["Please enter an integer: 6", "Please enter another integer: 4"]
                 }
             ]
         },
@@ -358,10 +347,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: 6": { value: "" },
-                        "Please enter another integer: 4": { value: "" }
-                    }
+                    values: ["Please enter an integer: 6", "Please enter another integer: 4"]
                 }
             ]
         },
@@ -388,10 +374,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: 6": { value: "" },
-                        "Please enter another integer: 4": { value: "" }
-                    }
+                    values: ["Please enter an integer: 6", "Please enter another integer: 4"]
                 }
             ]
         },
@@ -417,11 +400,7 @@ print("The difference is: ", result)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Please enter an integer: 6": { value: "" },
-                        "Please enter another integer: 4": { value: "" },
-                        "The difference is:  14": { value: "", highlight: true }
-                    }
+                    values: ["Please enter an integer: 6", "Please enter another integer: 4", "The difference is:  14"]
                 }
             ]
         },

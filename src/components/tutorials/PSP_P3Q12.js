@@ -113,9 +113,7 @@ print(display)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a number: 8": { value: "" }
-                    }
+                    values: ["Enter a number: 8"]
                 }
             ]
         },
@@ -141,9 +139,7 @@ print(display)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a number: 8": { value: "" }
-                    }
+                    values: ["Enter a number: 8"]
                 }
             ]
         },
@@ -167,9 +163,7 @@ print(display)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a number: 8": { value: "" }
-                    }
+                    values: ["Enter a number: 8"]
                 }
             ]
         },
@@ -193,10 +187,7 @@ print(display)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a number: 8": { value: "" },
-                        "--------": { value: "", highlight: true }
-                    }
+                    values: ["Enter a number: 8", "--------"]
                 }
             ]
         }

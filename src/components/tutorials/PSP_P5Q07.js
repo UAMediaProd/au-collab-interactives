@@ -1,4 +1,4 @@
-// 05 Prac 5 Question 7 Solution
+// 08 Prac 5 Question 7 Solution
 export default {
     code: ``,
     steps: [

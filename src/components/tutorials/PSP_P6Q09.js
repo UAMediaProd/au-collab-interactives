@@ -1,4 +1,4 @@
-// 06 Prac 6 Question 9 Solution
+// 10 Prac 6 Question 9 Solution
 export default {
     code: ``,
     steps: [

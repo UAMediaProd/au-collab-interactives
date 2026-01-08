@@ -813,9 +813,7 @@ print("The highest number is ", highest_num)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "The highest number is  14": { value: "", highlight: true }
-                    }
+                    values: ["The highest number is  14"]
                 }
             ]
         },

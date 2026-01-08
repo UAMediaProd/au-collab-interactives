@@ -1,4 +1,4 @@
-// 04 Prac 4 Question 13 Solution
+// 05 Prac 4 Question 13 Solution
 export default {
     code: `index = 0
 output_string = ''
@@ -274,9 +274,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -303,9 +301,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -334,9 +330,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -365,9 +359,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -396,9 +388,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -427,9 +417,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -458,9 +446,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -489,9 +475,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -520,9 +504,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -551,9 +533,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -582,9 +562,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -613,9 +591,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -644,9 +620,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -675,9 +649,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -706,9 +678,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -737,9 +707,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -768,9 +736,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -799,9 +765,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -830,9 +794,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -861,9 +823,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -892,9 +852,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -923,9 +881,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -954,9 +910,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -985,9 +939,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1016,9 +968,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1047,9 +997,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1078,9 +1026,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1109,9 +1055,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1140,9 +1084,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1171,9 +1113,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1202,9 +1142,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1233,9 +1171,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1264,9 +1200,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1295,9 +1229,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1326,9 +1258,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1357,9 +1287,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1388,9 +1316,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1419,9 +1345,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },
@@ -1450,9 +1374,7 @@ print(output_string)
                 },
                 {
                     title: "Output",
-                    values: {
-                        "Enter a string: beautiful": { value: "" }
-                    }
+                    values: ["Enter a string: beautiful"]
                 }
             ]
         },

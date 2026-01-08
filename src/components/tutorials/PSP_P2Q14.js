@@ -117,9 +117,7 @@ print(area)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "50": { value: "" }
-                    }
+                    values: ["50"]
                 }
             ]
         },
@@ -142,9 +140,7 @@ print(area)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "50": { value: "" }
-                    }
+                    values: ["50"]
                 }
             ]
         },
@@ -167,10 +163,7 @@ print(area)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "50": { value: "" },
-                        "50 ": { value: "" },
-                    }
+                    values: ["50", "50 "]
                 }
             ]
         },
@@ -193,10 +186,7 @@ print(area)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "50": { value: "" },
-                        "50 ": { value: "" },
-                    }
+                    values: ["50", "50 "]
                 }
             ]
         },
@@ -218,11 +208,7 @@ print(area)`,
                 },
                 {
                     title: "Output",
-                    values: {
-                        "50": { value: "" },
-                        "50 ": { value: "" },
-                        "70 ": { value: "", highlight: true },
-                    }
+                    values: ["50", "50 ", "70 "]
                 }
             ]
         },
