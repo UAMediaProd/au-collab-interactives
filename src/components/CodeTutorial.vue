@@ -762,4 +762,37 @@ ul {
 	list-style-type: disc;
 }
 
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  background-color: white;
+}
+
+thead th {
+  background-color: #3b67ff;
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: white;
+}
+
+tbody td {
+  border: 1px solid #dee2e6;
+  padding: 0.75rem;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+
 </style>
