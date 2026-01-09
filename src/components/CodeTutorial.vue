@@ -703,6 +703,10 @@ del::before {
 	margin-bottom: 0.5rem;
 }
 
+.inline-pre code {
+	background-color: transparent;
+}
+
 hr {
   margin: 1rem 0;
 }
