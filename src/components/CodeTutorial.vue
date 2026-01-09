@@ -734,6 +734,14 @@ hr {
 	line-height: 0;
 }
 
+.flowchart-highlight {
+  border-color: #90be6d;
+}
+
+.flowchart-solid.flowchart-highlight {
+  background-color: #d3e5c5;
+}
+
 ul, ol {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
