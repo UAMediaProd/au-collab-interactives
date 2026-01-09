@@ -1,0 +1,1 @@
+import{_ as t}from"./CodeTutorial-Caw1ob4y.js";import{c as a,o as e,e as o,d as s}from"./index-BLVN1l5H.js";const n={code:"",steps:[{explanation:"<p></p>"}]},p={class:"container mx-auto p-4 max-w-[1024px]"},m={__name:"PSP_P7Q08",setup(c){return(r,_)=>(e(),a("div",p,[o(t,{tutorial:s(n),language:"python"},null,8,["tutorial"])]))}};export{m as default};
