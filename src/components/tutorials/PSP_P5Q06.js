@@ -19,18 +19,14 @@ while index1 < input1:
             <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>`,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>Initialising variables.</p>
             <p>We can see by looking ahead that <code>index1</code> will help control an outer loop, while <code>index2</code> will control an inner loop.</p>
             `,
             highlightLines: [0, 1]
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>The user inputs two integers.</p>
             `,
             highlightLines: [3, 4],
@@ -39,9 +35,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>We enter the outer loop...</p>
             `,
             highlightLines: [6],
@@ -52,9 +46,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>Then enter the inner loop...</p>
             `,
             highlightLines: [7],
@@ -70,9 +62,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>...and display a '#' symbol.</p>
             `,
             highlightLines: [8],
@@ -89,9 +79,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>This is the last indented line inside the inner loop.</p>
             <p>Notice that:</p>
             <ul>
@@ -116,9 +104,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>An empty <code>print()</code> call is used to create a new line.</p>
             `,
             highlightLines: [10],
@@ -138,9 +124,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>This line resets <code>index2</code> to its initial value of 0</p>
             <p>This ensures that the inner loop will always behave the same way on each cycle of the outer loop.</p>
             `,
@@ -161,9 +145,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>This is the last indented line inside the outer loop.</p>
             <p>Notice that:</p>
             <ul>
@@ -191,9 +173,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
-            <hr>
+            explanation: `
             <p>The program ends after final execution of the outer loop.</p>
             <p>Now let's review our diagram and try to describe the program's function in plain English.</p>
             `,
@@ -216,10 +196,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 2:</strong> Determine the original intention of the program by considering the contribution of each stage and how they fit together!</p>
-            <hr>
-            <p>This program...</p>
+            explanation: `<p><strong>Step 2:</strong> Determine the original intention of the program by considering the contribution of each stage and how they fit together!</p>
             `,
             info: `
             <div class="flowchart-solid">Obtain integers <code>input1</code> and <code>input2</code> from the user.</div>
@@ -240,9 +217,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 2:</strong> Determine the original intention of the program by considering the contribution of each stage and how they fit together!</p>
-            <hr>
+            explanation: `
             <p>This program...</p>
             <ul>
                 <li>Prompts for two integers</li>
@@ -267,9 +242,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 2:</strong> Determine the original intention of the program by considering the contribution of each stage and how they fit together!</p>
-            <hr>
+            explanation: `
             <p>This program...</p>
             <ul>
                 <li>Prompts for two integers</li>
@@ -295,9 +268,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 2:</strong> Determine the original intention of the program by considering the contribution of each stage and how they fit together!</p>
-            <hr>
+            explanation: `
             <p>This program...</p>
             <ul>
                 <li>Prompts for two integers</li>
@@ -324,9 +295,7 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 2:</strong> Determine the original intention of the program by considering the contribution of each stage and how they fit together!</p>
-            <hr>
+            explanation: `
             <p>This program...</p>
             <ul>
                 <li>Prompts for two integers</li>
@@ -354,33 +323,29 @@ while index1 < input1:
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 3:</strong> Execute the code to verify what happens.</p>
-            <hr>
-            <p>Let's try it out!</p>
+            explanation: `<p><strong>Step 3:</strong> Execute the code to verify what happens.</p>
             `,
             info: `
             <div class="flowchart-solid">Obtain integers <code>input1</code> and <code>input2</code> from the user.</div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-outline">
-                <p>Begin loop</p>
-                <p style="font-size: 0.8rem;">Number of iterations = <code>input1</code></p>
-                <div class="flowchart-outline">
-                    <p>Begin loop</p>
-                    <p style="font-size: 0.8rem;">Number of iterations = <code>input2</code></p>
-                    <div class="flowchart-solid">Display a '#'.</div>
-                </div>
-                <div class="flowchart-connection">🡇</div>
-                <div class="flowchart-solid">Display goes to the next line.</div>
+            <p>Begin loop</p>
+            <p style="font-size: 0.8rem;">Number of iterations = <code>input1</code></p>
+            <div class="flowchart-outline">
+            <p>Begin loop</p>
+            <p style="font-size: 0.8rem;">Number of iterations = <code>input2</code></p>
+            <div class="flowchart-solid">Display a '#'.</div>
+            </div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">Display goes to the next line.</div>
             </div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid">Program ends.</div>
             `,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 3:</strong> Execute the code to verify what happens.</p>
-            <hr>
+            explanation: `
+            <p>Let's try it out!</p>
             <p>We'll enter 3 as our first input...</p>
             `,
             boxes: [
@@ -393,9 +358,7 @@ while index1 < input1:
             ]
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 3:</strong> Execute the code to verify what happens.</p>
-            <hr>
+            explanation: `
             <p>...and 5 as our second input.</p>
             `,
             boxes: [
@@ -409,9 +372,7 @@ while index1 < input1:
             ]
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
-            <p><strong>Step 3:</strong> Execute the code to verify what happens.</p>
-            <hr>
+            explanation: `
             <p>The program prints 3 lines of 5 '#' characters each.</p>
             `,
             boxes: [
