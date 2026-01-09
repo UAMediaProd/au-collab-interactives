@@ -7,7 +7,7 @@
           <!-- Code Display -->
           <div v-if="showCode" class="code-container p-4 bg-gray-50 rounded shadow" :class="codeHeight">
             <pre ref="codePreElement">
-              <code :class="`hljs language-${language}`" v-html="highlightedCode"></code>
+              <code :class="`hljs language-${currentLanguage}`" v-html="highlightedCode"></code>
             </pre>
           </div>
           
@@ -169,6 +169,18 @@ const highlightedCode = ref('');
 const currentHighlightLines = ref([]);
 const currentSecondaryHighlightLines = ref([]);
 
+// Computed property to determine the current language
+const currentLanguage = computed(() => {
+  // Scan backwards through steps to find the most recent language override
+  let languageToUse = props.language; // Start with the default language from props
+  for (let i = 0; i <= currentStep.value; i++) {
+    if (props.tutorial.steps[i].language !== undefined) {
+      languageToUse = props.tutorial.steps[i].language;
+    }
+  }
+  return languageToUse;
+});
+
 const currentStepData = computed(() => {
   const step = props.tutorial.steps[currentStep.value] || { 
     lineNumber: 0, 
@@ -263,7 +275,7 @@ const updateHighlightedCode = () => {
   // First highlight the code with highlight.js
   const tempElement = document.createElement('div');
   const codeElement = document.createElement('code');
-  codeElement.className = `language-${props.language}`;
+  codeElement.className = `language-${currentLanguage.value}`;
   codeElement.textContent = lastCode.value;
   tempElement.appendChild(codeElement);
   hljs.highlightElement(codeElement);
