@@ -309,7 +309,7 @@ def generate_password(length):
         index += 1
     return password
             `,
-            highlightLines: [4,5,7],
+            highlightLines: [4, 5, 7],
             explanation: `
             <p>Now it's time to set up the loop. This is a simple loop with a number of iterations equal to <code>length</code>.</p>
             <p>As usual, we will need a loop counter, a way to increment it, and an appropriate condition to guarantee the right number of iterations.</p>
@@ -437,7 +437,10 @@ print ('Your new password is:', new_password)
             `,
         },
         {
-            highlightLines: [2,10],
+            highlightChars: [
+                { line: 2, match: "length" },
+                { line: 10, match: "5" },
+            ],
             explanation: `
             <p>To call the function, we use its name along with a set of parentheses that contains values specifying the input parameters. In this first call, the input to the function is the integer value 5, effectively setting <code>length = 5</code> inside the function on execution.</p>
             `,
@@ -460,7 +463,10 @@ print ('Your new password is:', new_password)
             `,
         },
         {
-            highlightLines: [8,10],
+            highlightChars: [
+                { line: 8, match: "password" },
+                { line: 10, match: "5" },
+            ],
             explanation: `
             <p>On the output side, the expression <code>generate_password(5)</code> will resolve to the output value (<code>password</code>) - which is then stored in variable <code>new_password</code>.</p>
             `,
@@ -507,7 +513,6 @@ print ('Your new password is:', new_password)
             `,
         },
         {
-            highlightLines: [11],
             explanation: `
             <p>The <code>new_password</code> is then displayed to the screen.</p>
             <p>Note that in our example, there is also a second function call - this time with a parameter of value 8. Let's take a look at what happens when we run this program a few times.</p>
@@ -520,7 +525,6 @@ print ('Your new password is:', new_password)
             ]
         },
         {
-            highlightLines: [11],
             explanation: `
             <p>The <code>new_password</code> is then displayed to the screen.</p>
             <p>Note that in our example, there is also a second function call - this time with a parameter of value 8. Let's take a look at what happens when we run this program a few times.</p>
@@ -533,7 +537,6 @@ print ('Your new password is:', new_password)
             ]
         },
         {
-            highlightLines: [11],
             explanation: `
             <p>As we can see, a random password is generated each time the function is called, with the length being specified by the input parameter.</p>
             `,
