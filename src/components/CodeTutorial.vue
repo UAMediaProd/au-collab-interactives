@@ -724,7 +724,7 @@ hr {
   background-color: #E5E1FF;
   border: 2px solid #c1b5ff;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 0.7rem;
 }
 
 .flowchart-outline {
@@ -732,7 +732,7 @@ hr {
   margin: 1rem 0;
   border: 2px solid #c1b5ff;
   border-radius: 5px;
-  padding: 1rem;
+  padding: 0.7rem;
 }
 
 .flowchart-connection {
@@ -746,7 +746,7 @@ hr {
 }
 
 .flowchart-solid.flowchart-highlight, .tr-highlight {
-  background-color: #DDF5E0;
+  background-color: #DDF5E0 !important;
 }
 
 ul, ol {
