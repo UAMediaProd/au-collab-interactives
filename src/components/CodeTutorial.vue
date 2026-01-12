@@ -168,6 +168,7 @@ const highlightedCode = ref('');
 // Track current highlights
 const currentHighlightLines = ref([]);
 const currentSecondaryHighlightLines = ref([]);
+const currentHighlightChars = ref([]);
 
 // Computed property to determine the current language
 const currentLanguage = computed(() => {
@@ -213,6 +214,7 @@ const currentStepData = computed(() => {
   // Update highlighted lines
   currentHighlightLines.value = step.highlightLines || [];
   currentSecondaryHighlightLines.value = step.secondaryHighlightLines || [];
+  currentHighlightChars.value = step.highlightChars || [];
   
   return step;
 });
@@ -270,6 +272,102 @@ const highlightExplanationCode = () => {
   });
 };
 
+// Helper function to highlight specific characters in a line
+const highlightCharsInLine = (lineHtml, lineIndex) => {
+  // Find all character highlights for this line
+  const charsToHighlight = currentHighlightChars.value.filter(h => h.line === lineIndex);
+  
+  if (charsToHighlight.length === 0) {
+    return lineHtml;
+  }
+  
+  // Create a temporary div to work with the HTML
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = lineHtml;
+  
+  // Get the text content to search in
+  const textContent = tempDiv.textContent || '';
+  
+  // Process each highlight specification
+  charsToHighlight.forEach(highlight => {
+    const className = highlight.class || 'span-highlight';
+    
+    // If startChar and endChar are provided, use position-based highlighting
+    if (highlight.startChar !== undefined && highlight.endChar !== undefined) {
+      // Position-based highlighting (fallback method)
+      wrapTextByPosition(tempDiv, highlight.startChar, highlight.endChar, className);
+    } else if (highlight.match) {
+      // Match-based highlighting (primary method)
+      const occurrence = highlight.occurrence || 1; // Default to first occurrence
+      wrapTextByMatch(tempDiv, highlight.match, occurrence, className);
+    }
+  });
+  
+  return tempDiv.innerHTML;
+};
+
+// Helper function to wrap text by character position
+const wrapTextByPosition = (element, startChar, endChar, className) => {
+  let charCount = 0;
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+  const nodesToProcess = [];
+  
+  // Collect all text nodes and their positions
+  let node;
+  while (node = walker.nextNode()) {
+    const nodeStart = charCount;
+    const nodeEnd = charCount + node.textContent.length;
+    charCount = nodeEnd;
+    
+    if (nodeEnd > startChar && nodeStart < endChar) {
+      nodesToProcess.push({ node, nodeStart, nodeEnd });
+    }
+  }
+  
+  // Process nodes in reverse to avoid position shifts
+  nodesToProcess.reverse().forEach(({ node, nodeStart, nodeEnd }) => {
+    const relativeStart = Math.max(0, startChar - nodeStart);
+    const relativeEnd = Math.min(node.textContent.length, endChar - nodeStart);
+    
+    const before = node.textContent.substring(0, relativeStart);
+    const highlighted = node.textContent.substring(relativeStart, relativeEnd);
+    const after = node.textContent.substring(relativeEnd);
+    
+    const span = document.createElement('span');
+    span.className = className;
+    span.textContent = highlighted;
+    
+    const fragment = document.createDocumentFragment();
+    if (before) fragment.appendChild(document.createTextNode(before));
+    fragment.appendChild(span);
+    if (after) fragment.appendChild(document.createTextNode(after));
+    
+    node.parentNode.replaceChild(fragment, node);
+  });
+};
+
+// Helper function to wrap text by matching string
+const wrapTextByMatch = (element, matchText, occurrence, className) => {
+  const textContent = element.textContent || '';
+  
+  // Find all occurrences of the match text
+  let currentOccurrence = 0;
+  let searchIndex = 0;
+  let matchIndex = -1;
+  
+  while ((matchIndex = textContent.indexOf(matchText, searchIndex)) !== -1) {
+    currentOccurrence++;
+    if (currentOccurrence === occurrence) {
+      // Found the right occurrence
+      const startChar = matchIndex;
+      const endChar = matchIndex + matchText.length;
+      wrapTextByPosition(element, startChar, endChar, className);
+      return;
+    }
+    searchIndex = matchIndex + 1;
+  }
+};
+
 // Function to update the highlighted code
 const updateHighlightedCode = () => {
   // First highlight the code with highlight.js
@@ -283,7 +381,7 @@ const updateHighlightedCode = () => {
   // Split the highlighted code by lines
   const lines = codeElement.innerHTML.split('\n');
   
-  // Create line elements with highlight classes
+  // Create line elements with highlight classes and character highlights
   const formattedLines = lines.map((line, index) => {
     const primaryHighlightIndex = currentHighlightLines.value.indexOf(index);
     const isPrimaryHighlighted = primaryHighlightIndex !== -1;
@@ -298,7 +396,13 @@ const updateHighlightedCode = () => {
       highlightClass = 'line-highlight-yellow';
     }
     
-    return `<div class="hljs-line ${highlightClass}">${line || ' '}</div>`;
+    // Apply character-level highlighting if specified
+    let processedLine = line || ' ';
+    if (currentHighlightChars.value.length > 0) {
+      processedLine = highlightCharsInLine(processedLine, index);
+    }
+    
+    return `<div class="hljs-line ${highlightClass}">${processedLine}</div>`;
   });
   
   // Set the highlighted HTML
@@ -578,7 +682,7 @@ p {
 .span-highlight {
   background-color: rgba(152, 236, 160, 0.3); /* Pale green background */
   border-radius: 4px;
-  padding: 2.3px 0;
+  box-shadow: -2px 0 rgba(152, 236, 160, 0.3), 2px 0 rgba(152, 236, 160, 0.3); /* Extend left and right sides 3px */
 }
 
 /* Styling for highlight.js */
@@ -612,7 +716,7 @@ pre code.hljs {
 }
 
 /* Styling for inline code in explanations */
-.explanation code, .info code {
+.explanation code, .info code, .info2 code {
   background-color: rgba(0, 0, 0, 0.04);
   border-radius: 3px;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
