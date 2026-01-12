@@ -726,6 +726,14 @@ hr {
   border-radius: 5px;
   padding: 0.7rem;
 }
+.flowchart-light {
+	text-align: center;
+	margin: 1rem 0;
+  background-color: #f0edff;
+  border: 2px solid #E5E1FF;
+  border-radius: 5px;
+  padding: 0.7rem;
+}
 
 .flowchart-outline {
   text-align: center;
