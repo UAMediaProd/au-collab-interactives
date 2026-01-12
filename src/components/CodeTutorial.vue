@@ -661,6 +661,10 @@ p {
   margin-bottom: 0.5rem;
 }
 
+.font-mono {
+  font-size: 0.9rem;
+}
+
 .line-highlight {
   background-color: rgba(152, 236, 160, 0.3); /* Pale green background */
   display: block;
