@@ -6,9 +6,9 @@
         <div :class="[computedCodeWidth, 'flex', 'flex-col', 'gap-4']">
           <!-- Code Display -->
           <div v-if="showCode" class="code-container p-4 bg-gray-50 rounded shadow" :class="codeHeight">
-            <pre ref="codePreElement">
-              <code :class="`hljs language-${currentLanguage}`" v-html="highlightedCode"></code>
-            </pre>
+            <!-- Supplementary Info 2 -->
+            <div v-if="currentStepData.info2" v-html="currentStepData.info2" class="info2" style="min-height: 24rem;"></div>
+            <pre v-else ref="codePreElement"><code :class="`hljs language-${currentLanguage}`" v-html="highlightedCode"></code></pre>
           </div>
           
           <!-- Explanation -->
@@ -56,7 +56,7 @@
             <!-- Arrows will be added here dynamically -->
           </svg>
           
-          <!-- Supllementary Info -->
+          <!-- Supplementary Info -->
            <div v-html="currentStepData.info" class="info"></div>
           <!-- Dynamic Data Boxes -->
           <template v-if="currentStepData.boxes" v-for="(box, index) in currentStepData.boxes" :key="index">
@@ -575,10 +575,16 @@ p {
   border-radius: 4px;
 }
 
+.span-highlight {
+  background-color: rgba(152, 236, 160, 0.3); /* Pale green background */
+  border-radius: 4px;
+  padding: 2.3px 0;
+}
+
 /* Styling for highlight.js */
 pre {
   margin: 0;
-  padding: 1rem;
+  /* padding: 1rem; */
   padding-top: 0;
   border-radius: 0.25rem;
   /* Probably gonna need to switch this back on at some point */
@@ -591,7 +597,7 @@ pre {
   min-height: 1.6em;
   white-space: pre;
   position: relative;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
 }
 
 /* GitHub Light theme customizations */
@@ -602,6 +608,7 @@ pre {
 
 pre code.hljs {
   padding: 0;
+  font-size: 0.9rem;
 }
 
 /* Styling for inline code in explanations */
@@ -735,11 +742,11 @@ hr {
 }
 
 .flowchart-highlight {
-  border-color: #90be6d;
+  border-color: #b7debb;
 }
 
-.flowchart-solid.flowchart-highlight {
-  background-color: #d3e5c5;
+.flowchart-solid.flowchart-highlight, .tr-highlight {
+  background-color: #DDF5E0;
 }
 
 ul, ol {
@@ -774,7 +781,7 @@ table {
 thead th {
   background-color: #3b67ff;
   border: 1px solid #dee2e6;
-  padding: 0.75rem;
+  padding: 0.5rem;
   text-align: left;
   font-weight: 600;
   color: white;
@@ -782,7 +789,7 @@ thead th {
 
 tbody td {
   border: 1px solid #dee2e6;
-  padding: 0.75rem;
+  padding: 0.5rem;
   vertical-align: top;
 }
 
