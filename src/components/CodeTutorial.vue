@@ -684,9 +684,9 @@ p {
 }
 
 .span-highlight {
-  background-color: rgba(152, 236, 160, 0.3); /* Pale green background */
+  background-color: #DCF6E0; /* Pale green background */
   border-radius: 4px;
-  box-shadow: -2px 0 rgba(152, 236, 160, 0.3), 2px 0 rgba(152, 236, 160, 0.3); /* Extend left and right sides 3px */
+  box-shadow: -2px 0 #DCF6E0, 2px 0 #DCF6E0; /* Extend left and right sides 3px */
 }
 
 /* Styling for highlight.js */
