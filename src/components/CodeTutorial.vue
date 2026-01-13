@@ -686,7 +686,6 @@ p {
 .span-highlight {
   background-color: #DCF6E0; /* Pale green background */
   border-radius: 4px;
-  box-shadow: -2px 0 #DCF6E0, 2px 0 #DCF6E0; /* Extend left and right sides 3px */
 }
 
 /* Styling for highlight.js */
