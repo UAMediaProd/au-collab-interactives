@@ -37,7 +37,7 @@ while (index < len(name_list)):
     },
     {
       lineNumber: 1,
-      explanation: "<p>We initialize the <code>index</code> variable to <code>0</code>. This will be used to access each item in the list, starting from position 0.</p>",
+      explanation: "<p>We initialise the <code>index</code> variable to <code>0</code>. This will be used to access each item in the list, starting from position 0.</p>",
       highlightLines: [1],
       boxes: [
         {

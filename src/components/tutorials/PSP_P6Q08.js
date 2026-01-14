@@ -89,7 +89,7 @@ export default {
             info: `
             <div class="flowchart-solid">Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Identify all items ending with 'soup' in <code>menu</code></div>
+            <div class="flowchart-solid flowchart-highlight">Identify all items ending with 'soup' in <code>menu</code></div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid">Add each item ending with 'soup' to the new list</div>
             <div class="flowchart-connection">🡇</div>
@@ -101,12 +101,12 @@ export default {
             info: `
             <div class="flowchart-solid">Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-outline">
+            <div class="flowchart-outline flowchart-highlight">
                 <p>Begin loop</p>
                 <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-                <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
+                <div class="flowchart-solid flowchart-highlight">Check if the next item from <code>menu</code> ends with 'soup'</div>
                 <div class="flowchart-connection">🡇</div>
-                <div class="flowchart-solid">If it does, add it to the new list</div>
+                <div class="flowchart-solid flowchart-highlight">If it does, add it to the new list</div>
             </div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid">Randomly select and display a 'Soup of the day'</div>`, 
@@ -156,7 +156,7 @@ menu = [
             explanation: `<p>We declare the list <code>soups</code> (initially empty) to store all the items determined to be soups.</p>
             `,
             info: `
-            <div class="flowchart-solid">Create a new empty list</div> 
+            <div class="flowchart-solid flowchart-highlight">Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-outline">
             <p>Begin loop</p>
@@ -184,14 +184,14 @@ soups = []`,
             <p>This is because the variable <code>food</code> gives us direct access to the current element in the iteration without worrying about the list length or an indexing variable. The chosen alias <code>food</code> is arbitrary; any descriptive name will do.</p>
             `,
             info: `
-            <div class="flowchart-solid">Create a new empty list</div> 
+            <div class="flowchart-solid">✅ Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-outline">
-            <p>Begin loop</p>
-            <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-            <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
-            <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">If it does, add it to the new list</div>
+            <div class="flowchart-outline flowchart-highlight">
+                <p class="span-highlight">Begin loop</p>
+                <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
+                <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
+                <div class="flowchart-connection">🡇</div>
+                <div class="flowchart-solid">If it does, add it to the new list</div>
             </div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid">Randomly select and display a 'Soup of the day'</div>`, 
@@ -213,12 +213,12 @@ for food in menu:`,
             <p>To do this, we use a slice expression <code>food[-4:]</code> to check only the last 4 characters.</p>
             `,
             info: `
-            <div class="flowchart-solid">Create a new empty list</div> 
+            <div class="flowchart-solid">✅ Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-outline">
-            <p>Begin loop</p>
+            <p>✅ Begin loop</p>
             <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-            <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
+            <div class="flowchart-solid flowchart-highlight">Check if the next item from <code>menu</code> ends with 'soup'</div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid">If it does, add it to the new list</div>
             </div>
@@ -243,14 +243,14 @@ for food in menu:
             explanation: `<p>If the condition was true, we have identified a soup, so add it to the list <code>soups</code> using the <code>append()</code> function.</p>
             `,
             info: `
-            <div class="flowchart-solid">Create a new empty list</div> 
+            <div class="flowchart-solid">✅ Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-outline">
-            <p>Begin loop</p>
+            <p>✅ Begin loop</p>
             <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-            <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
+            <div class="flowchart-solid">✅ Check if the next item from <code>menu</code> ends with 'soup'</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">If it does, add it to the new list</div>
+            <div class="flowchart-solid flowchart-highlight">If it does, add it to the new list</div>
             </div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid">Randomly select and display a 'Soup of the day'</div>`, 
@@ -273,20 +273,20 @@ for food in menu:
         {
             explanation: `
             <p>The main loop has now ended, and so <code>soups</code> is now properly populated.</p>
-            <p>To randomly select a soup, lets first generate a random integer <code>soup_selector</code> that falls within the list boundaries. This can be used to look inside <code>soups</code> at a given index and get a random soup.</p>
+            <p>To randomly select a soup, let's first generate a random integer <code>soup_selector</code> that falls within the list boundaries. This can be used to look inside <code>soups</code> at a given index and get a random soup.</p>
             `,
             info: `
-            <div class="flowchart-solid">Create a new empty list</div> 
+            <div class="flowchart-solid">✅ Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-outline">
-            <p>Begin loop</p>
+            <p>✅ Begin loop</p>
             <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-            <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
+            <div class="flowchart-solid">✅ Check if the next item from <code>menu</code> ends with 'soup'</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">If it does, add it to the new list</div>
+            <div class="flowchart-solid">✅ If it does, add it to the new list</div>
             </div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Randomly select and display a 'Soup of the day'</div>`, 
+            <div class="flowchart-solid flowchart-highlight">Randomly select and display a 'Soup of the day'</div>`, 
             code: `import random
 menu = [
     'Lamb steak', 
@@ -311,17 +311,17 @@ soup_selector = random.randint(0,len(soups)-1)
             <p>The program is now complete!</p>
             `,
             info: `
-            <div class="flowchart-solid">Create a new empty list</div> 
+            <div class="flowchart-solid">✅ Create a new empty list</div> 
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-outline">
-            <p>Begin loop</p>
+            <p>✅ Begin loop</p>
             <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-            <div class="flowchart-solid">Check if the next item from <code>menu</code> ends with 'soup'</div>
+            <div class="flowchart-solid">✅ Check if the next item from <code>menu</code> ends with 'soup'</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">If it does, add it to the new list</div>
+            <div class="flowchart-solid">✅ If it does, add it to the new list</div>
             </div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Randomly select and display a 'Soup of the day'</div>`, 
+            <div class="flowchart-solid flowchart-highlight">Randomly select and display a 'Soup of the day'</div>`, 
             code: `import random
 menu = [
     'Lamb steak', 
@@ -345,11 +345,18 @@ print("Soup of the day: " + soups[soup_selector])
             explanation: `
             <p><strong>Step 4:</strong> Execute the code to verify what happens.</p>
             `,
-            boxes: [
-                {
-                    title: "Output"
-                }
-            ],
+            info: `
+            <div class="flowchart-solid">✅ Create a new empty list</div> 
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-outline">
+            <p>✅ Begin loop</p>
+            <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
+            <div class="flowchart-solid">✅ Check if the next item from <code>menu</code> ends with 'soup'</div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">✅ If it does, add it to the new list</div>
+            </div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">✅ Randomly select and display a 'Soup of the day'</div>`, 
         },
         {
             explanation: `

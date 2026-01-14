@@ -176,7 +176,7 @@ print('Maximum is: ', result)`,
     },
     {
       lineNumber: 1,
-      explanation: "<p>Initialize <code>max_value</code> with the value of <code>no1</code>, which is <code>4</code>. This is our starting assumption for the maximum value.</p>",
+      explanation: "<p>Initialise <code>max_value</code> with the value of <code>no1</code>, which is <code>4</code>. This is our starting assumption for the maximum value.</p>",
       highlightLines: [1, 12],
       boxes: [
         {

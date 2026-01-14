@@ -45,7 +45,7 @@ for item in new_list:
         {
             explanation: `
             <p>However, loops can be used to control the flow of a program in other ways than iteration. One common usage is to restrict the boundaries of program behaviour until the user intervenes - for example, a main loop in a game, or a loop governing a menu system.</p>
-            <p>Lets revisit the password generator example and use a control loop to allow the user to create as many passwords as they like.</p>
+            <p>Let's revisit the password generator example and use a control loop to allow the user to create as many passwords as they like.</p>
             `,
         },
         {

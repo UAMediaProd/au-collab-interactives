@@ -237,11 +237,6 @@ const routes = [
     component: () => import('../views/PSP_P4Q11.vue')
   },
   {
-    path: '/psp-p4q11',
-    name: 'PSP: Prac 4 Question 11',
-    component: () => import('../views/PSP_P4Q11.vue')
-  },
-  {
     path: '/psp-p4q13',
     name: 'PSP: Prac 4 Question 13',
     component: () => import('../views/PSP_P4Q13.vue')

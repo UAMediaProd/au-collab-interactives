@@ -14,7 +14,7 @@ print(list2)`,
             explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>`,
         },
         {
-            explanation: `<p><strong>Question:</strong> What is the following program intended to do?</p>
+            explanation: `
             <p><strong>Step 1:</strong> Examine each line in order of execution and identify its function. This is how the computer thinks!</p>
             `,
         },

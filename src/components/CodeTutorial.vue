@@ -813,7 +813,7 @@ del::before {
 	min-height: unset;
 	margin: 0 auto;
 	width: 34ch;
-	padding-bottom: 0.2rem;
+	padding: 0.5rem;
 	margin-bottom: 0.5rem;
 }
 

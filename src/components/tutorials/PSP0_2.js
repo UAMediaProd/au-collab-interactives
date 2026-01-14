@@ -41,7 +41,7 @@ func_2()`,
       secondaryHighlightLines: [13,14,16,17],
     },
     {
-      explanation: "<p>Next, put your variable declarations for the main body of code.</p><p>If you find that you need to use a new variable when writing your main body of code, make sure to revisit this area to initialize it here first.</p><p>When all your variables are initialised in the same place, your code becomes less prone to mistakes!</p>",
+      explanation: "<p>Next, put your variable declarations for the main body of code.</p><p>If you find that you need to use a new variable when writing your main body of code, make sure to revisit this area to initialise it here first.</p><p>When all your variables are initialised in the same place, your code becomes less prone to mistakes!</p>",
       secondaryHighlightLines: [19,20],
     },
     {

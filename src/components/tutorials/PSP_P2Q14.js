@@ -14,8 +14,8 @@ print(area)`,
         {
             explanation: `<p>In this example, we will step through the code on the left of screen, line by line, and examine:
             <ol>
-                <li>1. How the table in computer memory is updated</li>
-                <li>2. What output will be displayed</li>
+                <li>How the table in computer memory is updated</li>
+                <li>What output will be displayed</li>
             </ol></p>`,
             boxes: [
                 {

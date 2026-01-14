@@ -123,7 +123,7 @@ print('The sum of the list', the_list , 'is', total)`,
     },
     {
       lineNumber: 1,
-      explanation: "<p>Initialize <code>count</code> to <code>0</code>. This variable will accumulate the sum of all numbers in the list.</p>",
+      explanation: "<p>Initialise <code>count</code> to <code>0</code>. This variable will accumulate the sum of all numbers in the list.</p>",
       highlightLines: [1, 10],
       boxes: [
         {
@@ -508,7 +508,7 @@ print('The sum of the list', the_list , 'is', total)`,
     },
     {
       lineNumber: 12,
-      explanation: "<p>The program ends.</p><p><strong>Key concepts:</strong></p><ul><li>Use a <strong>counter variable</strong> (initialized to 0) to accumulate a sum</li><li>Use a <code>for</code> loop to iterate through each element in the list</li><li>If the list is empty, the loop never executes, and <code>count</code> remains 0—satisfying the requirement!</li></ul>",
+      explanation: "<p>The program ends.</p><p><strong>Key concepts:</strong></p><ul><li>Use a <strong>counter variable</strong> (initialised to 0) to accumulate a sum</li><li>Use a <code>for</code> loop to iterate through each element in the list</li><li>If the list is empty, the loop never executes, and <code>count</code> remains 0—satisfying the requirement!</li></ul>",
       boxes: [
         {
           title: "Global memory",

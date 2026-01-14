@@ -19,7 +19,7 @@ print(f"Final total: {total}")`,
     },
     {
       lineNumber: 1,
-      explanation: "We initialize a variable called <code>total</code> with a value of <code>0</code>. This will be used to accumulate a sum.",
+      explanation: "We initialise a variable called <code>total</code> with a value of <code>0</code>. This will be used to accumulate a sum.",
       highlightLines: [1],
       boxes: [
         {

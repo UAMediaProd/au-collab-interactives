@@ -6,7 +6,7 @@ print(new_variable)`,
   steps: [
     {
       lineNumber: 0,
-      explanation: "<p>In this interactive, we will outline a systematic approach for solving problems of the sort where a block of code is given and you are asked to figure out what output it will generate.</p><p>First, lets specify the approach. Then, we’ll go through a few examples and apply it properly. Lets begin. ​</p>",
+      explanation: "<p>In this interactive, we will outline a systematic approach for solving problems of the sort where a block of code is given and you are asked to figure out what output it will generate.</p><p>First, let's specify the approach. Then, we’ll go through a few examples and apply it properly. Let's begin. ​</p>",
       highlightLines: [],
       boxes: [
         {

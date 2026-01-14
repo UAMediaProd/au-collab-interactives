@@ -6,7 +6,7 @@ print(new_variable)`,
   steps: [
     {
       lineNumber: 0,
-      explanation: "We initialize <code>new_variable</code> with the value <code>25</code>.",
+      explanation: "We initialise <code>new_variable</code> with the value <code>25</code>.",
       highlightLines: [0],
       boxes: [
         {

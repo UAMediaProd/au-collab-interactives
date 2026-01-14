@@ -23,7 +23,7 @@ export default {
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
                         <p style="font-size: 1.2rem"><code>8 % 3 = ??</code></p>
-                        <p>Lets take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + 2 = 8</code></p>
+                        <p>Let's take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + 2 = 8</code></p>
                     </div>
             </div>
             `,
@@ -33,7 +33,7 @@ export default {
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
                         <p style="font-size: 1.2rem"><code>8 % 3 = ??</code></p>
-                        <p>Lets take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + <span class="inline-highlight">2</span> = 8</code></p>
+                        <p>Let's take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + <span class="inline-highlight">2</span> = 8</code></p>
                     </div>
             </div>
             `,
@@ -43,7 +43,7 @@ export default {
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
                         <p style="font-size: 1.2rem"><code>8 % 3 = <span class="inline-highlight">??</span></code></p>
-                        <p>Lets take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + <span class="inline-highlight">2</span> = 8</code></p>
+                        <p>Let's take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + <span class="inline-highlight">2</span> = 8</code></p>
                     </div>
             </div>
             `,
@@ -53,7 +53,7 @@ export default {
             <div style="display:flex; justify-content:center; align-items:center; min-height: 13rem; text-align:center;">
                     <div>
                         <p style="font-size: 1.2rem"><code>8 % 3 = <span class="inline-highlight">2</span></code></p>
-                        <p>Lets take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + 2 = 8</code></p>
+                        <p>Let's take a quick look at a few examples. 3 goes into 8 twice, with a remainder of 2: <code>(2 * 3) + 2 = 8</code></p>
                     </div>
             </div>
             `,

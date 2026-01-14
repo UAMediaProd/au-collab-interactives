@@ -31,7 +31,7 @@ True`,
       secondaryHighlightLines: [0, 2, 5, 7],
     },
     {
-      explanation: "<p>Now, lets look at what doesn’t work.<p>",
+      explanation: "<p>Now, let's look at what doesn’t work.<p>",
       code:`>>> 'string' and True
 True
 >>> False or 3

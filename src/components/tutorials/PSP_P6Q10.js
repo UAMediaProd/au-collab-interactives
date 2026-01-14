@@ -1112,7 +1112,7 @@ Enter your choice, "share" or "steal": `,
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Enter your choice, "share" or "steal": steal
 
 You chose:       steal
@@ -1148,7 +1148,7 @@ Enter your choice, "share" or "steal": `,
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Enter your choice, "share" or "steal": steal
 
 You chose:       steal
@@ -1184,7 +1184,7 @@ Enter your choice, "share" or "steal": `,
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Enter your choice, "share" or "steal": share
 
 You chose:       share
@@ -1221,7 +1221,7 @@ Enter your choice, "share" or "steal": `,
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Enter your choice, "share" or "steal": share
 
 You chose:       share
@@ -1259,7 +1259,7 @@ Would you like to play again? [y/n] `,
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Would you like to play again? [y/n] y
 
 Enter your choice, "share" or "steal": 
@@ -1290,7 +1290,7 @@ Enter your choice, "share" or "steal":
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Would you like to play again? [y/n] y
 
 Enter your choice, "share" or "steal": asdfasd
@@ -1323,7 +1323,7 @@ Invalid choice. Enter "share" or "steal":
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Enter your choice, "share" or "steal": share
 
 You chose:       share
@@ -1362,7 +1362,7 @@ Would you like to play again? [y/n] n
                 <div class="flowchart-solid">✅ Display the winner</div>
             </div>
             `,
-            code: `>>>
+            code: `
 Enter your choice, "share" or "steal": share
 
 You chose:       share
