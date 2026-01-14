@@ -115,7 +115,7 @@ num2 = int(input("Please enter another integer: "))
 num_product = num1 * num2`,
             highlightLines: [3],
             info: `
-            <div class="flowchart-solid">Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
+            <div class="flowchart-solid">✅ Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid flowchart-highlight">Calculate the product <code>num1 * num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
@@ -136,9 +136,9 @@ num_product = num1 * num2
 num_sum = num1 + num2`,
             highlightLines: [5],
             info: `
-            <div class="flowchart-solid">Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
+            <div class="flowchart-solid">✅ Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Calculate the product <code>num1 * num2</code>.</div>
+            <div class="flowchart-solid">✅ Calculate the product <code>num1 * num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid flowchart-highlight">Calculate the sum <code>num1</code> + <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
@@ -159,11 +159,11 @@ num_sum = num1 + num2
 result = num_product - num_sum`,
             highlightLines: [7],
             info: `
-            <div class="flowchart-solid">Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
+            <div class="flowchart-solid">✅ Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Calculate the product <code>num1 * num2</code>.</div>
+            <div class="flowchart-solid">✅ Calculate the product <code>num1 * num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Calculate the sum <code>num1</code> + <code>num2</code>.</div>
+            <div class="flowchart-solid">✅ Calculate the sum <code>num1</code> + <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid flowchart-highlight">Calculate the difference: <code>(num1 * num2) - (num1 + num2)</code>.</div>
             <div class="flowchart-connection">🡇</div>
@@ -185,27 +185,30 @@ print("The difference is: ", result)
 `,
             highlightLines: [9],
             info: `
-            <div class="flowchart-solid">Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
+            <div class="flowchart-solid">✅ Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Calculate the product <code>num1 * num2</code>.</div>
+            <div class="flowchart-solid">✅ Calculate the product <code>num1 * num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Calculate the sum <code>num1</code> + <code>num2</code>.</div>
+            <div class="flowchart-solid">✅ Calculate the sum <code>num1</code> + <code>num2</code>.</div>
             <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">Calculate the difference: <code>(num1 * num2) - (num1 + num2)</code>.</div>
+            <div class="flowchart-solid">✅ Calculate the difference: <code>(num1 * num2) - (num1 + num2)</code>.</div>
             <div class="flowchart-connection">🡇</div>
             <div class="flowchart-solid flowchart-highlight">Display the result.</div>
             `,
         },
         {
             explanation: `<p><strong>Step 3:</strong> Let's trace through the program execution with example inputs.</p><p>We'll use <code>6</code> and <code>4</code> as our test values.</p>`,
-            boxes: [
-                {
-                    title: "Memory",
-                },
-                {
-                    title: "Output",
-                }
-            ]
+            info: `
+            <div class="flowchart-solid">✅ Obtain two integer inputs: <code>num1</code> and <code>num2</code>.</div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">✅ Calculate the product <code>num1 * num2</code>.</div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">✅ Calculate the sum <code>num1</code> + <code>num2</code>.</div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">✅ Calculate the difference: <code>(num1 * num2) - (num1 + num2)</code>.</div>
+            <div class="flowchart-connection">🡇</div>
+            <div class="flowchart-solid">✅ Display the result.</div>
+            `,
         },
         {
             explanation: `<p>Prompt the user for the first integer and assign it to <code>num1</code>.</p><p>User enters: <code>6</code></p>`,
