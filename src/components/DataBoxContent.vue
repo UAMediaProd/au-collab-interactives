@@ -3,7 +3,7 @@
   <div v-if="Array.isArray(box.values)" class="flex flex-col">
     <div v-for="(value, i) in box.values" :key="i" class="mb-1">
       <span v-if="box.useHtml" v-html="value" class="font-mono"></span>
-      <span v-else :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']">{{ value === '' ? '\u00A0' : value }}</span>
+      <span v-else :class="['font-mono', showValueBoxStyle ? 'value-box' : '']">{{ value === '' ? '\u00A0' : value }}</span>
     </div>
   </div>
   
@@ -61,7 +61,7 @@
           ></span>
           <span 
             v-else 
-            :class="['font-mono', box.title !== 'Output' ? 'value-box' : '', valueData.highlight ? 'highlighted' : '']"
+            :class="['font-mono', showValueBoxStyle ? 'value-box' : '', valueData.highlight ? 'highlighted' : '']"
             :id="`val-${box.title}-${key}`"
             :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
           >{{ valueData.value }}</span>
@@ -89,7 +89,7 @@
           ></span>
           <span 
             v-else 
-            :class="['font-mono', box.title !== 'Output' ? 'value-box' : '']"
+            :class="['font-mono', showValueBoxStyle ? 'value-box' : '']"
             :id="`val-${box.title}-${key}`"
             :ref="el => { if (el) valueRefs.set(`val-${box.title}-${key}`, el) }"
           >{{ valueData }}</span>
@@ -101,6 +101,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
   box: {
     type: Object,
@@ -118,5 +120,11 @@ const props = defineProps({
     type: Function,
     required: true
   }
+});
+
+const showValueBoxStyle = computed(() => {
+  if (props.box.dataBoxStyle === false) return false;
+  if (props.box.title === 'Output') return false;
+  return true;
 });
 </script>

@@ -1,0 +1,688 @@
+export default {
+  code: `infile = open("intercepted.txt", "r")
+outfile = open("translated.txt", "w")
+
+linesList = infile.readlines()
+
+for line in linesList:
+
+    splits = line.split()
+
+    for number in splits:
+        asciiNo = int(number)
+        character = chr(asciiNo)
+        outfile.write(str(character))
+
+infile.close()
+outfile.close()`,
+  steps: [
+    // =============================================
+    // Scenario:
+    //   intercepted.txt contains:
+    //     84 79 80
+    //     83 69 67 82 69 84
+    //   translated.txt output:
+    //     TOP
+    //     SECRET
+    // =============================================
+    {
+      explanation: "<p><strong>Crack the Code, Save the World!</strong></p><p>In this program, we read a file called <code>intercepted.txt</code> that contains a secret message encoded as ASCII numbers. Our job is to decode each number back into its corresponding character and write the result to a new file called <code>translated.txt</code>.</p><p>Let's trace through the program step by step.</p>",
+      highlightLines: [],
+      boxes: [
+        {
+          title: "Memory",
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Open the file <code>intercepted.txt</code> in read mode (<code>\"r\"</code>).</p><p>This gives us a file object stored in <code>infile</code>, which we can use to read the file's contents.</p>",
+      highlightLines: [0],
+      boxes: [
+        {
+          title: "Memory",
+          values: {}
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Open the file <code>translated.txt</code> in write mode (<code>\"w\"</code>).</p><p>This creates a new file (or overwrites it if it already exists) and gives us a file object stored in <code>outfile</code>.</p>",
+      highlightLines: [1],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": { value: "file object", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Call <code>infile.readlines()</code> to read all lines from the file into a list.</p><p>Each line becomes a separate string in the list. Our file has two lines, so <code>linesList</code> will contain two strings. Notice that the first line includes a newline character (<code>\\n</code>) at the end — this is how Python reads lines from a file.</p>",
+      highlightLines: [3],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": { value: "file object", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // =============================================
+    // Outer loop — iteration 1: line = "84 79 80\n"
+    // =============================================
+    {
+      explanation: "<p>Start the outer <code>for</code> loop. This loop processes each line in <code>linesList</code> one at a time.</p><p><strong>Line 1:</strong> <code>line</code> is assigned the first string: <code>\"84 79 80\\n\"</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": { value: ["84 79 80\\n", "83 69 67 82 69 84"], highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Call <code>line.split()</code> to break the string into a list of individual number strings.</p><p>The <code>split()</code> method splits on whitespace by default, so <code>\"84 79 80\\n\"</code> becomes <code>[\"84\", \"79\", \"80\"]</code>. The newline character is also treated as whitespace and is removed.</p>",
+      highlightLines: [7],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": { value: "\"84 79 80\\n\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop: number = "84" ---
+    {
+      explanation: "<p>Start the inner <code>for</code> loop. This loop processes each number string in <code>splits</code>.</p><p><strong>Inner iteration 1:</strong> <code>number</code> is <code>\"84\"</code>.</p>",
+      highlightLines: [9],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Convert the string <code>\"84\"</code> to an integer: <code>int(\"84\")</code> gives us <code>84</code>.</p>",
+      highlightLines: [10],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Convert the ASCII number to its character: <code>chr(84)</code> gives us <code>'T'</code>.</p><p>In the ASCII table, <code>84</code> is the code for the uppercase letter <code>T</code>.</p>",
+      highlightLines: [11],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": { value: 84, highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Write the character <code>'T'</code> to the output file.</p><p>The <code>translated.txt</code> file now contains: <code>T</code>.</p>",
+      highlightLines: [12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": { value: "\"T\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["T"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop: number = "79" ---
+    {
+      explanation: "<p><strong>Inner iteration 2:</strong> <code>number</code> is <code>\"79\"</code>.</p><p><code>int(\"79\")</code> → <code>79</code>. <code>chr(79)</code> → <code>'O'</code>. Write <code>'O'</code> to the file.</p><p>You can see the pattern now: each number is converted to an integer, then to its ASCII character, then written to the output file.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"79\"", highlight: true }, "asciiNo": { value: 79, highlight: true }, "character": { value: "\"O\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TO"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop: number = "80" ---
+    {
+      explanation: "<p><strong>Inner iteration 3:</strong> <code>number</code> is <code>\"80\"</code>.</p><p><code>int(\"80\")</code> → <code>80</code>. <code>chr(80)</code> → <code>'P'</code>. Write <code>'P'</code> to the file.</p><p>That's the last number in line 1, so the inner loop finishes.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"80\"", highlight: true }, "asciiNo": { value: 80, highlight: true }, "character": { value: "\"P\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOP"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // =============================================
+    // Outer loop — iteration 2: line = "83 69 67 82 69 84"
+    // =============================================
+    {
+      explanation: "<p>The inner loop has finished processing all numbers in line 1. The outer <code>for</code> loop moves to the next line.</p><p><strong>Line 2:</strong> <code>line</code> is now <code>\"83 69 67 82 69 84\"</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": { value: "\"83 69 67 82 69 84\"", highlight: true }, "splits": ['"84"', '"79"', '"80"'], "number": "\"80\"", "asciiNo": 80, "character": "\"P\"" },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOP"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Split line 2 into individual number strings: <code>[\"83\", \"69\", \"67\", \"82\", \"69\", \"84\"]</code>.</p>",
+      highlightLines: [7],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"80\"", "asciiNo": 80, "character": "\"P\"" },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOP"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop line 2: number = "83" ---
+    {
+      explanation: "<p><strong>Inner iteration 1 (line 2):</strong> <code>number</code> is <code>\"83\"</code>.</p><p><code>int(\"83\")</code> → <code>83</code>. <code>chr(83)</code> → <code>'S'</code>. Write <code>'S'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: true }, "number": { value: "\"83\"", highlight: true }, "asciiNo": { value: 83, highlight: true }, "character": { value: "\"S\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPS"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop line 2: number = "69" ---
+    {
+      explanation: "<p><strong>Inner iteration 2:</strong> <code>number</code> is <code>\"69\"</code>.</p><p><code>int(\"69\")</code> → <code>69</code>. <code>chr(69)</code> → <code>'E'</code>. Write <code>'E'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"69\"", highlight: true }, "asciiNo": { value: 69, highlight: true }, "character": { value: "\"E\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSE"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop line 2: number = "67" ---
+    {
+      explanation: "<p><strong>Inner iteration 3:</strong> <code>number</code> is <code>\"67\"</code>.</p><p><code>int(\"67\")</code> → <code>67</code>. <code>chr(67)</code> → <code>'C'</code>. Write <code>'C'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"67\"", highlight: true }, "asciiNo": { value: 67, highlight: true }, "character": { value: "\"C\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSEC"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop line 2: number = "82" ---
+    {
+      explanation: "<p><strong>Inner iteration 4:</strong> <code>number</code> is <code>\"82\"</code>.</p><p><code>int(\"82\")</code> → <code>82</code>. <code>chr(82)</code> → <code>'R'</code>. Write <code>'R'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"82\"", highlight: true }, "asciiNo": { value: 82, highlight: true }, "character": { value: "\"R\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECR"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop line 2: number = "69" ---
+    {
+      explanation: "<p><strong>Inner iteration 5:</strong> <code>number</code> is <code>\"69\"</code> again.</p><p><code>int(\"69\")</code> → <code>69</code>. <code>chr(69)</code> → <code>'E'</code>. Write <code>'E'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"69\"", "asciiNo": 69, "character": "\"E\"" },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRE"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- Inner loop line 2: number = "84" ---
+    {
+      explanation: "<p><strong>Inner iteration 6:</strong> <code>number</code> is <code>\"84\"</code>.</p><p><code>int(\"84\")</code> → <code>84</code>. <code>chr(84)</code> → <code>'T'</code>. Write <code>'T'</code> to the file.</p><p>That's the last number in line 2, so the inner loop finishes.</p>",
+      highlightLines: [9, 10, 11, 12],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true }, "asciiNo": { value: 84, highlight: true }, "character": { value: "\"T\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // =============================================
+    // Outer loop ends — close files
+    // =============================================
+    {
+      explanation: "<p>Both the inner and outer loops have finished. All numbers from both lines have been decoded and written to the output file.</p><p>Now we close the input file.</p>",
+      highlightLines: [14],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Close the output file.</p><p>It's important to always close files when you're done with them. This ensures all data is properly written to disk and frees up system resources.</p>",
+      highlightLines: [15],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    // --- End ---
+    {
+      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program uses <strong>nested loops</strong> — an outer loop to process each line of the file, and an inner loop to process each number within that line.</p><p>The <code>readlines()</code> method reads all lines from a file into a list, and <code>split()</code> breaks a string into a list of substrings based on whitespace.</p><p>The <code>int()</code> and <code>chr()</code> functions work together to convert number strings into their corresponding ASCII characters — the reverse of what we saw with <code>ord()</code> in the Caesar Cipher tutorial.</p><p>Always remember to <code>close()</code> your files when you're done!</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" },
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
+        }
+      ]
+    }
+  ]
+};

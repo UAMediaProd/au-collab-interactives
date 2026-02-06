@@ -286,6 +286,31 @@ const routes = [
     name: 'PSP: Prac 7 Question 13',
     component: () => import('../views/PSP_P7Q13.vue')
   },
+  {
+    path: '/psp-tp1',
+    name: 'PSP: Team Problem 1 (Two-up)',
+    component: () => import('../views/PSP_TP1.vue')
+  },
+  {
+    path: '/psp-tp2',
+    name: 'PSP: Team Problem 2 (Craps)',
+    component: () => import('../views/PSP_TP2.vue')
+  },
+  {
+    path: '/psp-tp3',
+    name: 'PSP: Team Problem 3 (Caesar Cipher)',
+    component: () => import('../views/PSP_TP3.vue')
+  },
+  {
+    path: '/psp-tp4',
+    name: 'PSP: Team Problem 4 (Crack the Code)',
+    component: () => import('../views/PSP_TP4.vue')
+  },
+  {
+    path: '/psp-tp5',
+    name: 'PSP: Team Problem 5 (Credit Card Validation)',
+    component: () => import('../views/PSP_TP5.vue')
+  },
 ]
 
 const router = createRouter({
