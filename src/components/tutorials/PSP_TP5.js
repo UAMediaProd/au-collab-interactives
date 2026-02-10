@@ -172,7 +172,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: 0 } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -287,7 +287,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"79\"", highlight: true }, "asciiNo": { value: 79, highlight: true }, "character": { value: "\"O\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: 1 }, "number": { value: "\"79\"", highlight: true }, "asciiNo": { value: 79, highlight: true }, "character": { value: "\"O\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -318,7 +318,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"80\"", highlight: true }, "asciiNo": { value: 80, highlight: true }, "character": { value: "\"P\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: 2 }, "number": { value: "\"80\"", highlight: true }, "asciiNo": { value: 80, highlight: true }, "character": { value: "\"P\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -412,7 +412,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: true }, "number": { value: "\"83\"", highlight: true }, "asciiNo": { value: 83, highlight: true }, "character": { value: "\"S\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: 0 }, "number": { value: "\"83\"", highlight: true }, "asciiNo": { value: 83, highlight: true }, "character": { value: "\"S\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -443,7 +443,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"69\"", highlight: true }, "asciiNo": { value: 69, highlight: true }, "character": { value: "\"E\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: 1 }, "number": { value: "\"69\"", highlight: true }, "asciiNo": { value: 69, highlight: true }, "character": { value: "\"E\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -474,7 +474,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"67\"", highlight: true }, "asciiNo": { value: 67, highlight: true }, "character": { value: "\"C\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: 2 }, "number": { value: "\"67\"", highlight: true }, "asciiNo": { value: 67, highlight: true }, "character": { value: "\"C\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -505,7 +505,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"82\"", highlight: true }, "asciiNo": { value: 82, highlight: true }, "character": { value: "\"R\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: 3 }, "number": { value: "\"82\"", highlight: true }, "asciiNo": { value: 82, highlight: true }, "character": { value: "\"R\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -536,7 +536,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"69\"", "asciiNo": 69, "character": "\"E\"" },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: 4 }, "number": "\"69\"", "asciiNo": 69, "character": "\"E\"" },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -567,7 +567,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true }, "asciiNo": { value: 84, highlight: true }, "character": { value: "\"T\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: 5 }, "number": { value: "\"84\"", highlight: true }, "asciiNo": { value: 84, highlight: true }, "character": { value: "\"T\"", highlight: true } },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -600,7 +600,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -630,7 +630,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },
@@ -660,7 +660,7 @@ outfile.close()`,
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
           connections: [
             { from: "infile", toKey: "infile" },
             { from: "outfile", toKey: "outfile" },

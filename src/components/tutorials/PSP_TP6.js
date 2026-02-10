@@ -197,7 +197,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9], highlight: true }, "number": "\"9\"" },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9], highlight: 1 }, "number": "\"9\"" },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -218,7 +218,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], highlight: true }, "number": { value: "\"3\"", highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], highlight: [2,3,4,5,6,7,8,9,10] }, "number": { value: "\"3\"", highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -307,7 +307,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 9 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], highlight: [9] }, "number": "\"3\"", "double_digit_sum": 0, "index": 9 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -329,7 +329,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": { value: 2, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], highlight: [9] }, "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": { value: 2, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -352,7 +352,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": 2 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], highlight: [9] }, "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": 2 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -375,7 +375,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": 2 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], highlight: [9] }, "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": 2 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -402,7 +402,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 7, highlight: true }, "product": 2 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], highlight: [7] }, "number": "\"3\"", "double_digit_sum": 0, "index": { value: 7, highlight: true }, "product": 2 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -425,7 +425,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": 2 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], highlight: [7] }, "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": 2 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -448,7 +448,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": { value: 16, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], highlight: [7] }, "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": { value: 16, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -471,7 +471,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": 16 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], highlight: [7] }, "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": 16 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -498,7 +498,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 5, highlight: true }, "product": 16 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], highlight: [5] }, "number": "\"3\"", "double_digit_sum": 0, "index": { value: 5, highlight: true }, "product": 16 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -521,7 +521,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": 16 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], highlight: [5] }, "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": 16 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -544,7 +544,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": { value: 6, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], highlight: [5] }, "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": { value: 6, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -567,7 +567,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": 6 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], highlight: [5] }, "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": 6 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -594,7 +594,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 3, highlight: true }, "product": 6 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], highlight: [3] }, "number": "\"3\"", "double_digit_sum": 0, "index": { value: 3, highlight: true }, "product": 6 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -617,7 +617,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": 6 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], highlight: [3] }, "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": 6 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -640,7 +640,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": { value: 4, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], highlight: [3] }, "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": { value: 4, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -663,7 +663,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": 4 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [3] }, "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": 4 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -690,7 +690,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 1, highlight: true }, "product": 4 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [1] }, "number": "\"3\"", "double_digit_sum": 0, "index": { value: 1, highlight: true }, "product": 4 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -713,7 +713,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": 4 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [1] }, "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": 4 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -736,7 +736,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": { value: 18, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [1] }, "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": { value: 18, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -759,7 +759,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": 18 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [1] }, "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": 18 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -856,7 +856,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": { value: 7, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": 0 },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [0] }, "number": { value: 7, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": 0 },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -880,7 +880,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": { value: 9, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 16, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [1] }, "number": { value: 9, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 16, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -905,7 +905,7 @@ else:
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": { value: 3, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 70, highlight: true } },
+          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: [2,3,4,5,6,7,8,9,10] }, "number": { value: 3, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 70, highlight: true } },
           connections: [
             { from: "card_number", toKey: "card_number" },
             { from: "length", toKey: "length" },
@@ -976,7 +976,7 @@ else:
     },
     // --- End ---
     {
-      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program implements <strong>Luhn's algorithm</strong>, a checksum formula used to validate credit card numbers, IMEI numbers, and other identification numbers.</p><p>The algorithm has three main phases: first, it converts the card number string into a list of individual digits. Second, starting from the rightmost digit and moving left, it doubles every second digit — if the result is greater than 9, it sums the two digits of the product using integer division (<code>//</code>) and modulo (<code>%</code>). Finally, it adds all the digits together and checks if the total is divisible by 10.</p><p>Notice how the program uses a <code>while</code> loop with <code>index -= 2</code> to skip every other digit, rather than a <code>for</code> loop. This gives us precise control over which indices we visit.</p>",
+      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program implements <strong>Luhn's algorithm</strong>, a checksum formula used to validate credit card numbers, IMEI numbers, and other identification numbers.</p><p>Notice how the program uses a <code>while</code> loop with <code>index -= 2</code> to skip every other digit, rather than a <code>for</code> loop. This gives us precise control over which indices we visit.</p>",
       boxes: [
         {
           title: "Memory",
