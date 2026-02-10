@@ -761,7 +761,8 @@ pre code.hljs {
 /* Stacked array items */
 .array-item-box.stacked-item {
   border-left: 1px solid black;
-  border-top: none;
+  /* border-top: none; */
+  margin-bottom: -1px;
 }
 
 .array-item-box.stacked-item.first-item {
