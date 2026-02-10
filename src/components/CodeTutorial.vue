@@ -737,10 +737,13 @@ pre code.hljs {
   border: 1px solid black;
   padding: 0.1rem 0.3rem;
   background: white;
-  position: relative;
-  display: inline-block;
+  /* position: relative; */
+  /* display: inline-block; */
   min-width: 2rem;
+  /* max-width: 60%; */
+  float: right;
   text-align: center;
+
 }
 
 .array-item-box {

@@ -35,7 +35,8 @@
       </template>
       
       <!-- Regular grid for non-array values -->
-      <div v-else class="grid grid-cols-[2fr_1fr] gap-x-4">
+      <!-- <div v-else class="grid grid-cols-[2fr_1fr] gap-x-4"> -->
+      <div v-else class="flex justify-between items-center">
       <!-- Determine if this is a simple value or an object with metadata -->
       <template v-if="typeof valueData === 'object' && valueData !== null && 'value' in valueData">
         <!-- This is a value with metadata -->
@@ -51,7 +52,7 @@
         <div v-else class="font-mono variable-name m-auto"></div>
         
         <!-- Only show value if valued=true (default) or not specified -->
-        <div v-if="valueData.valued !== false" class="m-auto">
+        <div v-if="valueData.valued !== false" class="--m-auto">
           <span 
             v-if="box.useHtml" 
             v-html="valueData.value" 
@@ -79,7 +80,8 @@
             :ref="el => { if (el) varRefs.set(`var-${box.title}-${key}`, el) }"
           >{{ key === '' ? '' : key }}</span>
         </div>
-        <div class="m-auto">
+        <!-- <div class="m-auto"> -->
+        <div>
           <span 
             v-if="box.useHtml" 
             v-html="valueData" 
