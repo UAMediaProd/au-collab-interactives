@@ -1,37 +1,41 @@
 export default {
-  code: `encrypt_string = input("\\nPlease enter string to encrypt: ")
+  code: `import random
 
-offset = int(input("Please enter offset value (1 to 94): "))
-while offset < 1 or offset > 94:
-    offset = int(input("Please enter offset value (1 to 94): "))
+die1 = random.randint(1,6)
+die2 = random.randint(1,6)
 
-new_string = ""
+total = die1 + die2
+print('Player rolled', die1, '+', die2, '=', total)
 
-for char in encrypt_string:
-    value = ord(char)
+if total == 7 or total == 11:
+    print('You win!')
+elif total == 2 or total == 3 or total == 12:
+    print('You lose!')
+else:
+    point = 0
+    print('Point to make is', total)
 
-    value += offset
+    while point != 7 and total != point:
 
-    if value > 126:
-        value -= 95
+        die1 = random.randint(1,6)
+        die2 = random.randint(1,6)
 
-    new_char = chr(value)
-    new_string += new_char
+        point = die1 + die2
+        print('Player rolled', die1, '+', die2, '=', point)
 
-print("\\nEncrypted string:")
-print(new_string)`,
+
+    if point == 7:
+        print('You lose!')
+    else:
+        print('You win!')`,
   steps: [
     // =============================================
-    // Scenario:
-    //   encrypt_string = "Hi~"
-    //   offset = 5 (valid on first try — while loop skipped)
-    //   Loop iter 1: char='H', ord=72, +5=77, ≤126, chr(77)='M'
-    //   Loop iter 2: char='i', ord=105, +5=110, ≤126, chr(110)='n'
-    //   Loop iter 3: char='~', ord=126, +5=131, >126, 131-95=36, chr(36)='$'
-    //   Result: "Mn$"
+    // Scenario: die1=3, die2=5, total=8 → else branch (point game)
+    //   Loop iter 1: die1=2, die2=4, point=6 → loop again
+    //   Loop iter 2: die1=4, die2=4, point=8 → matches total → exit loop → "You win!"
     // =============================================
     {
-      explanation: "<p><strong>Caesar Cipher</strong> is one of the simplest encryption techniques.</p><p>Each character in the message is shifted forward by a fixed number of positions (the <strong>offset</strong>). For example, with an offset of 3, the letter <code>'A'</code> becomes <code>'D'</code>.</p><p>This program uses ASCII values to perform the shift, which means it works on all printable characters — not just letters.</p><p>Let's trace through it step by step.</p>",
+      explanation: "<p><strong>Craps</strong> is a popular dice game.</p><p>The player rolls two dice. If the total is <strong>7</strong> or <strong>11</strong>, they win immediately. If the total is <strong>2</strong>, <strong>3</strong>, or <strong>12</strong>, they lose immediately.</p><p>Any other total becomes the <strong>\"point\"</strong>. The player then keeps rolling until they either match the point (win) or roll a 7 (lose).</p><p>Let's trace through this program step by step.</p>",
       highlightLines: [],
       boxes: [
         {
@@ -45,7 +49,7 @@ print(new_string)`,
       ]
     },
     {
-      explanation: "<p>Prompt the user to enter a string to encrypt.</p><p>The <code>input()</code> function displays the prompt and waits for the user to type something.</p",
+      explanation: "<p>Import the <code>random</code> module.</p><p>We need this to generate random numbers that simulate dice rolls.</p>",
       highlightLines: [0],
       boxes: [
         {
@@ -59,8 +63,8 @@ print(new_string)`,
       ]
     },
     {
-      explanation: "<p>For this walkthrough, let's say the user enters <code>\"Hi~\"</code>.</p>",
-      highlightLines: [0],
+      explanation: "<p>Roll the first die by calling <code>random.randint(1,6)</code>.</p><p>This generates a random integer between <code>1</code> and <code>6</code> (inclusive), just like a real six-sided die.</p><p>For this walkthrough, let's say it returns <code>3</code>.</p>",
+      highlightLines: [2],
       boxes: [
         {
           title: "Memory",
@@ -68,564 +72,471 @@ print(new_string)`,
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: "]
+          values: []
         }
       ]
     },
     {
-      explanation: "<p>Prompt the user for an offset value.</p><p>The <code>input()</code> function returns a string, so we wrap it in <code>int()</code> to convert it to an integer.</p>",
-      highlightLines: [2],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": { value: "\"Hi~\"", highlight: true } },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Let's say the user enters <code>5</code>.</p>",
-      highlightLines: [2],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": { value: "\"Hi~\"", highlight: true } },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): "]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Check the <code>while</code> loop condition: is <code>offset < 1 or offset > 94</code>?</p><p><code>offset</code> is <code>5</code>. Is <code>5 < 1</code>? No. Is <code>5 > 94</code>? No.</p><p>Both parts are <code>False</code>, so the overall condition is <code>False</code>. We skip the loop entirely.</p><p>This loop is a <strong>validation loop</strong> — it only runs if the user enters an invalid offset, forcing them to try again.</p>",
+      explanation: "<p>Roll the second die.</p><p>Let's say it returns <code>5</code>.</p>",
       highlightLines: [3],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": { value: 5, highlight: true } },
+          values: { "die1": { value: 3, highlight: true } },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" }
+            { from: "die1", toKey: "die1" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: []
         }
       ]
     },
     {
-      explanation: "<p>Create an empty string called <code>new_string</code>.</p><p>We'll build up the encrypted result one character at a time by appending to this string.</p>",
+      explanation: "<p>Calculate the total of both dice: <code>3 + 5 = 8</code>.</p><p>Store the result in <code>total</code>.</p>",
+      highlightLines: [5],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 3, "die2": { value: 5, highlight: true } },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" }
+          ]
+        },
+        {
+          title: "Output",
+          values: []
+        }
+      ]
+    },
+    {
+      explanation: "<p>Print the result of the roll.</p><p>Python's <code>print</code> function automatically adds spaces between each argument, so this outputs: <code>Player rolled 3 + 5 = 8</code>.</p>",
       highlightLines: [6],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5 },
+          values: { "die1": 3, "die2": 5, "total": { value: 8, highlight: true } },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: []
         }
       ]
     },
-    // =============================================
-    // for loop — iteration 1: char = 'H'
-    // =============================================
+    // --- First condition: total == 7 or total == 11 ---
     {
-      explanation: "<p>Start the <code>for</code> loop. This loop goes through each character in <code>encrypt_string</code> one at a time.</p><p><strong>Iteration 1:</strong> <code>char</code> is assigned the first character: <code>'H'</code>.</p>",
+      explanation: "<p>Now we check the result.</p><p>Is <code>total == 7 or total == 11</code>?</p><p><code>total</code> is <code>8</code>. It's not <code>7</code> and it's not <code>11</code>, so this condition is <code>False</code>.</p><p>We skip this block and move to the <code>elif</code>.</p>",
       highlightLines: [8],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"\"", highlight: true } },
+          values: { "die1": 3, "die2": 5, "total": 8 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8"]
         }
       ]
     },
+    // --- Second condition: total == 2 or total == 3 or total == 12 ---
     {
-      explanation: "<p>Call <code>ord('H')</code> to get the ASCII value of <code>'H'</code>.</p><p>The <code>ord()</code> function returns the numeric code for a character. For <code>'H'</code>, that's <code>72</code>.</p>",
-      highlightLines: [9],
+      explanation: "<p>Is <code>total == 2 or total == 3 or total == 12</code>?</p><p><code>total</code> is <code>8</code>. It's not <code>2</code>, not <code>3</code>, and not <code>12</code>, so this condition is also <code>False</code>.</p><p>We skip this block too and move to the <code>else</code>.</p>",
+      highlightLines: [10],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": { value: "\"H\"", highlight: true } },
+          values: { "die1": 3, "die2": 5, "total": 8 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8"]
         }
       ]
     },
+    // --- else branch ---
     {
-      explanation: "<p>Add the offset to the value: <code>72 + 5 = 77</code>.</p><p>This shifts the character forward by 5 positions in the ASCII table.</p>",
-      highlightLines: [11],
+      explanation: "<p>Since neither of the previous conditions was <code>True</code>, we enter the <code>else</code> block.</p><p>This means the player didn't win or lose on the first roll. The game continues!</p>",
+      highlightLines: [12],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": { value: 72, highlight: true } },
+          values: { "die1": 3, "die2": 5, "total": 8 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8"]
         }
       ]
     },
     {
-      explanation: "<p>Is <code>value > 126</code>?</p><p><code>value</code> is <code>77</code>. <code>77 > 126</code> is <code>False</code>, so we skip this block.</p><p>The value is still within the printable ASCII range (32–126), so no wrapping is needed.</p>",
+      explanation: "<p>Create a variable called <code>point</code> and set it to <code>0</code>.</p><p>This variable will store the total of each subsequent roll. We initialise it to <code>0</code> so the <code>while</code> loop condition will be <code>True</code> on the first check.</p>",
       highlightLines: [13],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": { value: 77, highlight: true } },
+          values: { "die1": 3, "die2": 5, "total": 8 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8"]
         }
       ]
     },
     {
-      explanation: "<p>Convert the value back to a character using <code>chr(77)</code>.</p><p>The <code>chr()</code> function is the opposite of <code>ord()</code> — it takes a number and returns the corresponding character. <code>chr(77)</code> gives us <code>'M'</code>.</p>",
-      highlightLines: [16],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": 77 },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Append <code>new_char</code> to <code>new_string</code>.</p><p><code>new_string</code> was <code>\"\"</code> (empty). Now it becomes <code>\"M\"</code>.</p><p>We've encrypted the first character: <code>'H'</code> → <code>'M'</code>.</p>",
-      highlightLines: [17],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": 77, "new_char": { value: "\"M\"", highlight: true } },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    // =============================================
-    // for loop — iteration 2: char = 'i'
-    // =============================================
-    {
-      explanation: "<p><strong>Iteration 2:</strong> The <code>for</code> loop moves to the next character. <code>char</code> is now <code>'i'</code>.</p>",
-      highlightLines: [8],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"M\"", highlight: true }, "char": "\"H\"", "value": 77, "new_char": "\"M\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Get the ASCII value of <code>'i'</code>: <code>ord('i')</code> returns <code>105</code>.</p>",
-      highlightLines: [9],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": { value: "\"i\"", highlight: true }, "value": 77, "new_char": "\"M\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Add the offset: <code>105 + 5 = 110</code>.</p>",
-      highlightLines: [11],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": { value: 105, highlight: true }, "new_char": "\"M\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Is <code>value > 126</code>?</p><p><code>110 > 126</code> is <code>False</code>. No wrapping needed.</p>",
-      highlightLines: [13],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": { value: 110, highlight: true }, "new_char": "\"M\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Convert back to a character: <code>chr(110)</code> gives us <code>'n'</code>.</p>",
-      highlightLines: [16],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": 110, "new_char": "\"M\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Append <code>'n'</code> to <code>new_string</code>.</p><p><code>new_string</code> becomes <code>\"Mn\"</code>.</p><p>Second character encrypted: <code>'i'</code> → <code>'n'</code>.</p>",
-      highlightLines: [17],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": 110, "new_char": { value: "\"n\"", highlight: true } },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    // =============================================
-    // for loop — iteration 3: char = '~'
-    // =============================================
-    {
-      explanation: "<p><strong>Iteration 3:</strong> The <code>for</code> loop moves to the last character. <code>char</code> is now <code>'~'</code>.</p><p>This is the tilde character — it has the highest ASCII value of the standard printable characters (<code>126</code>). Let's see what happens when we add the offset.</p>",
-      highlightLines: [8],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"Mn\"", highlight: true }, "char": "\"i\"", "value": 110, "new_char": "\"n\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Get the ASCII value of <code>'~'</code>: <code>ord('~')</code> returns <code>126</code>.</p>",
-      highlightLines: [9],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": { value: "\"~\"", highlight: true }, "value": 110, "new_char": "\"n\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Add the offset: <code>126 + 5 = 131</code>.</p><p>Uh oh — <code>131</code> is beyond the printable ASCII range! There's no standard printable character for this value.</p>",
-      highlightLines: [11],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": { value: 126, highlight: true }, "new_char": "\"n\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Is <code>value > 126</code>?</p><p><code>131 > 126</code> is <code>True</code>! We enter this block.</p><p>This is the <strong>wrap-around</strong> check. When the shifted value goes past the end of the printable ASCII range, we need to wrap it back to the beginning.</p>",
-      highlightLines: [13],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": { value: 131, highlight: true }, "new_char": "\"n\"" },
-          connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Subtract <code>95</code> to wrap around: <code>131 - 95 = 36</code>.</p><p>Why <code>95</code>? Because there are 95 printable ASCII characters (from space at <code>32</code> to tilde at <code>126</code>). Subtracting 95 wraps us back to the start of this range.</p>",
+      explanation: "<p>Print the point the player needs to match: <code>Point to make is 8</code>.</p><p>The player must now keep rolling until they roll an <code>8</code> (win) or a <code>7</code> (lose).</p>",
       highlightLines: [14],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": 131, "new_char": "\"n\"" },
+          values: { "die1": 3, "die2": 5, "total": 8, "point": { value: 0, highlight: true } },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8"]
         }
       ]
     },
+    // --- while loop condition (first check) ---
     {
-      explanation: "<p>Convert back to a character: <code>chr(36)</code> gives us <code>'$'</code>.</p>",
+      explanation: "<p>Check the <code>while</code> loop condition: <code>point != 7 and total != point</code>.</p><p><code>point</code> is <code>0</code> and <code>total</code> is <code>8</code>.</p><p>Is <code>0 != 7</code>? Yes. Is <code>8 != 0</code>? Yes. Both parts are <code>True</code>, so the overall condition is <code>True</code>.</p><p>We enter the loop body.</p>",
       highlightLines: [16],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": { value: 36, highlight: true }, "new_char": "\"n\"" },
+          values: { "die1": 3, "die2": 5, "total": 8, "point": 0 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8"]
         }
       ]
     },
+    // =============================================
+    // Loop iteration 1: die1=2, die2=4, point=6
+    // =============================================
     {
-      explanation: "<p>Append <code>'$'</code> to <code>new_string</code>.</p><p><code>new_string</code> becomes <code>\"Mn$\"</code>.</p><p>Third character encrypted: <code>'~'</code> → <code>'$'</code> (with wrap-around).</p>",
-      highlightLines: [17],
+      explanation: "<p><strong>Loop iteration 1:</strong> Roll the first die again.</p><p>Let's say it returns <code>2</code>.</p>",
+      highlightLines: [18],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": 36, "new_char": { value: "\"$\"", highlight: true } },
+          values: { "die1": 3, "die2": 5, "total": 8, "point": 0 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8"]
         }
       ]
     },
-    // =============================================
-    // for loop ends
-    // =============================================
     {
-      explanation: "<p>The <code>for</code> loop has finished — we've processed every character in <code>encrypt_string</code>.</p><p>Print the label <code>\"Encrypted string:\"</code>.</p>",
+      explanation: "<p>Roll the second die.</p><p>Let's say it returns <code>4</code>.</p>",
       highlightLines: [19],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"Mn$\"", highlight: true }, "char": "\"~\"", "value": 36, "new_char": "\"$\"" },
+          values: { "die1": { value: 2, highlight: true }, "die2": 5, "total": 8, "point": 0 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8"]
         }
       ]
     },
     {
-      explanation: "<p>Print the encrypted string: <code>\"Mn$\"</code>.</p>",
-      highlightLines: [20],
+      explanation: "<p>Calculate the new roll total: <code>2 + 4 = 6</code>.</p><p>Store this in <code>point</code>.</p>",
+      highlightLines: [21],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn$\"", "char": "\"~\"", "value": 36, "new_char": "\"$\"" },
+          values: { "die1": 2, "die2": { value: 4, highlight: true }, "total": 8, "point": 0 },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5", "", "Encrypted string:"]
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8"]
         }
       ]
     },
     {
-      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>The <code>for</code> loop processes each character individually — this is a common pattern when working with strings in Python.</p><p>The <code>ord()</code> and <code>chr()</code> functions let us convert between characters and their numeric ASCII values, making it easy to perform arithmetic on characters.</p><p>The <code>if value > 126</code> check handles the <strong>wrap-around</strong> case: when shifting pushes a character past the end of the printable ASCII range, we subtract 95 to wrap it back to the beginning. This ensures every encrypted character is still a printable character.</p>",
+      explanation: "<p>Print the result of this roll: <code>Player rolled 2 + 4 = 6</code>.</p>",
+      highlightLines: [22],
       boxes: [
         {
           title: "Memory",
-          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn$\"", "char": "\"~\"", "value": 36, "new_char": "\"$\"" },
+          values: { "die1": 2, "die2": 4, "total": 8, "point": { value: 6, highlight: true } },
           connections: [
-            { from: "encrypt_string", toKey: "encrypt_string" },
-            { from: "offset", toKey: "offset" },
-            { from: "new_string", toKey: "new_string" },
-            { from: "char", toKey: "char" },
-            { from: "value", toKey: "value" },
-            { from: "new_char", toKey: "new_char" }
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
           ]
         },
         {
           title: "Output",
-          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5", "", "Encrypted string:", "Mn$"]
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8"]
+        }
+      ]
+    },
+    // --- while loop condition (second check) ---
+    {
+      explanation: "<p>We've reached the end of the loop body, so we jump back up to the <code>while</code> condition.</p><p>Is <code>point != 7 and total != point</code>?</p><p><code>point</code> is <code>6</code> and <code>total</code> is <code>8</code>.</p><p>Is <code>6 != 7</code>? Yes. Is <code>8 != 6</code>? Yes. Both parts are <code>True</code>, so the loop runs again.</p><p>The player didn't roll a <code>7</code> or match their point of <code>8</code>, so they must keep rolling.</p>",
+      highlightLines: [16],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 2, "die2": 4, "total": 8, "point": 6 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6"]
+        }
+      ]
+    },
+    // =============================================
+    // Loop iteration 2: die1=4, die2=4, point=8
+    // =============================================
+    {
+      explanation: "<p><strong>Loop iteration 2:</strong> Roll the first die again.</p><p>This time it returns <code>4</code>.</p>",
+      highlightLines: [18],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 2, "die2": 4, "total": 8, "point": 6 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Roll the second die.</p><p>It also returns <code>4</code>.</p>",
+      highlightLines: [19],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": { value: 4, highlight: true }, "die2": 4, "total": 8, "point": 6 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Calculate the new roll total: <code>4 + 4 = 8</code>.</p><p>Store this in <code>point</code>. Notice that <code>point</code> is now <code>8</code> — the same as <code>total</code>!</p>",
+      highlightLines: [21],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": { value: 4, highlight: true }, "total": 8, "point": 6 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Print the result of this roll: <code>Player rolled 4 + 4 = 8</code>.</p>",
+      highlightLines: [22],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": 4, "total": 8, "point": { value: 8, highlight: true } },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6"]
+        }
+      ]
+    },
+    // --- while loop condition (third check — exits) ---
+    {
+      explanation: "<p>Back to the <code>while</code> condition: <code>point != 7 and total != point</code>.</p><p><code>point</code> is <code>8</code> and <code>total</code> is <code>8</code>.</p><p>Is <code>8 != 7</code>? Yes. But is <code>8 != 8</code>? No! This part is <code>False</code>.</p><p>Because we're using <code>and</code>, both parts must be <code>True</code> for the whole condition to be <code>True</code>. Since one part is <code>False</code>, the condition is <code>False</code> and the loop <strong>exits</strong>.</p>",
+      highlightLines: [16],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": 4, "total": 8, "point": 8 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6", "Player rolled 4 + 4 = 8"]
+        }
+      ]
+    },
+    // --- Post-loop: if point == 7 ---
+    {
+      explanation: "<p>Now that the loop has finished, we check why it ended.</p><p>Is <code>point == 7</code>?</p><p><code>point</code> is <code>8</code>, not <code>7</code>, so this condition is <code>False</code>. We skip this block.</p>",
+      highlightLines: [25],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": 4, "total": 8, "point": 8 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6", "Player rolled 4 + 4 = 8"]
+        }
+      ]
+    },
+    // --- else: print You win ---
+    {
+      explanation: "<p>Since <code>point</code> is not <code>7</code>, we enter the <code>else</code> block.</p><p>The only other reason the loop could have ended is that <code>point</code> matched <code>total</code> — and it did! The player rolled their point of <code>8</code>.</p>",
+      highlightLines: [27],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": 4, "total": 8, "point": 8 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6", "Player rolled 4 + 4 = 8"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Print <code>\"You win!\"</code>.</p><p>The player successfully matched their point!</p>",
+      highlightLines: [28],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": 4, "total": 8, "point": 8 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6", "Player rolled 4 + 4 = 8"]
+        }
+      ]
+    },
+    // --- End ---
+    {
+      explanation: "<p>The program has finished.</p><p><strong>Key takeaway:</strong> This program uses a combination of <code>if</code>/<code>elif</code>/<code>else</code> and a <code>while</code> loop to implement the full rules of Craps.</p><p>The first roll determines whether the player wins or loses immediately, or enters the \"point\" phase. The <code>while</code> loop keeps the player rolling until they either match their point (win) or roll a <code>7</code> (lose).</p><p>The loop condition <code>point != 7 and total != point</code> ensures the loop exits in either case. After the loop, a simple <code>if</code>/<code>else</code> checks which outcome occurred.</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { "die1": 4, "die2": 4, "total": 8, "point": 8 },
+          connections: [
+            { from: "die1", toKey: "die1" },
+            { from: "die2", toKey: "die2" },
+            { from: "total", toKey: "total" },
+            { from: "point", toKey: "point" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Player rolled 3 + 5 = 8", "Point to make is 8", "Player rolled 2 + 4 = 6", "Player rolled 4 + 4 = 8", "You win!"]
         }
       ]
     }

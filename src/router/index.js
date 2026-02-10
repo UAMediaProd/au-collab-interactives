@@ -288,28 +288,33 @@ const routes = [
   },
   {
     path: '/psp-tp1',
-    name: 'PSP: Team Problem 1 (Two-up)',
+    name: 'PSP: Team Problem 1 (Two-up Solution 1)',
     component: () => import('../views/PSP_TP1.vue')
   },
   {
     path: '/psp-tp2',
-    name: 'PSP: Team Problem 2 (Craps)',
+    name: 'PSP: Team Problem 2 (Two-up Solution 2)',
     component: () => import('../views/PSP_TP2.vue')
   },
   {
     path: '/psp-tp3',
-    name: 'PSP: Team Problem 3 (Caesar Cipher)',
+    name: 'PSP: Team Problem 3 (Craps)',
     component: () => import('../views/PSP_TP3.vue')
   },
   {
     path: '/psp-tp4',
-    name: 'PSP: Team Problem 4 (Crack the Code)',
+    name: 'PSP: Team Problem 4 (Caesar Cipher)',
     component: () => import('../views/PSP_TP4.vue')
   },
   {
     path: '/psp-tp5',
-    name: 'PSP: Team Problem 5 (Credit Card Validation)',
+    name: 'PSP: Team Problem 5 (Crack the Code)',
     component: () => import('../views/PSP_TP5.vue')
+  },
+  {
+    path: '/psp-tp6',
+    name: 'PSP: Team Problem 6 (Credit Card Validation)',
+    component: () => import('../views/PSP_TP6.vue')
   },
 ]
 

@@ -1,51 +1,51 @@
 export default {
-  code: `infile = open("intercepted.txt", "r")
-outfile = open("translated.txt", "w")
+  code: `encrypt_string = input("\\nPlease enter string to encrypt: ")
 
-linesList = infile.readlines()
+offset = int(input("Please enter offset value (1 to 94): "))
+while offset < 1 or offset > 94:
+    offset = int(input("Please enter offset value (1 to 94): "))
 
-for line in linesList:
+new_string = ""
 
-    splits = line.split()
+for char in encrypt_string:
+    value = ord(char)
 
-    for number in splits:
-        asciiNo = int(number)
-        character = chr(asciiNo)
-        outfile.write(str(character))
+    value += offset
 
-infile.close()
-outfile.close()`,
+    if value > 126:
+        value -= 95
+
+    new_char = chr(value)
+    new_string += new_char
+
+print("\\nEncrypted string:")
+print(new_string)`,
   steps: [
     // =============================================
     // Scenario:
-    //   intercepted.txt contains:
-    //     84 79 80
-    //     83 69 67 82 69 84
-    //   translated.txt output:
-    //     TOP
-    //     SECRET
+    //   encrypt_string = "Hi~"
+    //   offset = 5 (valid on first try — while loop skipped)
+    //   Loop iter 1: char='H', ord=72, +5=77, ≤126, chr(77)='M'
+    //   Loop iter 2: char='i', ord=105, +5=110, ≤126, chr(110)='n'
+    //   Loop iter 3: char='~', ord=126, +5=131, >126, 131-95=36, chr(36)='$'
+    //   Result: "Mn$"
     // =============================================
     {
-      explanation: "<p><strong>Crack the Code, Save the World!</strong></p><p>In this program, we read a file called <code>intercepted.txt</code> that contains a secret message encoded as ASCII numbers. Our job is to decode each number back into its corresponding character and write the result to a new file called <code>translated.txt</code>.</p><p>Let's trace through the program step by step.</p>",
+      explanation: "<p><strong>Caesar Cipher</strong> is one of the simplest encryption techniques.</p><p>Each character in the message is shifted forward by a fixed number of positions (the <strong>offset</strong>). For example, with an offset of 3, the letter <code>'A'</code> becomes <code>'D'</code>.</p><p>This program uses ASCII values to perform the shift, which means it works on all printable characters — not just letters.</p><p>Let's trace through it step by step.</p>",
       highlightLines: [],
       boxes: [
         {
           title: "Memory",
+          values: {}
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: []
         }
       ]
     },
     {
-      explanation: "<p>Open the file <code>intercepted.txt</code> in read mode (<code>\"r\"</code>).</p><p>This gives us a file object stored in <code>infile</code>, which we can use to read the file's contents.</p>",
+      explanation: "<p>Prompt the user to enter a string to encrypt.</p><p>The <code>input()</code> function displays the prompt and waits for the user to type something.</p",
       highlightLines: [0],
       boxes: [
         {
@@ -53,634 +53,579 @@ outfile.close()`,
           values: {}
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: []
         }
       ]
     },
     {
-      explanation: "<p>Open the file <code>translated.txt</code> in write mode (<code>\"w\"</code>).</p><p>This creates a new file (or overwrites it if it already exists) and gives us a file object stored in <code>outfile</code>.</p>",
-      highlightLines: [1],
+      explanation: "<p>For this walkthrough, let's say the user enters <code>\"Hi~\"</code>.</p>",
+      highlightLines: [0],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": { value: "file object", highlight: true } },
-          connections: [
-            { from: "infile", toKey: "infile" }
-          ]
+          values: {}
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: "]
         }
       ]
     },
     {
-      explanation: "<p>Call <code>infile.readlines()</code> to read all lines from the file into a list.</p><p>Each line becomes a separate string in the list. Our file has two lines, so <code>linesList</code> will contain two strings. Notice that the first line includes a newline character (<code>\\n</code>) at the end — this is how Python reads lines from a file.</p>",
+      explanation: "<p>Prompt the user for an offset value.</p><p>The <code>input()</code> function returns a string, so we wrap it in <code>int()</code> to convert it to an integer.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": { value: "\"Hi~\"", highlight: true } },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Let's say the user enters <code>5</code>.</p>",
+      highlightLines: [2],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": { value: "\"Hi~\"", highlight: true } },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): "]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Check the <code>while</code> loop condition: is <code>offset < 1 or offset > 94</code>?</p><p><code>offset</code> is <code>5</code>. Is <code>5 < 1</code>? No. Is <code>5 > 94</code>? No.</p><p>Both parts are <code>False</code>, so the overall condition is <code>False</code>. We skip the loop entirely.</p><p>This loop is a <strong>validation loop</strong> — it only runs if the user enters an invalid offset, forcing them to try again.</p>",
       highlightLines: [3],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": { value: "file object", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": { value: 5, highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Create an empty string called <code>new_string</code>.</p><p>We'll build up the encrypted result one character at a time by appending to this string.</p>",
+      highlightLines: [6],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5 },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" }
+          ]
         },
         {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     // =============================================
-    // Outer loop — iteration 1: line = "84 79 80\n"
+    // for loop — iteration 1: char = 'H'
     // =============================================
     {
-      explanation: "<p>Start the outer <code>for</code> loop. This loop processes each line in <code>linesList</code> one at a time.</p><p><strong>Line 1:</strong> <code>line</code> is assigned the first string: <code>\"84 79 80\\n\"</code>.</p>",
-      highlightLines: [5],
+      explanation: "<p>Start the <code>for</code> loop. This loop goes through each character in <code>encrypt_string</code> one at a time.</p><p><strong>Iteration 1:</strong> <code>char</code> is assigned the first character: <code>'H'</code>.</p>",
+      highlightLines: [8],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": { value: ["84 79 80\\n", "83 69 67 82 69 84"], highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"\"", highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     {
-      explanation: "<p>Call <code>line.split()</code> to break the string into a list of individual number strings.</p><p>The <code>split()</code> method splits on whitespace by default, so <code>\"84 79 80\\n\"</code> becomes <code>[\"84\", \"79\", \"80\"]</code>. The newline character is also treated as whitespace and is removed.</p>",
-      highlightLines: [7],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": { value: "\"84 79 80\\n\"", highlight: true } },
-          connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" }
-          ]
-        },
-        {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
-        }
-      ]
-    },
-    // --- Inner loop: number = "84" ---
-    {
-      explanation: "<p>Start the inner <code>for</code> loop. This loop processes each number string in <code>splits</code>.</p><p><strong>Inner iteration 1:</strong> <code>number</code> is <code>\"84\"</code>.</p>",
+      explanation: "<p>Call <code>ord('H')</code> to get the ASCII value of <code>'H'</code>.</p><p>The <code>ord()</code> function returns the numeric code for a character. For <code>'H'</code>, that's <code>72</code>.</p>",
       highlightLines: [9],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": { value: "\"H\"", highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     {
-      explanation: "<p>Convert the string <code>\"84\"</code> to an integer: <code>int(\"84\")</code> gives us <code>84</code>.</p>",
-      highlightLines: [10],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true } },
-          connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" }
-          ]
-        },
-        {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
-        }
-      ]
-    },
-    {
-      explanation: "<p>Convert the ASCII number to its character: <code>chr(84)</code> gives us <code>'T'</code>.</p><p>In the ASCII table, <code>84</code> is the code for the uppercase letter <code>T</code>.</p>",
+      explanation: "<p>Add the offset to the value: <code>72 + 5 = 77</code>.</p><p>This shifts the character forward by 5 positions in the ASCII table.</p>",
       highlightLines: [11],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": { value: 84, highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": { value: 72, highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: [],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     {
-      explanation: "<p>Write the character <code>'T'</code> to the output file.</p><p>The <code>translated.txt</code> file now contains: <code>T</code>.</p>",
-      highlightLines: [12],
+      explanation: "<p>Is <code>value > 126</code>?</p><p><code>value</code> is <code>77</code>. <code>77 > 126</code> is <code>False</code>, so we skip this block.</p><p>The value is still within the printable ASCII range (32–126), so no wrapping is needed.</p>",
+      highlightLines: [13],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": { value: "\"T\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": { value: 77, highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["T"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- Inner loop: number = "79" ---
     {
-      explanation: "<p><strong>Inner iteration 2:</strong> <code>number</code> is <code>\"79\"</code>.</p><p><code>int(\"79\")</code> → <code>79</code>. <code>chr(79)</code> → <code>'O'</code>. Write <code>'O'</code> to the file.</p><p>You can see the pattern now: each number is converted to an integer, then to its ASCII character, then written to the output file.</p>",
-      highlightLines: [9, 10, 11, 12],
+      explanation: "<p>Convert the value back to a character using <code>chr(77)</code>.</p><p>The <code>chr()</code> function is the opposite of <code>ord()</code> — it takes a number and returns the corresponding character. <code>chr(77)</code> gives us <code>'M'</code>.</p>",
+      highlightLines: [16],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"79\"", highlight: true }, "asciiNo": { value: 79, highlight: true }, "character": { value: "\"O\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": 77 },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TO"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- Inner loop: number = "80" ---
     {
-      explanation: "<p><strong>Inner iteration 3:</strong> <code>number</code> is <code>\"80\"</code>.</p><p><code>int(\"80\")</code> → <code>80</code>. <code>chr(80)</code> → <code>'P'</code>. Write <code>'P'</code> to the file.</p><p>That's the last number in line 1, so the inner loop finishes.</p>",
-      highlightLines: [9, 10, 11, 12],
+      explanation: "<p>Append <code>new_char</code> to <code>new_string</code>.</p><p><code>new_string</code> was <code>\"\"</code> (empty). Now it becomes <code>\"M\"</code>.</p><p>We've encrypted the first character: <code>'H'</code> → <code>'M'</code>.</p>",
+      highlightLines: [17],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"80\"", highlight: true }, "asciiNo": { value: 80, highlight: true }, "character": { value: "\"P\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"\"", "char": "\"H\"", "value": 77, "new_char": { value: "\"M\"", highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOP"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     // =============================================
-    // Outer loop — iteration 2: line = "83 69 67 82 69 84"
+    // for loop — iteration 2: char = 'i'
     // =============================================
     {
-      explanation: "<p>The inner loop has finished processing all numbers in line 1. The outer <code>for</code> loop moves to the next line.</p><p><strong>Line 2:</strong> <code>line</code> is now <code>\"83 69 67 82 69 84\"</code>.</p>",
-      highlightLines: [5],
+      explanation: "<p><strong>Iteration 2:</strong> The <code>for</code> loop moves to the next character. <code>char</code> is now <code>'i'</code>.</p>",
+      highlightLines: [8],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": { value: "\"83 69 67 82 69 84\"", highlight: true }, "splits": ['"84"', '"79"', '"80"'], "number": "\"80\"", "asciiNo": 80, "character": "\"P\"" },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"M\"", highlight: true }, "char": "\"H\"", "value": 77, "new_char": "\"M\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOP"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     {
-      explanation: "<p>Split line 2 into individual number strings: <code>[\"83\", \"69\", \"67\", \"82\", \"69\", \"84\"]</code>.</p>",
-      highlightLines: [7],
+      explanation: "<p>Get the ASCII value of <code>'i'</code>: <code>ord('i')</code> returns <code>105</code>.</p>",
+      highlightLines: [9],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"80\"", "asciiNo": 80, "character": "\"P\"" },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": { value: "\"i\"", highlight: true }, "value": 77, "new_char": "\"M\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOP"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- Inner loop line 2: number = "83" ---
     {
-      explanation: "<p><strong>Inner iteration 1 (line 2):</strong> <code>number</code> is <code>\"83\"</code>.</p><p><code>int(\"83\")</code> → <code>83</code>. <code>chr(83)</code> → <code>'S'</code>. Write <code>'S'</code> to the file.</p>",
-      highlightLines: [9, 10, 11, 12],
+      explanation: "<p>Add the offset: <code>105 + 5 = 110</code>.</p>",
+      highlightLines: [11],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: true }, "number": { value: "\"83\"", highlight: true }, "asciiNo": { value: 83, highlight: true }, "character": { value: "\"S\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": { value: 105, highlight: true }, "new_char": "\"M\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPS"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- Inner loop line 2: number = "69" ---
     {
-      explanation: "<p><strong>Inner iteration 2:</strong> <code>number</code> is <code>\"69\"</code>.</p><p><code>int(\"69\")</code> → <code>69</code>. <code>chr(69)</code> → <code>'E'</code>. Write <code>'E'</code> to the file.</p>",
-      highlightLines: [9, 10, 11, 12],
+      explanation: "<p>Is <code>value > 126</code>?</p><p><code>110 > 126</code> is <code>False</code>. No wrapping needed.</p>",
+      highlightLines: [13],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"69\"", highlight: true }, "asciiNo": { value: 69, highlight: true }, "character": { value: "\"E\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": { value: 110, highlight: true }, "new_char": "\"M\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSE"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- Inner loop line 2: number = "67" ---
     {
-      explanation: "<p><strong>Inner iteration 3:</strong> <code>number</code> is <code>\"67\"</code>.</p><p><code>int(\"67\")</code> → <code>67</code>. <code>chr(67)</code> → <code>'C'</code>. Write <code>'C'</code> to the file.</p>",
-      highlightLines: [9, 10, 11, 12],
+      explanation: "<p>Convert back to a character: <code>chr(110)</code> gives us <code>'n'</code>.</p>",
+      highlightLines: [16],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"67\"", highlight: true }, "asciiNo": { value: 67, highlight: true }, "character": { value: "\"C\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": 110, "new_char": "\"M\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSEC"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- Inner loop line 2: number = "82" ---
     {
-      explanation: "<p><strong>Inner iteration 4:</strong> <code>number</code> is <code>\"82\"</code>.</p><p><code>int(\"82\")</code> → <code>82</code>. <code>chr(82)</code> → <code>'R'</code>. Write <code>'R'</code> to the file.</p>",
-      highlightLines: [9, 10, 11, 12],
+      explanation: "<p>Append <code>'n'</code> to <code>new_string</code>.</p><p><code>new_string</code> becomes <code>\"Mn\"</code>.</p><p>Second character encrypted: <code>'i'</code> → <code>'n'</code>.</p>",
+      highlightLines: [17],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"82\"", highlight: true }, "asciiNo": { value: 82, highlight: true }, "character": { value: "\"R\"", highlight: true } },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"M\"", "char": "\"i\"", "value": 110, "new_char": { value: "\"n\"", highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSECR"],
-          dataBoxStyle: false
-        }
-      ]
-    },
-    // --- Inner loop line 2: number = "69" ---
-    {
-      explanation: "<p><strong>Inner iteration 5:</strong> <code>number</code> is <code>\"69\"</code> again.</p><p><code>int(\"69\")</code> → <code>69</code>. <code>chr(69)</code> → <code>'E'</code>. Write <code>'E'</code> to the file.</p>",
-      highlightLines: [9, 10, 11, 12],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"69\"", "asciiNo": 69, "character": "\"E\"" },
-          connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
-          ]
-        },
-        {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSECRE"],
-          dataBoxStyle: false
-        }
-      ]
-    },
-    // --- Inner loop line 2: number = "84" ---
-    {
-      explanation: "<p><strong>Inner iteration 6:</strong> <code>number</code> is <code>\"84\"</code>.</p><p><code>int(\"84\")</code> → <code>84</code>. <code>chr(84)</code> → <code>'T'</code>. Write <code>'T'</code> to the file.</p><p>That's the last number in line 2, so the inner loop finishes.</p>",
-      highlightLines: [9, 10, 11, 12],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true }, "asciiNo": { value: 84, highlight: true }, "character": { value: "\"T\"", highlight: true } },
-          connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
-          ]
-        },
-        {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSECRET"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     // =============================================
-    // Outer loop ends — close files
+    // for loop — iteration 3: char = '~'
     // =============================================
     {
-      explanation: "<p>Both the inner and outer loops have finished. All numbers from both lines have been decoded and written to the output file.</p><p>Now we close the input file.</p>",
+      explanation: "<p><strong>Iteration 3:</strong> The <code>for</code> loop moves to the last character. <code>char</code> is now <code>'~'</code>.</p><p>This is the tilde character — it has the highest ASCII value of the standard printable characters (<code>126</code>). Let's see what happens when we add the offset.</p>",
+      highlightLines: [8],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"Mn\"", highlight: true }, "char": "\"i\"", "value": 110, "new_char": "\"n\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Get the ASCII value of <code>'~'</code>: <code>ord('~')</code> returns <code>126</code>.</p>",
+      highlightLines: [9],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": { value: "\"~\"", highlight: true }, "value": 110, "new_char": "\"n\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Add the offset: <code>126 + 5 = 131</code>.</p><p>Uh oh — <code>131</code> is beyond the printable ASCII range! There's no standard printable character for this value.</p>",
+      highlightLines: [11],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": { value: 126, highlight: true }, "new_char": "\"n\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Is <code>value > 126</code>?</p><p><code>131 > 126</code> is <code>True</code>! We enter this block.</p><p>This is the <strong>wrap-around</strong> check. When the shifted value goes past the end of the printable ASCII range, we need to wrap it back to the beginning.</p>",
+      highlightLines: [13],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": { value: 131, highlight: true }, "new_char": "\"n\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Subtract <code>95</code> to wrap around: <code>131 - 95 = 36</code>.</p><p>Why <code>95</code>? Because there are 95 printable ASCII characters (from space at <code>32</code> to tilde at <code>126</code>). Subtracting 95 wraps us back to the start of this range.</p>",
       highlightLines: [14],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": 131, "new_char": "\"n\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSECRET"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
     {
-      explanation: "<p>Close the output file.</p><p>It's important to always close files when you're done with them. This ensures all data is properly written to disk and frees up system resources.</p>",
-      highlightLines: [15],
+      explanation: "<p>Convert back to a character: <code>chr(36)</code> gives us <code>'$'</code>.</p>",
+      highlightLines: [16],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": { value: 36, highlight: true }, "new_char": "\"n\"" },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
-        },
-        {
-          title: "translated.txt",
-          values: ["TOPSECRET"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
         }
       ]
     },
-    // --- End ---
     {
-      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program uses <strong>nested loops</strong> — an outer loop to process each line of the file, and an inner loop to process each number within that line.</p><p>The <code>readlines()</code> method reads all lines from a file into a list, and <code>split()</code> breaks a string into a list of substrings based on whitespace.</p><p>The <code>int()</code> and <code>chr()</code> functions work together to convert number strings into their corresponding ASCII characters — the reverse of what we saw with <code>ord()</code> in the Caesar Cipher tutorial.</p><p>Always remember to <code>close()</code> your files when you're done!</p>",
+      explanation: "<p>Append <code>'$'</code> to <code>new_string</code>.</p><p><code>new_string</code> becomes <code>\"Mn$\"</code>.</p><p>Third character encrypted: <code>'~'</code> → <code>'$'</code> (with wrap-around).</p>",
+      highlightLines: [17],
       boxes: [
         {
           title: "Memory",
-          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn\"", "char": "\"~\"", "value": 36, "new_char": { value: "\"$\"", highlight: true } },
           connections: [
-            { from: "infile", toKey: "infile" },
-            { from: "outfile", toKey: "outfile" },
-            { from: "linesList", toKey: "linesList" },
-            { from: "line", toKey: "line" },
-            { from: "splits", toKey: "splits" },
-            { from: "number", toKey: "number" },
-            { from: "asciiNo", toKey: "asciiNo" },
-            { from: "character", toKey: "character" }
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
           ]
         },
         {
-          title: "intercepted.txt",
-          values: ["84 79 80", "83 69 67 82 69 84"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    // =============================================
+    // for loop ends
+    // =============================================
+    {
+      explanation: "<p>The <code>for</code> loop has finished — we've processed every character in <code>encrypt_string</code>.</p><p>Print the label <code>\"Encrypted string:\"</code>.</p>",
+      highlightLines: [19],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": { value: "\"Mn$\"", highlight: true }, "char": "\"~\"", "value": 36, "new_char": "\"$\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
         },
         {
-          title: "translated.txt",
-          values: ["TOPSECRET"],
-          dataBoxStyle: false
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>Print the encrypted string: <code>\"Mn$\"</code>.</p>",
+      highlightLines: [20],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn$\"", "char": "\"~\"", "value": 36, "new_char": "\"$\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5", "", "Encrypted string:"]
+        }
+      ]
+    },
+    {
+      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>The <code>for</code> loop processes each character individually — this is a common pattern when working with strings in Python.</p><p>The <code>ord()</code> and <code>chr()</code> functions let us convert between characters and their numeric ASCII values, making it easy to perform arithmetic on characters.</p><p>The <code>if value > 126</code> check handles the <strong>wrap-around</strong> case: when shifting pushes a character past the end of the printable ASCII range, we subtract 95 to wrap it back to the beginning. This ensures every encrypted character is still a printable character.</p>",
+      boxes: [
+        {
+          title: "Memory",
+          values: { "encrypt_string": "\"Hi~\"", "offset": 5, "new_string": "\"Mn$\"", "char": "\"~\"", "value": 36, "new_char": "\"$\"" },
+          connections: [
+            { from: "encrypt_string", toKey: "encrypt_string" },
+            { from: "offset", toKey: "offset" },
+            { from: "new_string", toKey: "new_string" },
+            { from: "char", toKey: "char" },
+            { from: "value", toKey: "value" },
+            { from: "new_char", toKey: "new_char" }
+          ]
+        },
+        {
+          title: "Output",
+          values: ["Please enter string to encrypt: Hi~", "Please enter offset value (1 to 94): 5", "", "Encrypted string:", "Mn$"]
         }
       ]
     }

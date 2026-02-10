@@ -1,48 +1,51 @@
 export default {
-  code: `card_number = input("Please enter card number:")
+  code: `infile = open("intercepted.txt", "r")
+outfile = open("translated.txt", "w")
 
-length = len(card_number)
+linesList = infile.readlines()
 
-number_list = []
-for number in card_number:
-    number_list.append(int(number))
+for line in linesList:
 
-double_digit_sum = 0
-index = length - 2
+    splits = line.split()
 
-while index >= 0:
-    product = number_list[index] * 2
-    if product > 9:
-        number_list[index] = product//10 + product%10
-    else:
-        number_list[index] = product
-    index -= 2
+    for number in splits:
+        asciiNo = int(number)
+        character = chr(asciiNo)
+        outfile.write(str(character))
 
-total_sum = 0
-for number in number_list:
-    total_sum = total_sum + number
-
-if total_sum % 10 == 0:
-    print("Card number:",card_number, "is valid")
-else:
-    print("Card number:",card_number, "is invalid")`,
+infile.close()
+outfile.close()`,
   steps: [
+    // =============================================
+    // Scenario:
+    //   intercepted.txt contains:
+    //     84 79 80
+    //     83 69 67 82 69 84
+    //   translated.txt output:
+    //     TOP
+    //     SECRET
+    // =============================================
     {
-      explanation: "<p><strong>Credit Card Validation (Luhn's Algorithm)</strong></p><p>This program checks whether a credit card number is valid using <strong>Luhn's algorithm</strong>. The algorithm works by doubling every second digit from the right, summing the digits of any result greater than 9, and then adding all the digits together. If the total is divisible by 10, the card number is valid.</p><p>Let's trace through the program step by step using the card number <code>79927398713</code>.</p>",
+      explanation: "<p><strong>Crack the Code, Save the World!</strong></p><p>In this program, we read a file called <code>intercepted.txt</code> that contains a secret message encoded as ASCII numbers. Our job is to decode each number back into its corresponding character and write the result to a new file called <code>translated.txt</code>.</p><p>Let's trace through the program step by step.</p>",
       highlightLines: [],
       boxes: [
         {
           title: "Memory",
         },
         {
-          title: "Output",
-          values: []
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
-    // --- Input ---
     {
-      explanation: "<p>The <code>input()</code> function displays a prompt and waits for the user to type something. The prompt text <code>\"Please enter card number:\"</code> appears in the output.</p>",
+      explanation: "<p>Open the file <code>intercepted.txt</code> in read mode (<code>\"r\"</code>).</p><p>This gives us a file object stored in <code>infile</code>, which we can use to read the file's contents.</p>",
       highlightLines: [0],
       boxes: [
         {
@@ -50,951 +53,634 @@ else:
           values: {}
         },
         {
-          title: "Output",
-          values: ["Please enter card number:"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
     {
-      explanation: "<p>The user types in <code>79927398713</code>. This value is returned by <code>input()</code> as a <strong>string</strong> and stored in <code>card_number</code>.</p><p>It's important to remember that <code>input()</code> always returns a string, even if the user types numbers. So <code>card_number</code> is the string <code>\"79927398713\"</code>, not a number.</p>",
-      highlightLines: [0],
+      explanation: "<p>Open the file <code>translated.txt</code> in write mode (<code>\"w\"</code>).</p><p>This creates a new file (or overwrites it if it already exists) and gives us a file object stored in <code>outfile</code>.</p>",
+      highlightLines: [1],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": { value: "\"79927398713\"", highlight: true } },
+          values: { "infile": { value: "file object", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" }
+            { from: "infile", toKey: "infile" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
-    // --- Length ---
     {
-      explanation: "<p>The <code>len()</code> function returns the number of characters in the string. Our card number <code>\"79927398713\"</code> has 11 digits, so <code>length</code> will be <code>11</code>.</p><p>We'll use this value later to figure out where to start doubling digits.</p>",
-      highlightLines: [2],
+      explanation: "<p>Call <code>infile.readlines()</code> to read all lines from the file into a list.</p><p>Each line becomes a separate string in the list. Our file has two lines, so <code>linesList</code> will contain two strings. Notice that the first line includes a newline character (<code>\\n</code>) at the end — this is how Python reads lines from a file.</p>",
+      highlightLines: [3],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"" },
+          values: { "infile": "file object", "outfile": { value: "file object", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" }
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- Build number_list ---
-    {
-      explanation: "<p>Create an empty list called <code>number_list</code>. We're going to fill this list with the individual digits of the card number, converted from characters to integers.</p>",
-      highlightLines: [4],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": { value: 11, highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" }
-          ]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
-    // --- for number in card_number: iteration 1 ---
+    // =============================================
+    // Outer loop — iteration 1: line = "84 79 80\n"
+    // =============================================
     {
-      explanation: "<p>Start the <code>for</code> loop. When you loop over a string, Python gives you one character at a time.</p><p><strong>Iteration 1:</strong> <code>number</code> is <code>\"7\"</code> (the first character of <code>\"79927398713\"</code>).</p>",
+      explanation: "<p>Start the outer <code>for</code> loop. This loop processes each line in <code>linesList</code> one at a time.</p><p><strong>Line 1:</strong> <code>line</code> is assigned the first string: <code>\"84 79 80\\n\"</code>.</p>",
       highlightLines: [5],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: ["\u00a0"], highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": { value: ["84 79 80\\n", "83 69 67 82 69 84"], highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" }
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
     {
-      explanation: "<p>Convert the character <code>\"7\"</code> to the integer <code>7</code> using <code>int()</code>, then append it to <code>number_list</code>.</p><p>The list now contains <code>[7]</code>.</p>",
-      highlightLines: [6],
+      explanation: "<p>Call <code>line.split()</code> to break the string into a list of individual number strings.</p><p>The <code>split()</code> method splits on whitespace by default, so <code>\"84 79 80\\n\"</code> becomes <code>[\"84\", \"79\", \"80\"]</code>. The newline character is also treated as whitespace and is removed.</p>",
+      highlightLines: [7],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": ["\u00a0"], "number": { value: "\"7\"", highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": { value: "\"84 79 80\\n\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" }
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- for number in card_number: iteration 2 ---
-    {
-      explanation: "<p><strong>Iteration 2:</strong> <code>number</code> is <code>\"9\"</code>.</p>",
-      highlightLines: [5],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7], highlight: true }, "number": "\"7\"" },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" }
-          ]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop: number = "84" ---
     {
-      explanation: "<p>Convert <code>\"9\"</code> to <code>9</code> and append it to <code>number_list</code>.</p>",
-      highlightLines: [6],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7], "number": { value: "\"9\"", highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- for number in card_number: iteration 3 ---
-    {
-      explanation: "<p><strong>Iteration 3:</strong> <code>number</code> is <code>\"9\"</code>. Convert to <code>9</code> and append.</p>",
-      highlightLines: [5, 6],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9], highlight: true }, "number": "\"9\"" },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- Fast-forward remaining iterations ---
-    {
-      explanation: "<p>The loop continues for the remaining characters. Each character is converted to an integer and appended to the list:</p><p><code>\"2\"</code> → <code>2</code>, <code>\"7\"</code> → <code>7</code>, <code>\"3\"</code> → <code>3</code>, <code>\"9\"</code> → <code>9</code>, <code>\"8\"</code> → <code>8</code>, <code>\"7\"</code> → <code>7</code>, <code>\"1\"</code> → <code>1</code>, <code>\"3\"</code> → <code>3</code>.</p><p>After all 11 iterations, <code>number_list</code> contains every digit of the card number as an integer.</p>",
-      highlightLines: [5, 6],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], highlight: true }, "number": { value: "\"3\"", highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- double_digit_sum ---
-    {
-      explanation: "<p>Initialise <code>double_digit_sum</code> to <code>0</code>. This variable is created but actually never used in the rest of the program — it appears to be left over from an earlier version of the code.</p>",
-      highlightLines: [8],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"" },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- index ---
-    {
-      explanation: "<p>Set <code>index</code> to <code>length - 2</code>, which is <code>11 - 2 = 9</code>.</p><p>This is the starting position for the doubling phase. We begin at the <strong>second-to-last digit</strong> (index 9) and work our way left, doubling every second digit. This is a key part of Luhn's algorithm.</p>",
+      explanation: "<p>Start the inner <code>for</code> loop. This loop processes each number string in <code>splits</code>.</p><p><strong>Inner iteration 1:</strong> <code>number</code> is <code>\"84\"</code>.</p>",
       highlightLines: [9],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": { value: 0, highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": { value: ['"84"', '"79"', '"80"'], highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" }
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
-    // =============================================
-    // While loop — iteration 1: index = 9
-    // number_list[9] = 1, product = 2, 2 <= 9 → number_list[9] = 2
-    // =============================================
     {
-      explanation: "<p>Check the <code>while</code> loop condition: is <code>index >= 0</code>? Since <code>9 >= 0</code> is <code>True</code>, we enter the loop.</p>",
+      explanation: "<p>Convert the string <code>\"84\"</code> to an integer: <code>int(\"84\")</code> gives us <code>84</code>.</p>",
+      highlightLines: [10],
+      boxes: [
+        {
+          title: "Memory",
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true } },
+          connections: [
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
+            { from: "number", toKey: "number" }
+          ]
+        },
+        {
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
+        }
+      ]
+    },
+    {
+      explanation: "<p>Convert the ASCII number to its character: <code>chr(84)</code> gives us <code>'T'</code>.</p><p>In the ASCII table, <code>84</code> is the code for the uppercase letter <code>T</code>.</p>",
       highlightLines: [11],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 9, highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": { value: 84, highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" }
+            { from: "asciiNo", toKey: "asciiNo" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: [],
+          dataBoxStyle: false
         }
       ]
     },
     {
-      explanation: "<p>Calculate <code>product = number_list[9] * 2</code>. The digit at index 9 is <code>1</code>, so <code>product = 1 * 2 = 2</code>.</p>",
+      explanation: "<p>Write the character <code>'T'</code> to the output file.</p><p>The <code>translated.txt</code> file now contains: <code>T</code>.</p>",
       highlightLines: [12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 9 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": { value: "\"T\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["T"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop: number = "79" ---
     {
-      explanation: "<p>Check: is <code>product > 9</code>? Since <code>2 > 9</code> is <code>False</code>, we skip to the <code>else</code> branch.</p>",
-      highlightLines: [13],
+      explanation: "<p><strong>Inner iteration 2:</strong> <code>number</code> is <code>\"79\"</code>.</p><p><code>int(\"79\")</code> → <code>79</code>. <code>chr(79)</code> → <code>'O'</code>. Write <code>'O'</code> to the file.</p><p>You can see the pattern now: each number is converted to an integer, then to its ASCII character, then written to the output file.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": { value: 2, highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"79\"", highlight: true }, "asciiNo": { value: 79, highlight: true }, "character": { value: "\"O\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TO"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop: number = "80" ---
     {
-      explanation: "<p>Since the product is not greater than 9, we simply store the doubled value directly: <code>number_list[9] = 2</code>.</p><p>The digit at index 9 changes from <code>1</code> to <code>2</code>.</p>",
-      highlightLines: [16],
+      explanation: "<p><strong>Inner iteration 3:</strong> <code>number</code> is <code>\"80\"</code>.</p><p><code>int(\"80\")</code> → <code>80</code>. <code>chr(80)</code> → <code>'P'</code>. Write <code>'P'</code> to the file.</p><p>That's the last number in line 1, so the inner loop finishes.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 1, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": 2 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"84 79 80\\n\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"80\"", highlight: true }, "asciiNo": { value: 80, highlight: true }, "character": { value: "\"P\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Decrease <code>index</code> by 2: <code>index = 9 - 2 = 7</code>. We move two positions to the left, skipping every other digit.</p>",
-      highlightLines: [17],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 9, "product": 2 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // =============================================
-    // While loop — iteration 2: index = 7
-    // number_list[7] = 8, product = 16, 16 > 9 → 16//10 + 16%10 = 1+6 = 7
-    // =============================================
-    {
-      explanation: "<p>Check: <code>7 >= 0</code> is <code>True</code>, so we continue the loop.</p>",
-      highlightLines: [11],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 7, highlight: true }, "product": 2 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Calculate <code>product = number_list[7] * 2 = 8 * 2 = 16</code>.</p>",
-      highlightLines: [12],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": 2 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Check: is <code>product > 9</code>? Since <code>16 > 9</code> is <code>True</code>, we enter the <code>if</code> branch.</p><p>This is where Luhn's algorithm handles two-digit products. Instead of keeping <code>16</code>, we sum its digits: <code>product//10 + product%10 = 16//10 + 16%10 = 1 + 6 = 7</code>.</p><p>The <code>//</code> operator performs integer division (giving us the tens digit), and <code>%</code> gives us the remainder (the ones digit).</p>",
-      highlightLines: [13, 14],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 8, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": { value: 16, highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Decrease <code>index</code> by 2: <code>index = 7 - 2 = 5</code>.</p>",
-      highlightLines: [17],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 7, "product": 16 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "translated.txt",
+          values: ["TOP"],
+          dataBoxStyle: false
         }
       ]
     },
     // =============================================
-    // While loop — iteration 3: index = 5
-    // number_list[5] = 3, product = 6, 6 <= 9 → number_list[5] = 6
+    // Outer loop — iteration 2: line = "83 69 67 82 69 84"
     // =============================================
     {
-      explanation: "<p>Check: <code>5 >= 0</code> is <code>True</code>.</p>",
-      highlightLines: [11],
+      explanation: "<p>The inner loop has finished processing all numbers in line 1. The outer <code>for</code> loop moves to the next line.</p><p><strong>Line 2:</strong> <code>line</code> is now <code>\"83 69 67 82 69 84\"</code>.</p>",
+      highlightLines: [5],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 5, highlight: true }, "product": 16 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": { value: "\"83 69 67 82 69 84\"", highlight: true }, "splits": ['"84"', '"79"', '"80"'], "number": "\"80\"", "asciiNo": 80, "character": "\"P\"" },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOP"],
+          dataBoxStyle: false
         }
       ]
     },
     {
-      explanation: "<p><code>product = number_list[5] * 2 = 3 * 2 = 6</code>.</p>",
-      highlightLines: [12],
+      explanation: "<p>Split line 2 into individual number strings: <code>[\"83\", \"69\", \"67\", \"82\", \"69\", \"84\"]</code>.</p>",
+      highlightLines: [7],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": 16 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"80\"", "asciiNo": 80, "character": "\"P\"" },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOP"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop line 2: number = "83" ---
     {
-      explanation: "<p>Check: is <code>product > 9</code>? Since <code>6 > 9</code> is <code>False</code>, we take the <code>else</code> branch and store the product directly.</p>",
-      highlightLines: [13, 15, 16],
+      explanation: "<p><strong>Inner iteration 1 (line 2):</strong> <code>number</code> is <code>\"83\"</code>.</p><p><code>int(\"83\")</code> → <code>83</code>. <code>chr(83)</code> → <code>'S'</code>. Write <code>'S'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 3, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": { value: 6, highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": { value: ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], highlight: true }, "number": { value: "\"83\"", highlight: true }, "asciiNo": { value: 83, highlight: true }, "character": { value: "\"S\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPS"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop line 2: number = "69" ---
     {
-      explanation: "<p>Decrease <code>index</code> by 2: <code>index = 5 - 2 = 3</code>.</p>",
-      highlightLines: [17],
+      explanation: "<p><strong>Inner iteration 2:</strong> <code>number</code> is <code>\"69\"</code>.</p><p><code>int(\"69\")</code> → <code>69</code>. <code>chr(69)</code> → <code>'E'</code>. Write <code>'E'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 5, "product": 6 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"69\"", highlight: true }, "asciiNo": { value: 69, highlight: true }, "character": { value: "\"E\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSE"],
+          dataBoxStyle: false
         }
       ]
     },
-    // =============================================
-    // While loop — iteration 4: index = 3
-    // number_list[3] = 2, product = 4, 4 <= 9 → number_list[3] = 4
-    // =============================================
+    // --- Inner loop line 2: number = "67" ---
     {
-      explanation: "<p>Check: <code>3 >= 0</code> is <code>True</code>.</p>",
-      highlightLines: [11],
+      explanation: "<p><strong>Inner iteration 3:</strong> <code>number</code> is <code>\"67\"</code>.</p><p><code>int(\"67\")</code> → <code>67</code>. <code>chr(67)</code> → <code>'C'</code>. Write <code>'C'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 3, highlight: true }, "product": 6 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"67\"", highlight: true }, "asciiNo": { value: 67, highlight: true }, "character": { value: "\"C\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSEC"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop line 2: number = "82" ---
     {
-      explanation: "<p><code>product = number_list[3] * 2 = 2 * 2 = 4</code>.</p>",
-      highlightLines: [12],
+      explanation: "<p><strong>Inner iteration 4:</strong> <code>number</code> is <code>\"82\"</code>.</p><p><code>int(\"82\")</code> → <code>82</code>. <code>chr(82)</code> → <code>'R'</code>. Write <code>'R'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": 6 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"83"', '"69"', '"67"', '"82"', '"69"', '"84"'], "number": { value: "\"82\"", highlight: true }, "asciiNo": { value: 82, highlight: true }, "character": { value: "\"R\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECR"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop line 2: number = "69" ---
     {
-      explanation: "<p>Check: is <code>product > 9</code>? Since <code>4 > 9</code> is <code>False</code>, we store the product directly: <code>number_list[3] = 4</code>.</p>",
-      highlightLines: [13, 15, 16],
+      explanation: "<p><strong>Inner iteration 5:</strong> <code>number</code> is <code>\"69\"</code> again.</p><p><code>int(\"69\")</code> → <code>69</code>. <code>chr(69)</code> → <code>'E'</code>. Write <code>'E'</code> to the file.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 2, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": { value: 4, highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"69\"", "asciiNo": 69, "character": "\"E\"" },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRE"],
+          dataBoxStyle: false
         }
       ]
     },
+    // --- Inner loop line 2: number = "84" ---
     {
-      explanation: "<p>Decrease <code>index</code> by 2: <code>index = 3 - 2 = 1</code>.</p>",
-      highlightLines: [17],
+      explanation: "<p><strong>Inner iteration 6:</strong> <code>number</code> is <code>\"84\"</code>.</p><p><code>int(\"84\")</code> → <code>84</code>. <code>chr(84)</code> → <code>'T'</code>. Write <code>'T'</code> to the file.</p><p>That's the last number in line 2, so the inner loop finishes.</p>",
+      highlightLines: [9, 10, 11, 12],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": { value: [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], highlight: true }, "number": "\"3\"", "double_digit_sum": 0, "index": 3, "product": 4 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": { value: "\"84\"", highlight: true }, "asciiNo": { value: 84, highlight: true }, "character": { value: "\"T\"", highlight: true } },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // =============================================
-    // While loop — iteration 5: index = 1
-    // number_list[1] = 9, product = 18, 18 > 9 → 18//10 + 18%10 = 1+8 = 9
-    // =============================================
-    {
-      explanation: "<p>Check: <code>1 >= 0</code> is <code>True</code>.</p>",
-      highlightLines: [11],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: 1, highlight: true }, "product": 4 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p><code>product = number_list[1] * 2 = 9 * 2 = 18</code>.</p>",
-      highlightLines: [12],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": 4 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Check: is <code>product > 9</code>? Since <code>18 > 9</code> is <code>True</code>, we sum the digits: <code>18//10 + 18%10 = 1 + 8 = 9</code>.</p><p>So <code>number_list[1]</code> stays as <code>9</code> — in this case, the doubled and digit-summed value happens to be the same as the original!</p>",
-      highlightLines: [13, 14],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": { value: 18, highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Decrease <code>index</code> by 2: <code>index = 1 - 2 = -1</code>.</p>",
-      highlightLines: [17],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": 1, "product": 18 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- While loop exits ---
-    {
-      explanation: "<p>Check: <code>-1 >= 0</code> is <code>False</code>, so the <code>while</code> loop ends.</p><p>The doubling phase is complete. Every second digit from the right has been doubled, and any product greater than 9 has had its digits summed. The modified list is now: <code>[7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3]</code>.</p>",
-      highlightLines: [11],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": { value: -1, highlight: true }, "product": 18 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
         }
       ]
     },
     // =============================================
-    // Sum loop
+    // Outer loop ends — close files
     // =============================================
     {
-      explanation: "<p>Initialise <code>total_sum</code> to <code>0</code>. We're now going to add up all the digits in the modified list to get the final checksum.</p>",
-      highlightLines: [19],
+      explanation: "<p>Both the inner and outer loops have finished. All numbers from both lines have been decoded and written to the output file.</p><p>Now we close the input file.</p>",
+      highlightLines: [14],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": -1, "product": 18 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
         }
       ]
     },
     {
-      explanation: "<p>Start the <code>for</code> loop to sum all the digits.</p><p><strong>Iteration 1:</strong> <code>number</code> is <code>7</code> (the first element of the list).</p>",
-      highlightLines: [20],
+      explanation: "<p>Close the output file.</p><p>It's important to always close files when you're done with them. This ensures all data is properly written to disk and frees up system resources.</p>",
+      highlightLines: [15],
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": "\"3\"", "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 0, highlight: true } },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>Add <code>number</code> to <code>total_sum</code>: <code>total_sum = 0 + 7 = 7</code>.</p>",
-      highlightLines: [21],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": { value: 7, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": 0 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
-          ]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p><strong>Iteration 2:</strong> <code>number</code> is <code>9</code>. <code>total_sum = 7 + 9 = 16</code>.</p>",
-      highlightLines: [20, 21],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": { value: 9, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 16, highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // --- Fast-forward remaining sum iterations ---
-    {
-      explanation: "<p>The loop continues adding each remaining digit:</p><p><code>16 + 9 = 25</code>, <code>25 + 4 = 29</code>, <code>29 + 7 = 36</code>, <code>36 + 6 = 42</code>, <code>42 + 9 = 51</code>, <code>51 + 7 = 58</code>, <code>58 + 7 = 65</code>, <code>65 + 2 = 67</code>, <code>67 + 3 = 70</code>.</p><p>After all 11 iterations, <code>total_sum</code> is <code>70</code>.</p>",
-      highlightLines: [20, 21],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": { value: 3, highlight: true }, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": { value: 70, highlight: true } },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    // =============================================
-    // Final check
-    // =============================================
-    {
-      explanation: "<p>Now for the final check: is <code>total_sum % 10 == 0</code>?</p><p><code>70 % 10 = 0</code>, and <code>0 == 0</code> is <code>True</code>!</p><p>According to Luhn's formula, if the total modulo 10 equals zero, the card number is valid. This means <code>79927398713</code> passes the Luhn check.</p>",
-      highlightLines: [23],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": 3, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": 70 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
-        }
-      ]
-    },
-    {
-      explanation: "<p>The condition is <code>True</code>, so we enter the <code>if</code> branch and print the result: the card number is valid!</p>",
-      highlightLines: [24],
-      boxes: [
-        {
-          title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": 3, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": 70 },
-          connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
-            { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
-          ]
-        },
-        {
-          title: "Output",
-          values: ["Please enter card number:79927398713"]
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
         }
       ]
     },
     // --- End ---
     {
-      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program implements <strong>Luhn's algorithm</strong>, a checksum formula used to validate credit card numbers, IMEI numbers, and other identification numbers.</p><p>The algorithm has three main phases: first, it converts the card number string into a list of individual digits. Second, starting from the rightmost digit and moving left, it doubles every second digit — if the result is greater than 9, it sums the two digits of the product using integer division (<code>//</code>) and modulo (<code>%</code>). Finally, it adds all the digits together and checks if the total is divisible by 10.</p><p>Notice how the program uses a <code>while</code> loop with <code>index -= 2</code> to skip every other digit, rather than a <code>for</code> loop. This gives us precise control over which indices we visit.</p>",
+      explanation: "<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program uses <strong>nested loops</strong> — an outer loop to process each line of the file, and an inner loop to process each number within that line.</p><p>The <code>readlines()</code> method reads all lines from a file into a list, and <code>split()</code> breaks a string into a list of substrings based on whitespace.</p><p>The <code>int()</code> and <code>chr()</code> functions work together to convert number strings into their corresponding ASCII characters — the reverse of what we saw with <code>ord()</code> in the Caesar Cipher tutorial.</p><p>Always remember to <code>close()</code> your files when you're done!</p>",
       boxes: [
         {
           title: "Memory",
-          values: { "card_number": "\"79927398713\"", "length": 11, "number_list": [7, 9, 9, 4, 7, 6, 9, 7, 7, 2, 3], "number": 3, "double_digit_sum": 0, "index": -1, "product": 18, "total_sum": 70 },
+          values: { "infile": "file object", "outfile": "file object", "linesList": ["84 79 80\\n", "83 69 67 82 69 84"], "line": "\"83 69 67 82 69 84\"", "splits": ['"84"', '"79"', '"80"'], "number": "\"84\"", "asciiNo": 84, "character": "\"T\"" },
           connections: [
-            { from: "card_number", toKey: "card_number" },
-            { from: "length", toKey: "length" },
-            { from: "number_list", toKey: "number_list" },
+            { from: "infile", toKey: "infile" },
+            { from: "outfile", toKey: "outfile" },
+            { from: "linesList", toKey: "linesList" },
+            { from: "line", toKey: "line" },
+            { from: "splits", toKey: "splits" },
             { from: "number", toKey: "number" },
-            { from: "double_digit_sum", toKey: "double_digit_sum" },
-            { from: "index", toKey: "index" },
-            { from: "product", toKey: "product" },
-            { from: "total_sum", toKey: "total_sum" }
+            { from: "asciiNo", toKey: "asciiNo" },
+            { from: "character", toKey: "character" }
           ]
         },
         {
-          title: "Output",
-          values: ["Please enter card number:79927398713", "Card number: 79927398713 is valid"]
+          title: "intercepted.txt",
+          values: ["84 79 80", "83 69 67 82 69 84"],
+          dataBoxStyle: false
+        },
+        {
+          title: "translated.txt",
+          values: ["TOPSECRET"],
+          dataBoxStyle: false
         }
       ]
     }
