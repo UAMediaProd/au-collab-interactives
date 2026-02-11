@@ -292,213 +292,552 @@ while table_number <= 12:
             `,
 
         },
+        // =============================================
+        // Code step-through section
+        // =============================================
         {
-            explanation: `
-            <p><strong>Step 4:</strong> Execute the code to verify what happens.</p>
-            `,
-            info: `
-            <div class="flowchart-outline">
-                <p>Loop 12 times:</p>
-                <div class="flowchart-solid">Display heading for next table</div>
-                <div class="flowchart-connection">🡇</div>
-                <div class="flowchart-outline">
-                    <p>Loop 12 times:</p>
-                    <div class="flowchart-solid">Display: <code>counter</code> x <code>table_num</code></div>
-                </div>
-            </div>
-            `,
-        },
-        {
-            explanation: `
-            <p>Well this is awkward. The output was so big it broke the layout of our tutorial! 😂</p>
-            <p>But it does work as intended, which is what matters.</p>
-            `,
+            explanation: `<p><strong>Step 4:</strong> Execute the code to verify what happens.</p>`,
+            code: `table_number = 1
+counter = 1
+
+while table_number <= 12:
+    print('\\n===== ',table_number,'x table =====\\n',sep='')
+    while counter <= 12:
+        print(counter,'x',table_number,'=',counter*table_number)
+        counter += 1
+    counter = 1
+    table_number += 1`,
+            highlightLines: [],
             boxes: [
                 {
+                    title: "Memory",
+                    values: {}
+                },
+                {
                     title: "Output",
-                    values: [
-                        "===== 1x table =====",
-                        "",
-                        "1 x 1 = 1",
-                        "2 x 1 = 2",
-                        "3 x 1 = 3",
-                        "4 x 1 = 4",
-                        "5 x 1 = 5",
-                        "6 x 1 = 6",
-                        "7 x 1 = 7",
-                        "8 x 1 = 8",
-                        "9 x 1 = 9",
-                        "10 x 1 = 10",
-                        "11 x 1 = 11",
-                        "12 x 1 = 12",
-                        "",
-                        "===== 2x table =====",
-                        "",
-                        "1 x 2 = 2",
-                        "2 x 2 = 4",
-                        "3 x 2 = 6",
-                        "4 x 2 = 8",
-                        "5 x 2 = 10",
-                        "6 x 2 = 12",
-                        "7 x 2 = 14",
-                        "8 x 2 = 16",
-                        "9 x 2 = 18",
-                        "10 x 2 = 20",
-                        "11 x 2 = 22",
-                        "12 x 2 = 24",
-                        "",
-                        "===== 3x table =====",
-                        "",
-                        "1 x 3 = 3",
-                        "2 x 3 = 6",
-                        "3 x 3 = 9",
-                        "4 x 3 = 12",
-                        "5 x 3 = 15",
-                        "6 x 3 = 18",
-                        "7 x 3 = 21",
-                        "8 x 3 = 24",
-                        "9 x 3 = 27",
-                        "10 x 3 = 30",
-                        "11 x 3 = 33",
-                        "12 x 3 = 36",
-                        "",
-                        "===== 4x table =====",
-                        "",
-                        "1 x 4 = 4",
-                        "2 x 4 = 8",
-                        "3 x 4 = 12",
-                        "4 x 4 = 16",
-                        "5 x 4 = 20",
-                        "6 x 4 = 24",
-                        "7 x 4 = 28",
-                        "8 x 4 = 32",
-                        "9 x 4 = 36",
-                        "10 x 4 = 40",
-                        "11 x 4 = 44",
-                        "12 x 4 = 48",
-                        "",
-                        "===== 5x table =====",
-                        "",
-                        "1 x 5 = 5",
-                        "2 x 5 = 10",
-                        "3 x 5 = 15",
-                        "4 x 5 = 20",
-                        "5 x 5 = 25",
-                        "6 x 5 = 30",
-                        "7 x 5 = 35",
-                        "8 x 5 = 40",
-                        "9 x 5 = 45",
-                        "10 x 5 = 50",
-                        "11 x 5 = 55",
-                        "12 x 5 = 60",
-                        "",
-                        "===== 6x table =====",
-                        "",
-                        "1 x 6 = 6",
-                        "2 x 6 = 12",
-                        "3 x 6 = 18",
-                        "4 x 6 = 24",
-                        "5 x 6 = 30",
-                        "6 x 6 = 36",
-                        "7 x 6 = 42",
-                        "8 x 6 = 48",
-                        "9 x 6 = 54",
-                        "10 x 6 = 60",
-                        "11 x 6 = 66",
-                        "12 x 6 = 72",
-                        "",
-                        "===== 7x table =====",
-                        "",
-                        "1 x 7 = 7",
-                        "2 x 7 = 14",
-                        "3 x 7 = 21",
-                        "4 x 7 = 28",
-                        "5 x 7 = 35",
-                        "6 x 7 = 42",
-                        "7 x 7 = 49",
-                        "8 x 7 = 56",
-                        "9 x 7 = 63",
-                        "10 x 7 = 70",
-                        "11 x 7 = 77",
-                        "12 x 7 = 84",
-                        "",
-                        "===== 8x table =====",
-                        "",
-                        "1 x 8 = 8",
-                        "2 x 8 = 16",
-                        "3 x 8 = 24",
-                        "4 x 8 = 32",
-                        "5 x 8 = 40",
-                        "6 x 8 = 48",
-                        "7 x 8 = 56",
-                        "8 x 8 = 64",
-                        "9 x 8 = 72",
-                        "10 x 8 = 80",
-                        "11 x 8 = 88",
-                        "12 x 8 = 96",
-                        "",
-                        "===== 9x table =====",
-                        "",
-                        "1 x 9 = 9",
-                        "2 x 9 = 18",
-                        "3 x 9 = 27",
-                        "4 x 9 = 36",
-                        "5 x 9 = 45",
-                        "6 x 9 = 54",
-                        "7 x 9 = 63",
-                        "8 x 9 = 72",
-                        "9 x 9 = 81",
-                        "10 x 9 = 90",
-                        "11 x 9 = 99",
-                        "12 x 9 = 108",
-                        "",
-                        "===== 10x table =====",
-                        "",
-                        "1 x 10 = 10",
-                        "2 x 10 = 20",
-                        "3 x 10 = 30",
-                        "4 x 10 = 40",
-                        "5 x 10 = 50",
-                        "6 x 10 = 60",
-                        "7 x 10 = 70",
-                        "8 x 10 = 80",
-                        "9 x 10 = 90",
-                        "10 x 10 = 100",
-                        "11 x 10 = 110",
-                        "12 x 10 = 120",
-                        "",
-                        "===== 11x table =====",
-                        "",
-                        "1 x 11 = 11",
-                        "2 x 11 = 22",
-                        "3 x 11 = 33",
-                        "4 x 11 = 44",
-                        "5 x 11 = 55",
-                        "6 x 11 = 66",
-                        "7 x 11 = 77",
-                        "8 x 11 = 88",
-                        "9 x 11 = 99",
-                        "10 x 11 = 110",
-                        "11 x 11 = 121",
-                        "12 x 11 = 132",
-                        "",
-                        "===== 12x table =====",
-                        "",
-                        "1 x 12 = 12",
-                        "2 x 12 = 24",
-                        "3 x 12 = 36",
-                        "4 x 12 = 48",
-                        "5 x 12 = 60",
-                        "6 x 12 = 72",
-                        "7 x 12 = 84",
-                        "8 x 12 = 96",
-                        "9 x 12 = 108",
-                        "10 x 12 = 120",
-                        "11 x 12 = 132",
-                        "12 x 12 = 144",
-                    ],
+                    values: []
                 }
-            ],
+            ]
+        },
+        // --- Initialisation ---
+        {
+            explanation: `<p>Initialise <code>table_number</code> to <code>1</code>. This variable controls the outer loop — it tracks which multiplication table we are currently displaying.</p>`,
+            highlightLines: [0],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {}
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        {
+            explanation: `<p>Initialise <code>counter</code> to <code>1</code>. This variable controls the inner loop — it tracks the multiplier for each line within a table.</p>`,
+            highlightLines: [1],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": { value: 1, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Outer loop check (table_number = 1) ---
+        {
+            explanation: `<p>Check the outer <code>while</code> loop condition: is <code>table_number &lt;= 12</code>?</p><p><code>1 &lt;= 12</code> is <code>True</code>, so we enter the outer loop body.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": { value: 1, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Print heading for 1x table ---
+        {
+            explanation: `<p>Print the heading for the current table. Since <code>table_number</code> is <code>1</code>, this prints <code>"===== 1x table ====="</code>.</p><p>The <code>\\n</code> characters add blank lines above and below the heading, and <code>sep=''</code> removes the default spaces between the arguments.</p>`,
+            highlightLines: [4],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Inner loop check (counter = 1) ---
+        {
+            explanation: `<p>Check the inner <code>while</code> loop condition: is <code>counter &lt;= 12</code>?</p><p><code>1 &lt;= 12</code> is <code>True</code>, so we enter the inner loop body.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", ""]
+                }
+            ]
+        },
+        // --- Inner iteration 1: counter=1, table_number=1 ---
+        {
+            explanation: `<p><strong>Inner iteration 1:</strong> Print <code>counter</code> x <code>table_number</code> = <code>counter * table_number</code>.</p><p><code>1 x 1 = 1</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", ""]
+                }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>counter</code> by 1: <code>counter = 1 + 1 = 2</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1"]
+                }
+            ]
+        },
+        // --- Inner loop check (counter = 2) ---
+        {
+            explanation: `<p>Check: <code>counter &lt;= 12</code>? <code>2 &lt;= 12</code> is <code>True</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": { value: 2, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1"]
+                }
+            ]
+        },
+        // --- Inner iteration 2: counter=2, table_number=1 ---
+        {
+            explanation: `<p><strong>Inner iteration 2:</strong> <code>2 x 1 = 2</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 2 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1"]
+                }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>counter</code>: <code>counter = 2 + 1 = 3</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 2 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2"]
+                }
+            ]
+        },
+        // --- Inner loop check (counter = 3) ---
+        {
+            explanation: `<p>Check: <code>counter &lt;= 12</code>? <code>3 &lt;= 12</code> is <code>True</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": { value: 3, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2"]
+                }
+            ]
+        },
+        // --- Inner iteration 3: counter=3, table_number=1 ---
+        {
+            explanation: `<p><strong>Inner iteration 3:</strong> <code>3 x 1 = 3</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 3 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2"]
+                }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>counter</code>: <code>counter = 3 + 1 = 4</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 3 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3"]
+                }
+            ]
+        },
+        // --- Fast-forward inner iterations 4–12 for 1x table ---
+        {
+            explanation: `<p>The inner loop continues in exactly the same way. Each iteration prints the next line of the 1x table and increments <code>counter</code>.</p><p><code>4 x 1 = 4</code>, <code>5 x 1 = 5</code>, <code>6 x 1 = 6</code>, <code>7 x 1 = 7</code>, <code>8 x 1 = 8</code>, <code>9 x 1 = 9</code>, <code>10 x 1 = 10</code>, <code>11 x 1 = 11</code>, <code>12 x 1 = 12</code>.</p><p>After the 12th iteration, <code>counter</code> is incremented to <code>13</code>.</p>`,
+            highlightLines: [5, 6, 7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": { value: 13, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12"]
+                }
+            ]
+        },
+        // --- Inner loop exits (counter = 13) ---
+        {
+            explanation: `<p>Check: <code>counter &lt;= 12</code>? <code>13 &lt;= 12</code> is <code>False</code>, so the inner loop exits.</p><p>The entire 1x table has been printed!</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 13 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12"]
+                }
+            ]
+        },
+        // --- Reset counter ---
+        {
+            explanation: `<p>Reset <code>counter</code> back to <code>1</code>.</p><p>This is essential! Without this line, <code>counter</code> would still be <code>13</code> when the next table starts, and the inner loop condition <code>counter &lt;= 12</code> would immediately be <code>False</code> — the inner loop would never run again.</p>`,
+            highlightLines: [8],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": 13 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12"]
+                }
+            ]
+        },
+        // --- Increment table_number ---
+        {
+            explanation: `<p>Increment <code>table_number</code> by 1: <code>table_number = 1 + 1 = 2</code>.</p><p>We're now moving on to the 2x table.</p>`,
+            highlightLines: [9],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 1, "counter": { value: 1, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12"]
+                }
+            ]
+        },
+        // --- Outer loop check (table_number = 2) ---
+        {
+            explanation: `<p>Back to the top of the outer loop. Check: <code>table_number &lt;= 12</code>? <code>2 &lt;= 12</code> is <code>True</code>, so we continue.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": { value: 2, highlight: true }, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12"]
+                }
+            ]
+        },
+        // --- Print heading for 2x table ---
+        {
+            explanation: `<p>Print the heading for the 2x table.</p>`,
+            highlightLines: [4],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12"]
+                }
+            ]
+        },
+        // --- Inner loop check (counter = 1, 2x table) ---
+        {
+            explanation: `<p>Check: <code>counter &lt;= 12</code>? <code>1 &lt;= 12</code> is <code>True</code>. The inner loop starts again for the 2x table.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12", "", "===== 2x table =====", ""]
+                }
+            ]
+        },
+        // --- Inner iteration 1: counter=1, table_number=2 ---
+        {
+            explanation: `<p><strong>Inner iteration 1:</strong> <code>1 x 2 = 2</code>.</p><p>Notice that the structure is identical to the 1x table — only <code>table_number</code> has changed from <code>1</code> to <code>2</code>, which changes the multiplication result.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12", "", "===== 2x table =====", ""]
+                }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>counter</code>: <code>counter = 1 + 1 = 2</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2"]
+                }
+            ]
+        },
+        // --- Inner iteration 2: counter=2, table_number=2 ---
+        {
+            explanation: `<p><strong>Inner iteration 2:</strong> <code>2 x 2 = 4</code>.</p>`,
+            highlightLines: [5, 6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": { value: 2, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2"]
+                }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>counter</code>: <code>counter = 2 + 1 = 3</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": 2 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2", "2 x 2 = 4"]
+                }
+            ]
+        },
+        // --- Inner iteration 3: counter=3, table_number=2 ---
+        {
+            explanation: `<p><strong>Inner iteration 3:</strong> <code>3 x 2 = 6</code>.</p>`,
+            highlightLines: [5, 6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 2, "counter": { value: 3, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "3 x 1 = 3", "4 x 1 = 4", "5 x 1 = 5", "6 x 1 = 6", "7 x 1 = 7", "8 x 1 = 8", "9 x 1 = 9", "10 x 1 = 10", "11 x 1 = 11", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2", "2 x 2 = 4"]
+                }
+            ]
+        },
+        // --- Fast-forward rest of 2x table and remaining tables ---
+        {
+            explanation: `<p>By now, you can see the pattern clearly. The inner loop continues printing <code>4 x 2 = 8</code>, <code>5 x 2 = 10</code>, and so on until <code>12 x 2 = 24</code>.</p><p>When the inner loop finishes, <code>counter</code> is reset to <code>1</code>, <code>table_number</code> is incremented to <code>3</code>, and the whole process repeats for the 3x table.</p><p>This continues for all 12 tables. Each cycle of the outer loop prints one complete multiplication table, and the inner loop handles the 12 lines within each table.</p>`,
+            highlightLines: [3, 4, 5, 6, 7, 8, 9],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": { value: 13, highlight: true }, "counter": { value: 1, highlight: true } },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "...", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2", "2 x 2 = 4", "3 x 2 = 6", "...", "12 x 2 = 24", "", "...", "", "===== 12x table =====", "", "1 x 12 = 12", "2 x 12 = 24", "...", "12 x 12 = 144"]
+                }
+            ]
+        },
+        // --- Outer loop exits ---
+        {
+            explanation: `<p>After the 12x table is complete, <code>table_number</code> is incremented to <code>13</code>.</p><p>Check: <code>table_number &lt;= 12</code>? <code>13 &lt;= 12</code> is <code>False</code>, so the outer loop exits and the program ends.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 13, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "...", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2", "2 x 2 = 4", "3 x 2 = 6", "...", "12 x 2 = 24", "", "...", "", "===== 12x table =====", "", "1 x 12 = 12", "2 x 12 = 24", "...", "12 x 12 = 144"]
+                }
+            ]
+        },
+        // --- End ---
+        {
+            explanation: `<p>The program has finished.</p><p><strong>Key takeaways:</strong></p><p>This program uses a <strong>nested loop</strong> — a loop inside another loop. The outer loop runs 12 times (once per multiplication table), and the inner loop runs 12 times within each outer iteration (once per line of the table). That's <code>12 × 12 = 144</code> print statements in total, plus 12 headings.</p><p>The critical detail is the <code>counter = 1</code> reset on line 9. Without it, <code>counter</code> would remain at <code>13</code> after the first table, and the inner loop would never execute again. This is a very common mistake when using <code>while</code> loops for counting — always remember to reset your loop variable!</p>`,
+            boxes: [
+                {
+                    title: "Memory",
+                    values: { "table_number": 13, "counter": 1 },
+                    connections: [
+                        { from: "table_number", toKey: "table_number" },
+                        { from: "counter", toKey: "counter" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["", "===== 1x table =====", "", "1 x 1 = 1", "2 x 1 = 2", "...", "12 x 1 = 12", "", "===== 2x table =====", "", "1 x 2 = 2", "2 x 2 = 4", "3 x 2 = 6", "...", "12 x 2 = 24", "", "...", "", "===== 12x table =====", "", "1 x 12 = 12", "2 x 12 = 24", "...", "12 x 12 = 144"]
+                }
+            ]
         },
 
     ]

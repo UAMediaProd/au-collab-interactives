@@ -346,26 +346,468 @@ print(my_function(29))`,
             <p style="text-align:center;margin:1rem 0 0.5rem 0;">return: <code>new_list</code></p>
             `,
         },
+        // =============================================
+        // Code step-through: my_function(15)
+        // =============================================
         {
-            explanation: `
-            <p>Let's take a look at the output!</p>
-            `,
+            explanation: `<p>Now let's trace through the code step by step. We'll follow the first call: <code>my_function(15)</code>.</p>`,
+            highlightLines: [],
+            boxes: [
+                { title: "Memory", values: {} },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Line 9: print(my_function(15))
+        // =============================================
+        {
+            explanation: `<p>This line calls <code>my_function(15)</code>. The value <code>15</code> is passed as the argument, so inside the function, <code>number</code> will be <code>15</code>.</p><p>Execution jumps into the function body.</p>`,
+            highlightLines: [9],
+            boxes: [
+                { title: "Memory", values: {} },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Line 1: new_list = []
+        // =============================================
+        {
+            explanation: `<p>Create an empty list called <code>new_list</code>. This will store any factors we find.</p>`,
+            highlightLines: [1],
             boxes: [
                 {
-                    title: "Output",
-                    values: []
-                }
+                    title: "Memory",
+                    values: {
+                        "number": { value: 15, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Line 2: index = 2
+        // =============================================
+        {
+            explanation: `<p>Initialise <code>index</code> to <code>2</code>. The loop will check every integer from <code>2</code> up to <code>number - 1</code>.</p>`,
+            highlightLines: [2],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": { value: ["\u00a0"], highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // while loop — iteration 1: index = 2
+        // =============================================
+        {
+            explanation: `<p>Check the <code>while</code> condition: is <code>index < number</code>?</p><p><code>2 < 15</code> is <code>True</code>, so we enter the loop.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": ["\u00a0"],
+                        "index": { value: 2, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
             ]
         },
         {
-            explanation: `
-            <p>Let's take a look at the output!</p>
-            `,
+            explanation: `<p>Is <code>number % index == 0</code>?</p><p><code>15 % 2</code> is <code>1</code> (15 divided by 2 leaves a remainder of 1). <code>1 == 0</code> is <code>False</code>.</p><p>So 2 is <strong>not</strong> a factor of 15. We skip the <code>append</code>.</p>`,
+            highlightLines: [4],
             boxes: [
                 {
-                    title: "Output",
-                    values: ["[3, 5]", "[2, 3, 6, 8, 12]", "[]"]
-                }
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": ["\u00a0"],
+                        "index": 2
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code> by <code>1</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": ["\u00a0"],
+                        "index": 2
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // while loop — iteration 2: index = 3
+        // =============================================
+        {
+            explanation: `<p>Check the condition: <code>3 < 15</code> is <code>True</code>.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": ["\u00a0"],
+                        "index": { value: 3, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Is <code>15 % 3 == 0</code>?</p><p><code>15 % 3</code> is <code>0</code> (15 divides evenly by 3). <code>0 == 0</code> is <code>True</code>!</p><p>So 3 <strong>is</strong> a factor of 15. We enter the <code>if</code> block.</p>`,
+            highlightLines: [4],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": ["\u00a0"],
+                        "index": 3
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Append <code>index</code> (which is <code>3</code>) to <code>new_list</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": ["\u00a0"],
+                        "index": 3
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code> by <code>1</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": { value: [3], highlight: [0] },
+                        "index": 3
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // while loop — iteration 3: index = 4
+        // =============================================
+        {
+            explanation: `<p>Check the condition: <code>4 < 15</code> is <code>True</code>.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3],
+                        "index": { value: 4, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Is <code>15 % 4 == 0</code>?</p><p><code>15 % 4</code> is <code>3</code>. <code>3 == 0</code> is <code>False</code>. Not a factor — skip.</p>`,
+            highlightLines: [4],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3],
+                        "index": 4
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code> by <code>1</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3],
+                        "index": 4
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // while loop — iteration 4: index = 5 (hit)
+        // =============================================
+        {
+            explanation: `<p>Check the condition: <code>5 < 15</code> is <code>True</code>.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3],
+                        "index": { value: 5, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Is <code>15 % 5 == 0</code>?</p><p><code>15 % 5</code> is <code>0</code>. <code>True</code>! 5 is a factor of 15.</p>`,
+            highlightLines: [4],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3],
+                        "index": 5
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Append <code>5</code> to <code>new_list</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3],
+                        "index": 5
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code>.</p><p>The loop continues checking <code>index</code> values <code>6</code>, <code>7</code>, <code>8</code>, … all the way up to <code>14</code>, incrementing the <code>index</code> each time. We'll skip ahead to the final iteration.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": { value: [3, 5], highlight: [1] },
+                        "index": 5
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Fast-forward: index = 6 through 14
+        // =============================================
+        {
+            explanation: `<p>None of these are factors of 15 (since 15 = 3 × 5, and we've already found both), so the <code>if</code> condition is <code>False</code> every time and <code>new_list</code> remains unchanged.</p>`,
+            highlightLines: [3, 4, 6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3, 5],
+                        "index": { value: 14, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // while loop — condition fails
+        // =============================================
+        {
+            explanation: `<p>After incrementing, <code>index</code> is now <code>15</code>. Check the condition: <code>15 < 15</code> is <code>False</code>. The loop ends.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3, 5],
+                        "index": { value: 15, highlight: true }
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Line 7: return new_list
+        // =============================================
+        {
+            explanation: `<p>Return <code>new_list</code>, which is <code>[3, 5]</code> — the factors of 15 (excluding 1 and 15 itself).</p><p>the function call, where the return value is passed to <code>print()</code>.</p>`,
+            highlightLines: [7, 9],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "number": 15,
+                        "new_list": [3, 5],
+                        "index": 15
+                    },
+                    connections: [
+                        { from: "number", toKey: "number" },
+                        { from: "new_list", toKey: "new_list" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Line 10: print(my_function(24))
+        // =============================================
+        {
+            explanation: `<p>The first result is printed: <code>[3, 5]</code>.</p><p>Now the second call: <code>my_function(24)</code>. The same process repeats with <code>number = 24</code>. The loop checks every integer from 2 to 23.</p><p><code>24</code> has many factors: <code>2, 3, 4, 6, 8, 12</code>. Each of these passes the <code>number % index == 0</code> check and gets appended to <code>new_list</code>.</p>`,
+            highlightLines: [10],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {},
+                },
+                { title: "Output", values: ["[3, 5]"] }
+            ]
+        },
+        // =============================================
+        // Line 11: print(my_function(29))
+        // =============================================
+        {
+            explanation: `<p>The second result is printed: <code>[2, 3, 6, 8, 12]</code>.</p><p>Now the third call: <code>my_function(29)</code>. This time <code>number = 29</code>, which is a <strong>prime number</strong> — it has no factors other than 1 and itself.</p><p>The loop checks every integer from 2 to 28, but <code>29 % index</code> is never <code>0</code>. The <code>if</code> block is never entered, so <code>new_list</code> stays empty.</p>`,
+            highlightLines: [11],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {},
+                },
+                { title: "Output", values: ["[3, 5]", "[2, 3, 6, 8, 12]"] }
+            ]
+        },
+        // =============================================
+        // Final step
+        // =============================================
+        {
+            explanation: `<p>The program has finished.</p><p><strong>Key takeaway:</strong> This function finds all the <strong>factors</strong> of a number (excluding 1 and the number itself). It does this by testing every integer from 2 up to <code>number - 1</code> using the modulo operator (<code>%</code>).</p><p>Notice that for the prime number 29, the result is an empty list — because prime numbers have no factors other than 1 and themselves.</p>`,
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {},
+                },
+                { title: "Output", values: ["[3, 5]", "[2, 3, 6, 8, 12]", "[]"] }
             ]
         },
         

@@ -6,7 +6,7 @@ import psp_p6q10 from '../components/tutorials/PSP_P6Q10.js';
 
 <template>
   <div class="container mx-auto p-4 max-w-[1024px]">
-    <CodeTutorial :tutorial="psp_p6q10" language="python" code-width="w-[74%]" data-boxes-width="w-[26%]"/>
+    <CodeTutorial :tutorial="psp_p6q10" language="python" code-width="w-[70%]" data-boxes-width="w-[30%]"/>
   </div>
 </template>
 

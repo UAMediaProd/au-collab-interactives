@@ -1005,7 +1005,6 @@ while play_again == 'y':
             explanation: `
             <p>All finished! Now let's see how it executes.</p>
             `,
-            language: 'python-repl',
             info: `
             <div class="flowchart-outline">
                 <p>✅ Control loop</p>
@@ -1030,6 +1029,7 @@ while play_again == 'y':
             explanation: `
             <p>Let's start by sharing.</p>
             `,
+            language: 'python-repl',
             info: `
             <div class="flowchart-outline">
                 <p>✅ Control loop</p>

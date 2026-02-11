@@ -341,97 +341,412 @@ print("Soup of the day: " + soups[soup_selector])
 `,
             highlightLines: [15],
         },
+        // =============================================
+        // Code step-through section
+        // Scenario: trace all 5 loop iterations,
+        // then soup_selector = 1 → "Pumpkin soup"
+        // =============================================
         {
-            explanation: `
-            <p><strong>Step 4:</strong> Execute the code to verify what happens.</p>
-            `,
-            info: `
-            <div class="flowchart-solid">✅ Create a new empty list</div> 
-            <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-outline">
-            <p>✅ Begin loop</p>
-            <p style="font-size:0.8rem">Number of iterations = <code>len(menu)</code></p>
-            <div class="flowchart-solid">✅ Check if the next item from <code>menu</code> ends with 'soup'</div>
-            <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">✅ If it does, add it to the new list</div>
-            </div>
-            <div class="flowchart-connection">🡇</div>
-            <div class="flowchart-solid">✅ Randomly select and display a 'Soup of the day'</div>`, 
-        },
-        {
-            explanation: `
-            <p>Let's run it 4 more times...</p>
-            `,
+            explanation: `<p><strong>Step 4:</strong> Let's trace through the code step by step to verify it works.</p>`,
+            highlightLines: [],
             boxes: [
                 {
-                    title: "Output",
-                    values: [
-                        "Soup of the day: Tomato soup"
-                    ]
-                }
-            ],
-        },
-        {
-            explanation: `
-            <p>Let's run it 3 more times...</p>
-            `,
-            boxes: [
+                    title: "Memory",
+                    stacked: true,
+                    values: {}
+                },
                 {
                     title: "Output",
-                    values: [
-                        "Soup of the day: Tomato soup",
-                        "Soup of the day: Pumpkin soup",
-                    ]
+                    values: []
                 }
-            ],
+            ]
         },
+        // --- import random ---
         {
-            explanation: `
-            <p>Let's run it 2 more times...</p>
-            `,
+            explanation: `<p>Import the <code>random</code> module. We'll need it later to randomly select a soup.</p>`,
+            highlightLines: [0],
             boxes: [
                 {
-                    title: "Output",
-                    values: [
-                        "Soup of the day: Tomato soup",
-                        "Soup of the day: Pumpkin soup",
-                        "Soup of the day: Tomato soup"
-                    ]
-                }
-            ],
-        },
-        {
-            explanation: `
-            <p>Let's run it 1 more time...</p>
-            `,
-            boxes: [
+                    title: "Memory",
+                    stacked: true,
+                    values: {}
+                },
                 {
                     title: "Output",
-                    values: [
-                        "Soup of the day: Tomato soup",
-                        "Soup of the day: Pumpkin soup",
-                        "Soup of the day: Tomato soup",
-                        "Soup of the day: Pea soup"
-                    ]
+                    values: []
                 }
-            ],
+            ]
         },
+        // --- menu list ---
         {
-            explanation: `
-            <p>The program works as expected!</p>
-            `,
+            explanation: `<p>Create the <code>menu</code> list with 5 items. This is the list we'll be searching through for soups.</p>`,
+            highlightLines: [1, 2, 3, 4, 5, 6, 7],
             boxes: [
                 {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" }
+                    ],
+                    stacked: true
+                },
+                {
                     title: "Output",
-                    values: [
-                        "Soup of the day: Tomato soup",
-                        "Soup of the day: Pumpkin soup",
-                        "Soup of the day: Tomato soup",
-                        "Soup of the day: Pea soup",
-                        "Soup of the day: Pea soup"
-                    ]
+                    values: []
                 }
-            ],
+            ]
+        },
+        // --- soups = [] ---
+        {
+            explanation: `<p>Create an empty list called <code>soups</code>. This is where we'll store any menu items that are soups.</p>`,
+            highlightLines: [8],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"] }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- for loop begins ---
+        {
+            explanation: `<p>The <code>for</code> loop begins. On the first iteration, <code>food</code> is set to the first item in <code>menu</code>: <code>'Lamb steak'</code>.</p>`,
+            highlightLines: [10],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 0 },
+                        "soups": { value: ["\u00a0"], highlight: true },
+                        "food": { value: "'Lamb steak'", highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Iteration 1: 'Lamb steak' ---
+        {
+            explanation: `<p><strong>Iteration 1:</strong> Check if <code>food[-4:]</code> equals <code>'soup'</code>.</p><p>The last 4 characters of <code>'Lamb steak'</code> are <code>'teak'</code>. <code>'teak' == 'soup'</code> is <code>False</code>, so we skip the <code>append</code>.</p>`,
+            highlightLines: [11],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 0 },
+                        "soups": { value: ["\u00a0"] },
+                        "food": "'Lamb steak'"
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Iteration 2: 'Tomato soup' ---
+        {
+            explanation: `<p><strong>Iteration 2:</strong> <code>food</code> is now <code>'Tomato soup'</code>.</p><p>Check: <code>food[-4:]</code> is <code>'soup'</code>. <code>'soup' == 'soup'</code> is <code>True</code>!</p>`,
+            highlightLines: [10, 11],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 1 },
+                        "soups": { value: ["\u00a0"] },
+                        "food": { value: "'Tomato soup'", highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        {
+            explanation: `<p>The condition was <code>True</code>, so we append <code>'Tomato soup'</code> to the <code>soups</code> list.</p>`,
+            highlightLines: [12],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 1 },
+                        "soups": { value: ["\u00a0"] },
+                        "food": "'Tomato soup'"
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Iteration 3: 'Fried rice' ---
+        {
+            explanation: `<p><strong>Iteration 3:</strong> <code>food</code> is now <code>'Fried rice'</code>.</p><p>Check: <code>food[-4:]</code> is <code>'rice'</code>. <code>'rice' == 'soup'</code> is <code>False</code>, so we skip the <code>append</code>.</p>`,
+            highlightLines: [10, 11],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 2 },
+                        "soups": { value: ["'Tomato soup'"], highlight: 0 },
+                        "food": { value: "'Fried rice'", highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Iteration 4: 'Pumpkin soup' ---
+        {
+            explanation: `<p><strong>Iteration 4:</strong> <code>food</code> is now <code>'Pumpkin soup'</code>.</p><p>Check: <code>food[-4:]</code> is <code>'soup'</code>. <code>'soup' == 'soup'</code> is <code>True</code>!</p>`,
+            highlightLines: [10, 11],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 3 },
+                        "soups": { value: ["'Tomato soup'"] },
+                        "food": { value: "'Pumpkin soup'", highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        {
+            explanation: `<p>Append <code>'Pumpkin soup'</code> to the <code>soups</code> list.</p>`,
+            highlightLines: [12],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 3 },
+                        "soups": { value: ["'Tomato soup'"] },
+                        "food": "'Pumpkin soup'"
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Iteration 5: 'Pea soup' ---
+        {
+            explanation: `<p><strong>Iteration 5:</strong> <code>food</code> is now <code>'Pea soup'</code>.</p><p>Check: <code>food[-4:]</code> is <code>'soup'</code>. <code>'soup' == 'soup'</code> is <code>True</code>!</p>`,
+            highlightLines: [10, 11],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 4 },
+                        "soups": { value: ["'Tomato soup'", "'Pumpkin soup'"], highlight: 1 },
+                        "food": { value: "'Pea soup'", highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        {
+            explanation: `<p>Append <code>'Pea soup'</code> to the <code>soups</code> list.</p>`,
+            highlightLines: [12],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"], highlight: 4 },
+                        "soups": { value: ["'Tomato soup'", "'Pumpkin soup'"] },
+                        "food": "'Pea soup'"
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- Loop ends ---
+        {
+            explanation: `<p>The loop has finished — we've checked every item in <code>menu</code>. The <code>soups</code> list now contains all three soups: <code>'Tomato soup'</code>, <code>'Pumpkin soup'</code>, and <code>'Pea soup'</code>.</p>`,
+            highlightLines: [10],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"] },
+                        "soups": { value: ["'Tomato soup'", "'Pumpkin soup'", "'Pea soup'"], highlight: 2 },
+                        "food": "'Pea soup'"
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- soup_selector ---
+        {
+            explanation: `<p>Generate a random integer between <code>0</code> and <code>len(soups) - 1</code>, which is <code>0</code> to <code>2</code>.</p><p>Let's say <code>random.randint(0, 2)</code> returns <code>1</code>.</p>`,
+            highlightLines: [14],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"] },
+                        "soups": { value: ["'Tomato soup'", "'Pumpkin soup'", "'Pea soup'"] },
+                        "food": "'Pea soup'"
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- print ---
+        {
+            explanation: `<p>Print the soup of the day. <code>soups[soup_selector]</code> is <code>soups[1]</code>, which is <code>'Pumpkin soup'</code>.</p>`,
+            highlightLines: [15],
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"] },
+                        "soups": { value: ["'Tomato soup'", "'Pumpkin soup'", "'Pea soup'"], highlight: 1 },
+                        "food": "'Pea soup'",
+                        "soup_selector": { value: 1, highlight: true }
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" },
+                        { from: "soup_selector", toKey: "soup_selector" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: []
+                }
+            ]
+        },
+        // --- End ---
+        {
+            explanation: `<p>The program has finished.</p>
+            <p><strong>Key takeaways:</strong></p>
+            <p>This program uses a <code>for</code> loop to iterate over a list, checking each item against a condition. Items that match are added to a new list using <code>append()</code>. This is a very common pattern known as <strong>filtering</strong>.</p>
+            <p>The <code>random.randint()</code> function then picks a random index within the filtered list, giving us a random soup each time the program runs.</p>`,
+            boxes: [
+                {
+                    title: "Memory",
+                    stacked: true,
+                    values: {
+                        "menu": { value: ["'Lamb steak'", "'Tomato soup'", "'Fried rice'", "'Pumpkin soup'", "'Pea soup'"] },
+                        "soups": { value: ["'Tomato soup'", "'Pumpkin soup'", "'Pea soup'"] },
+                        "food": "'Pea soup'",
+                        "soup_selector": 1
+                    },
+                    connections: [
+                        { from: "menu", toKey: "menu" },
+                        { from: "soups", toKey: "soups" },
+                        { from: "food", toKey: "food" },
+                        { from: "soup_selector", toKey: "soup_selector" }
+                    ]
+                },
+                {
+                    title: "Output",
+                    values: ["Soup of the day: Pumpkin soup"]
+                }
+            ]
         },
     ]
 };
