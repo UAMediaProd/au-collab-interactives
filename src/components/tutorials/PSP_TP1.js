@@ -29,7 +29,7 @@ print("\\nThanks for playing!")`,
     // =============================================
     // Scenario: coin1 = 0 (Tails), coin2 = 1 (Heads) → "Throw again!"
     {
-      explanation: "<p>In this tutorial, we'll trace through a simple Two-up game program.</p><p>Two-up is a traditional Australian gambling game. Two coins are tossed: if both land heads, the spinner wins; if both land tails, the spinner loses; otherwise, the coins are thrown again.</p><p>This first solution simulates a <strong>single toss</strong> of the two coins.</p>",
+      explanation: "<p>In this tutorial, we'll trace through a simple Two-up game program.</p><p>Two-up is a traditional Australian game. Two coins are tossed: if both land heads, the spinner wins; if both land tails, the spinner loses; otherwise, the coins are thrown again.</p><p>This first solution simulates a <strong>single toss</strong> of the two coins.</p>",
       highlightLines: [],
       boxes: [
         {

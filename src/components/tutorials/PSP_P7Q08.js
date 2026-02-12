@@ -100,7 +100,7 @@ def generate_password(length):
 
     
 
-password_length = int(input('\\nEnter the desired length: '))
+length = int(input('\\nEnter password length: '))
 
 
 
@@ -134,8 +134,8 @@ def generate_password(length):
 
     
 
-password_length = int(input('\\nEnter the desired length: '))
-new_password = generate_password(password_length)
+length = int(input('\\nEnter password length: '))
+new_password = generate_password(length)
 
 
     
@@ -169,9 +169,9 @@ def generate_password(length):
 
     
 
-password_length = int(input('\\nEnter the desired length: '))
-new_password = generate_password(password_length)
-print('\\nYour new password is password: ' + new_password,'\\n\\n')
+length = int(input('\\nEnter password length: '))
+new_password = generate_password(length)
+print('\\nYour new password is: ' + new_password,'\\n\\n')
 
     
 `,
@@ -198,9 +198,9 @@ def generate_password(length):
 
     
 
-password_length = int(input('\\nEnter the desired length: '))
-new_password = generate_password(password_length)
-print('\\nYour new password is password: ' + new_password,'\\n\\n')
+length = int(input('\\nEnter password length: '))
+new_password = generate_password(length)
+print('\\nYour new password is: ' + new_password,'\\n\\n')
 
     
 `,
@@ -225,10 +225,10 @@ def generate_password(length):
     
 
     
-while user_choice == 'y':
-    password_length = int(input('\\nEnter the desired length: '))
-    new_password = generate_password(password_length)
-    print('\\nYour new password is password: ' + new_password,'\\n\\n')
+while choice == 'y':
+    length = int(input('\\nEnter password length: '))
+    new_password = generate_password(length)
+    print('\\nYour new password is: ' + new_password,'\\n\\n')
 
     
 `,
@@ -252,23 +252,23 @@ def generate_password(length):
 
 
     
-user_choice = input('\\nWould you like to generate a password? [y/n] ')
+choice = input('\\nGenerate a password? [y/n] ')
     
-while user_choice == 'y':
-    password_length = int(input('\\nEnter the desired length: '))
-    new_password = generate_password(password_length)
-    print('\\nYour new password is password: ' + new_password,'\\n\\n')
+while choice == 'y':
+    length = int(input('\\nEnter password length: '))
+    new_password = generate_password(length)
+    print('\\nYour new password is: ' + new_password,'\\n\\n')
 
     
 `,
             highlightChars: [
                 {
                     line: 14,
-                    match: "user_choice"
+                    match: "choice"
                 },
                 {
                     line: 16,
-                    match: "user_choice == 'y':"
+                    match: "choice == 'y':"
                 }
             ]
         },
@@ -290,23 +290,23 @@ def generate_password(length):
 
 
     
-user_choice = input('\\nWould you like to generate a password? [y/n] ')
+choice = input('\\nGenerate a password? [y/n] ')
     
-while user_choice == 'y':
-    password_length = int(input('\\nEnter the desired length: '))
-    new_password = generate_password(password_length)
-    print('\\nYour new password is password: ' + new_password,'\\n\\n')
-    user_choice = input('\\nWould you like to generate another password? [y/n] ')
+while choice == 'y':
+    length = int(input('\\nEnter password length: '))
+    new_password = generate_password(length)
+    print('\\nYour new password is: ' + new_password,'\\n\\n')
+    choice = input('\\nGenerate another password? [y/n] ')
     
 `,
             highlightChars: [
                 {
                     line: 16,
-                    match: "user_choice == 'y':"
+                    match: "choice == 'y':"
                 },
                 {
                     line: 20,
-                    match: "user_choice"
+                    match: "choice"
                 },
             ]
         },
@@ -335,142 +335,705 @@ print(34*'=')
 print("Welcome to PSP Password Generator")
 print(34*'=')
     
-user_choice = input('\\nWould you like to generate a password? [y/n] ')
+choice = input('\\nGenerate a password? [y/n] ')
     
-while user_choice == 'y':
-    password_length = int(input('\\nEnter the desired length: '))
-    new_password = generate_password(password_length)
-    print('\\nYour new password is password: ' + new_password,'\\n\\n')
-    user_choice = input('\\nWould you like to generate another password? [y/n] ')
+while choice == 'y':
+    length = int(input('\\nEnter password length: '))
+    new_password = generate_password(length)
+    print('\\nYour new password is: ' + new_password,'\\n\\n')
+    choice = input('\\nGenerate another password? [y/n] ')
     
-print('\\nThank you for using PSP Password Generator!')`,
+print('\\nThank you!')`,
             highlightLines: [10,11,12,22]
         },
+        // =============================================
+        // Code step-through
+        // =============================================
         {
-            explanation: `
-            <p>In this example, the user chooses to run the loop twice before ending the program.</p>
-            <p>The user has complete control over the number of executions via the variable <code>user_choice</code>.</p>
-            `,
-            language: 'python-repl',
-            code: `>>>
-==================================
-Welcome to PSP Password Generator
-==================================
-
-Would you like to generate a password? [y/n] 
-            `,
+            explanation: `<p>Now let's trace through the code. In this example, the user will generate a single 5-character password.</p>`,
+            highlightLines: [],
+            boxes: [
+                { title: "Memory", values: {} },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Lines 10-12: print banner
+        // =============================================
+        {
+            explanation: `<p>The program begins with three <code>print()</code> statements that display a banner.</p>`,
+            highlightLines: [10, 11, 12],
+            boxes: [
+                { title: "Memory", values: {} },
+                { title: "Output", values: [] }
+            ]
+        },
+        // =============================================
+        // Line 14: choice = input(...)
+        // =============================================
+        {
+            explanation: `<p>The banner is now displayed.</p><p>Next, the program asks the user whether they'd like to generate a password. The <code>input()</code> function displays the prompt and waits for the user to type something.</p>`,
+            highlightLines: [14],
+            boxes: [
+                { title: "Memory", values: {} },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] "] }
+            ]
         },
         {
-            explanation: `
-            <p>In this example, the user chooses to run the loop twice before ending the program.</p>
-            <p>The user has complete control over the number of executions via the variable <code>user_choice</code>.</p>
-            `,
-            language: 'python-repl',
-            code: `>>>
-==================================
-Welcome to PSP Password Generator
-==================================
-
-Would you like to generate a password? [y/n] y
-
-Enter the desired length: 
-            `,
+            explanation: `<p>Let's say the user enters <code>'y'</code>. This value is stored in the variable <code>choice</code>.</p>`,
+            highlightLines: [14],
+            boxes: [
+                { title: "Memory", values: {} },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y"] }
+            ]
+        },
+        // =============================================
+        // Line 16: while choice == 'y':
+        // =============================================
+        {
+            explanation: `<p>Check the <code>while</code> condition: is <code>choice == 'y'</code>?</p><p><code>'y' == 'y'</code> is <code>True</code>, so we enter the loop body.</p>`,
+            highlightLines: [16],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": { value: "\"y\"", highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y"] }
+            ]
+        },
+        // =============================================
+        // Line 17: length = int(input(...))
+        // =============================================
+        {
+            explanation: `<p>The program asks the user to enter the desired password length.</p>`,
+            highlightLines: [17],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: "] }
+            ]
         },
         {
-            explanation: `
-            <p>In this example, the user chooses to run the loop twice before ending the program.</p>
-            <p>The user has complete control over the number of executions via the variable <code>user_choice</code>.</p>
-            `,
-            language: 'python-repl',
-            code: `>>>
-==================================
-Welcome to PSP Password Generator
-==================================
-
-Would you like to generate a password? [y/n] y
-
-Enter the desired length: 3
-
-Your new password is password: RMy
-
-Would you like to generate another password? [y/n] 
-            `,
+            explanation: `<p>The user enters <code>5</code>. The <code>input()</code> function returns the string <code>'5'</code>, which is then converted to the integer <code>5</code> by <code>int()</code> and stored in <code>length</code>.</p>`,
+            highlightLines: [17],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Line 18: new_password = generate_password(length)
+        // =============================================
+        {
+            explanation: `<p>Now we call <code>generate_password(length)</code>, passing in <code>5</code>. Execution jumps into the function body.</p>`,
+            highlightLines: [18],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": { value: 5, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Line 3: password = ''
+        // =============================================
+        {
+            explanation: `<p>Inside the function, <code>password</code> is initialised as an empty string. This will be built up character by character.</p>`,
+            highlightLines: [3],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": { value: 5, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Line 4: index = 0
+        // =============================================
+        {
+            explanation: `<p>Initialise <code>index</code> to <code>0</code>. This controls how many characters have been added so far.</p>`,
+            highlightLines: [4],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": { value: "\"\"", highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Iteration 1: index = 0
+        // =============================================
+        {
+            explanation: `<p>Check the <code>while</code> condition: <code>0 < 5</code> is <code>True</code>. Enter the loop.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"\"",
+                        "index": { value: 0, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
         },
         {
-            explanation: `
-            <p>In this example, the user chooses to run the loop twice before ending the program.</p>
-            <p>The user has complete control over the number of executions via the variable <code>user_choice</code>.</p>
-            `,
-            language: 'python-repl',
-            code: `>>>
-==================================
-Welcome to PSP Password Generator
-==================================
-
-Would you like to generate a password? [y/n] y
-
-Enter the desired length: 3
-
-Your new password is password: RMy
-
-Would you like to generate another password? [y/n] y
-
-Enter the desired length: 
-            `,
+            explanation: `<p><code>random.choice(string.ascii_letters)</code> picks a random letter from the alphabet (upper or lowercase). Let's say it picks <code>'X'</code>.</p><p><code>password += 'X'</code> concatenates it onto the password string.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"\"",
+                        "index": 0
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
         },
         {
-            explanation: `
-            <p>In this example, the user chooses to run the loop twice before ending the program.</p>
-            <p>The user has complete control over the number of executions via the variable <code>user_choice</code>.</p>
-            `,
-            language: 'python-repl',
-            code: `>>>
-==================================
-Welcome to PSP Password Generator
-==================================
-
-Would you like to generate a password? [y/n] y
-
-Enter the desired length: 3
-
-Your new password is password: RMy
-
-Would you like to generate another password? [y/n] y
-
-Enter the desired length: 5
-
-Your new password is password: XQkqM
-
-Would you like to generate another password? [y/n] 
-            `,
+            explanation: `<p>Increment <code>index</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": { value: "\"X\"", highlight: true },
+                        "index": 0
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Iteration 2: index = 1
+        // =============================================
+        {
+            explanation: `<p>Check: <code>1 < 5</code> is <code>True</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"X\"",
+                        "index": { value: 1, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
         },
         {
-            explanation: `
-            <p>In this example, the user chooses to run the loop twice before ending the program.</p>
-            <p>The user has complete control over the number of executions via the variable <code>user_choice</code>.</p>
-            `,
-            language: 'python-repl',
-            code: `>>>
-==================================
-Welcome to PSP Password Generator
-==================================
-
-Would you like to generate a password? [y/n] y
-
-Enter the desired length: 3
-
-Your new password is password: RMy
-
-Would you like to generate another password? [y/n] y
-
-Enter the desired length: 5
-
-Your new password is password: XQkqM
-
-Would you like to generate another password? [y/n] n
-
-Thank you for using PSP Password Generator!
->>>`,
+            explanation: `<p>This time <code>random.choice()</code> picks <code>'Q'</code>. It is concatenated onto <code>password</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"X\"",
+                        "index": 1
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": { value: "\"XQ\"", highlight: true },
+                        "index": 1
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Iteration 3: index = 2
+        // =============================================
+        {
+            explanation: `<p>Check: <code>2 < 5</code> is <code>True</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQ\"",
+                        "index": { value: 2, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p><code>random.choice()</code> picks <code>'k'</code>. Concatenated onto <code>password</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQ\"",
+                        "index": 2
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": { value: "\"XQk\"", highlight: true },
+                        "index": 2
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Iteration 4: index = 3
+        // =============================================
+        {
+            explanation: `<p>Check: <code>3 < 5</code> is <code>True</code>.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQk\"",
+                        "index": { value: 3, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p><code>random.choice()</code> picks <code>'q'</code>. Concatenated onto <code>password</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQk\"",
+                        "index": 3
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": { value: "\"XQkq\"", highlight: true },
+                        "index": 3
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Iteration 5: index = 4
+        // =============================================
+        {
+            explanation: `<p>Check: <code>4 < 5</code> is <code>True</code>. One more character to go.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQkq\"",
+                        "index": { value: 4, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p><code>random.choice()</code> picks <code>'M'</code>. Concatenated onto <code>password</code>.</p>`,
+            highlightLines: [6],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQkq\"",
+                        "index": 4
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        {
+            explanation: `<p>Increment <code>index</code>.</p>`,
+            highlightLines: [7],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": { value: "\"XQkqM\"", highlight: true },
+                        "index": 4
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Loop exit
+        // =============================================
+        {
+            explanation: `<p>Check: <code>5 < 5</code> is <code>False</code>. The inner loop ends.</p>`,
+            highlightLines: [5],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQkqM\"",
+                        "index": { value: 5, highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Line 8: return password
+        // =============================================
+        {
+            explanation: `<p>The function returns <code>"XQkqM"</code>. Execution jumps back to line 18, where the return value is stored in <code>new_password</code>.</p>`,
+            highlightLines: [8, 18],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "password": "\"XQkqM\"",
+                        "index": 5
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "password", toKey: "password" },
+                        { from: "index", toKey: "index" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Line 19: print(...)
+        // =============================================
+        {
+            explanation: `<p>The password is printed to the screen.</p>`,
+            highlightLines: [19],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "new_password": { value: "\"XQkqM\"", highlight: true }
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "new_password", toKey: "new_password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5"] }
+            ]
+        },
+        // =============================================
+        // Line 20: choice = input(...)
+        // =============================================
+        {
+            explanation: `<p>The user is asked whether they'd like to generate another password.</p>`,
+            highlightLines: [20],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "new_password": "\"XQkqM\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "new_password", toKey: "new_password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5", "", "Your new password is: XQkqM", "", "Generate another password? [y/n] "] }
+            ]
+        },
+        {
+            explanation: `<p>This time the user enters <code>'n'</code>. The variable <code>choice</code> is updated.</p>`,
+            highlightLines: [20],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"y\"",
+                        "length": 5,
+                        "new_password": "\"XQkqM\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "new_password", toKey: "new_password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5", "", "Your new password is: XQkqM", "", "Generate another password? [y/n] n"] }
+            ]
+        },
+        // =============================================
+        // Line 16: while choice == 'y': (False)
+        // =============================================
+        {
+            explanation: `<p>Back at the top of the outer loop. Check: <code>choice == 'y'</code>?</p><p><code>'n' == 'y'</code> is <code>False</code>. The loop ends.</p>`,
+            highlightLines: [16],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": { value: "\"n\"", highlight: true },
+                        "length": 5,
+                        "new_password": "\"XQkqM\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "new_password", toKey: "new_password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5", "", "Your new password is: XQkqM", "", "Generate another password? [y/n] n"] }
+            ]
+        },
+        // =============================================
+        // Line 22: print('\nThank you!')
+        // =============================================
+        {
+            explanation: `<p>The farewell message is printed.</p>`,
+            highlightLines: [22],
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"n\"",
+                        "length": 5,
+                        "new_password": "\"XQkqM\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "new_password", toKey: "new_password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5", "", "Your new password is: XQkqM", "", "Generate another password? [y/n] n"] }
+            ]
+        },
+        // =============================================
+        // Final step
+        // =============================================
+        {
+            explanation: `<p>The program has finished.</p><p><strong>Key takeaway:</strong> The outer <code>while</code> loop gives the user control over how many times the password generation process repeats. As long as the user enters <code>'y'</code>, the loop continues. The moment they enter anything else, the loop exits and the program ends gracefully.</p>`,
+            boxes: [
+                {
+                    title: "Memory",
+                    values: {
+                        "choice": "\"n\"",
+                        "length": 5,
+                        "new_password": "\"XQkqM\""
+                    },
+                    connections: [
+                        { from: "choice", toKey: "choice" },
+                        { from: "length", toKey: "length" },
+                        { from: "new_password", toKey: "new_password" }
+                    ]
+                },
+                { title: "Output", values: ["==================================", "Welcome to PSP Password Generator", "==================================", "", "Generate a password? [y/n] y", "", "Enter password length: 5", "", "Your new password is: XQkqM", "", "Generate another password? [y/n] n", "", "Thank you!"] }
+            ]
         },
     ]
 };
