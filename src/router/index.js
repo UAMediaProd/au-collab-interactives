@@ -316,6 +316,11 @@ const routes = [
     name: 'PSP: Team Problem 6 (Credit Card Validation)',
     component: () => import('../views/PSP_TP6.vue')
   },
+  {
+    path: '/hello-world',
+    name: 'Hello World',
+    component: () => import('../views/HelloWorld.vue')
+  },
 ]
 
 const router = createRouter({
